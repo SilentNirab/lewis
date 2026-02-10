@@ -2573,11 +2573,11 @@
     >
       <div
         style="
-          background-image: url(&quot;./assets/images/float.svg&quot;);
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-        "
+            background-image: url('./assets/images/float.svg');
+            background-size: cover;
+            background-position: start;
+            background-repeat: no-repeat;
+          "
         class="relative flex justify-between items-center shadow-lg p-1.5 rounded-full w-[90vw] max-w-md"
       >
         <!-- Home -->
@@ -3466,6 +3466,72 @@
         initializeExpandFunctionality,
       );
     </script>
+    <script>
+      // Custom Dropdown JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdowns = document.querySelectorAll(".custom-dropdown");
+
+        dropdowns.forEach((dropdown) => {
+          const trigger = dropdown.querySelector(".dropdown-trigger");
+          const menu = dropdown.querySelector(".dropdown-menu");
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const valueSpan = dropdown.querySelector(".dropdown-value");
+
+          // Toggle dropdown
+          trigger.addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            // Close other dropdowns
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) {
+                d.classList.remove("active");
+              }
+            });
+
+            dropdown.classList.toggle("active");
+          });
+
+          // Select item
+          items.forEach((item) => {
+            item.addEventListener("click", function (e) {
+              e.stopPropagation();
+
+              // Remove selected class from all items
+              items.forEach((i) => i.classList.remove("selected"));
+
+              // Add selected class to clicked item
+              this.classList.add("selected");
+
+              // Update trigger value
+              valueSpan.textContent = this.getAttribute("data-value");
+
+              // Close dropdown
+              dropdown.classList.remove("active");
+            });
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          dropdowns.forEach((dropdown) => {
+            dropdown.classList.remove("active");
+          });
+        });
+
+        // Set initial selected state
+        dropdowns.forEach((dropdown) => {
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const currentValue =
+            dropdown.querySelector(".dropdown-value").textContent;
+          items.forEach((item) => {
+            if (item.getAttribute("data-value") === currentValue) {
+              item.classList.add("selected");
+            }
+          });
+        });
+      });
+    </script>
+    
     <script src="./assets/js/dashboard.js"></script>
     <script src="./assets/js/popup.js"></script>
     <script src="./assets/js/search-popup.js"></script>

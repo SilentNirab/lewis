@@ -645,7 +645,7 @@
 
                     <a
                       href="./dashboard_setting.html"
-                      class="sidebar-item dcenter size-[48px] rounded-full text-black bg-white! hover:bg-white!"
+                      class="sidebar-item dcenter size-12 rounded-full text-black bg-white! hover:bg-white!"
                     >
                       <img src="./assets/images/setting.svg" />
                       <span class="sidebar-label">Settings</span>
@@ -698,7 +698,7 @@
 
           <!-- Main Content -->
           <main
-            class="flex-1 p-2 lg:p-6 lg:pr-4 lg:pt-0 overflow-auto"
+            class="flex-1 p-2 lg:p-6 lg:pr-4 lg:pt-8 overflow-auto"
             id="mainContent"
           >
             <div class="py-8 pt-7">
@@ -726,32 +726,32 @@
               >
                 <!-- Tabs Navigation -->
                 <div
-                  class="flex overflow-x-auto border border-[#EBEAEAAD] lg:mb-6 mb-4 bg-[#ededed86] w-fit p-1.5 rounded-full"
+                  class="flex justify-between gap-1 md:gap-3 overflow-x-auto border border-[#EBEAEAAD] lg:mb-6 mb-4 bg-[#ededed86] w-full md:w-fit p-1.5 rounded-full"
                 >
                   <button
                     id="general-tab"
-                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm rounded-full active-color"
+                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm rounded-full active-color cursor-pointer"
                     data-tab="general"
                   >
                     General
                   </button>
                   <button
                     id="billing-tab"
-                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full"
+                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="billing"
                   >
                     Billing
                   </button>
                   <button
                     id="password-tab"
-                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full"
+                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="password"
                   >
                     Password
                   </button>
                   <button
                     id="notifications-tab"
-                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full"
+                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="notifications"
                   >
                     Notifications
@@ -768,19 +768,12 @@
                     <!-- Buttons for large devices - hidden on small devices -->
                     <div class="hidden lg:flex space-x-3">
                       <button
-                        class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                        class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                       >
                         Cancel
                       </button>
-                      <button
-                        style="
-                          background: linear-gradient(
-                            78deg,
-                            #0d743b -32.88%,
-                            #00e658 151.27%
-                          );
-                        "
-                        class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                      <button 
+                        class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                       >
                         Save
                       </button>
@@ -965,19 +958,12 @@
                       class="flex lg:hidden justify-end space-x-3 mt-8 pt-6 border-t border-gray-200"
                     >
                       <button
-                        class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                        class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                       >
                         Cancel
                       </button>
                       <button
-                        style="
-                          background: linear-gradient(
-                            78deg,
-                            #0d743b -32.88%,
-                            #00e658 151.27%
-                          );
-                        "
-                        class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                        class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                       >
                         Save
                       </button>
@@ -992,7 +978,7 @@
                 >
                   <div class="">
                     <!-- Billing Section -->
-                    <div class="mb-8">
+                    <div class="mb-2 sm:mb-8">
                       <!-- Plan Information -->
                       <div
                         class="mb-6 max-w-full border-1 border-gray-300 rounded-lg"
@@ -1120,7 +1106,7 @@
                               <tr>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   <input
                                     type="checkbox"
@@ -1135,13 +1121,13 @@
                                 </th>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   Date
                                 </th>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   Category
                                 </th>
@@ -1153,19 +1139,19 @@
                                 </th>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   Taxes
                                 </th>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   Status
                                 </th>
                                 <th
                                   scope="col"
-                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell"
                                 >
                                   Actions
                                 </th>
@@ -1174,7 +1160,9 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                               <!-- Row 1 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1212,12 +1200,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 20, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Rent
                                 </td>
@@ -1227,12 +1215,12 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-50 text-green-700"
@@ -1241,7 +1229,7 @@
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="
@@ -1275,7 +1263,9 @@
 
                               <!-- Row 2 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1314,12 +1304,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 21, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Water Bill
                                 </td>
@@ -1329,12 +1319,12 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-50 text-yellow-700"
@@ -1343,7 +1333,7 @@
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="background: #0b6b3820"
@@ -1371,7 +1361,9 @@
 
                               <!-- Row 3 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1409,12 +1401,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 22, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Electricity Bills
                                 </td>
@@ -1424,21 +1416,21 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-50 text-red-700 text-center"
+                                    class="px-2 sm:inline-flex text-xs leading-5 font-semibold rounded-full bg-red-50 text-red-700 text-center hidden"
                                   >
                                     Declined
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="background: #0b6b3820"
@@ -1466,7 +1458,9 @@
 
                               <!-- Row 4 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1504,12 +1498,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 23, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Payment
                                 </td>
@@ -1519,21 +1513,21 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6py-4 whitespace-nowrap text-center"
+                                  class="px-6py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-50 text-green-700"
+                                    class="px-2 sm:inline-flex text-xs leading-5 font-semibold rounded-full bg-green-50 text-green-700 hidden"
                                   >
                                     Success
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="background: #0b6b3820"
@@ -1561,7 +1555,9 @@
 
                               <!-- Row 5 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1599,12 +1595,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 24, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Rent
                                 </td>
@@ -1614,12 +1610,12 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-50 text-yellow-700"
@@ -1628,7 +1624,7 @@
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="background: #0b6b3820"
@@ -1656,7 +1652,9 @@
 
                               <!-- Row 6 -->
                               <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td
+                                  class="px-6 py-4 whitespace-nowrap hidden sm:table-cell"
+                                >
                                   <input
                                     type="checkbox"
                                     class="rounded border-gray-100 text-green-600 focus:ring-green-500"
@@ -1694,12 +1692,12 @@
                                   </div>
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Jun 25, 2025
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   Payment
                                 </td>
@@ -1709,12 +1707,12 @@
                                   $5000
                                 </td>
                                 <td
-                                  class="px-6 py-4whitespace-nowrap text-sm text-gray-500 text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden sm:table-cell"
                                 >
                                   $10
                                 </td>
                                 <td
-                                  class="px-6 py-4 whitespace-nowrap text-center"
+                                  class="px-6 py-4 whitespace-nowrap text-center hidden sm:table-cell"
                                 >
                                   <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-50 text-red-700"
@@ -1723,7 +1721,7 @@
                                   </span>
                                 </td>
                                 <td
-                                  class="py-4 whitespace-nowrap text-right flex justify-center text-sm font-medium"
+                                  class="py-4 whitespace-nowrap text-right sm:flex justify-center text-sm font-medium hidden"
                                 >
                                   <button
                                     style="background: #0b6b3820"
@@ -1774,19 +1772,12 @@
 
                     <div class="hidden lg:flex space-x-3">
                       <button
-                        class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                        class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                       >
                         Cancel
                       </button>
                       <button
-                        style="
-                          background: linear-gradient(
-                            78deg,
-                            #0d743b -32.88%,
-                            #00e658 151.27%
-                          );
-                        "
-                        class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                        class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                       >
                         Save
                       </button>
@@ -2024,19 +2015,12 @@
                     class="flex lg:hidden justify-end space-x-3 mt-8 pt-6 border-t border-gray-200"
                   >
                     <button
-                      class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                      class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                     >
                       Cancel
                     </button>
                     <button
-                      style="
-                        background: linear-gradient(
-                          78deg,
-                          #0d743b -32.88%,
-                          #00e658 151.27%
-                        );
-                      "
-                      class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                      class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                     >
                       Save
                     </button>
@@ -2061,19 +2045,12 @@
                     <!-- Buttons for large devices - hidden on small devices -->
                     <div class="hidden lg:flex space-x-3">
                       <button
-                        class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                        class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                       >
                         Cancel
                       </button>
                       <button
-                        style="
-                          background: linear-gradient(
-                            78deg,
-                            #0d743b -32.88%,
-                            #00e658 151.27%
-                          );
-                        "
-                        class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                        class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                       >
                         Save
                       </button>
@@ -2098,25 +2075,55 @@
                         class="w-full sm:w-[40%] flex flex-col items-baseline lg:items-center gap-4 mt-6 sm:mt-0"
                       >
                         <div class="flex justify-center gap-2 items-center">
-                          <label class="toggle-switch">
-                            <input type="checkbox" checked />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Push</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Push</span
+                          >
                         </div>
                         <div class="flex justify-center gap-2 items-center">
-                          <label class="toggle-switch">
-                            <input type="checkbox" checked />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Email</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Email</span
+                          >
                         </div>
                         <div class="flex justify-center gap-2 items-center">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">SMS</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >SMS</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -2138,25 +2145,55 @@
                         class="w-full sm:w-[40%] flex flex-col items-baseline lg:items-center gap-4 mt-6 sm:mt-0"
                       >
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Push</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Push</span
+                          >
                         </div>
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Email</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Email</span
+                          >
                         </div>
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">SMS</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >SMS</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -2177,25 +2214,55 @@
                         class="w-full sm:w-[40%] flex flex-col items-baseline lg:items-center gap-4 mt-6 sm:mt-0"
                       >
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Push</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Push</span
+                          >
                         </div>
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">Email</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >Email</span
+                          >
                         </div>
                         <div class="flex justify-center items-center gap-2">
-                          <label class="toggle-switch">
-                            <input type="checkbox" />
-                            <span class="toggle-slider"></span>
+                          <label
+                            class="relative inline-flex items-center cursor-pointer"
+                          >
+                            <input
+                              type="checkbox"
+                              class="sr-only peer"
+                              checked
+                            />
+                            <div
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                            ></div>
                           </label>
-                          <span class="text-sm text-gray-700">SMS</span>
+                          <span class="text-sm font-medium text-black/80"
+                            >SMS</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -2206,7 +2273,7 @@
                     class="flex lg:hidden justify-end space-x-3 mt-8 pt-6 border-t border-[#0000001A]"
                   >
                     <button
-                      class="px-8 h-[46px] text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors cursor-pointer"
+                      class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
                     >
                       Cancel
                     </button>
@@ -2218,7 +2285,7 @@
                           #00e658 151.27%
                         );
                       "
-                      class="px-8 h-[46px] text-sm font-medium text-white rounded-full hover:bg-green-700 transition-colors cursor-pointer"
+                      class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                     >
                       Save
                     </button>
