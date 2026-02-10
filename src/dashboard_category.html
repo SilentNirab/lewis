@@ -1,0 +1,2605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Account Settings</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#22c55e",
+              "primary-dark": "#16a34a",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+
+      .check-icon {
+        width: 16px;
+        height: 16px;
+        background-color: #1bb15f;
+        /* Green background */
+        border-radius: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+
+      .check-icon::after {
+        content: "✓";
+        color: white;
+        /* White checkmark */
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      /* Custom toggle switch styling (retained from previous version, not used in this specific UI but good to keep) */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 24px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .toggle-slider {
+        background-color: #1bb15f;
+      }
+
+      input:focus + .toggle-slider {
+        box-shadow: 0 0 1px #1bb15f;
+      }
+
+      input:checked + .toggle-slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(16px);
+      }
+
+      .showSmPopup:hover .smpopup {
+        display: block !important;
+      }
+    </style>
+    <style>
+      /* Enhanced CSS for sidebar expand/collapse with proper layout management */
+      #sidebar {
+        width: 80px;
+        transition: width 0.3s ease;
+        position: fixed;
+        left: 0;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        z-index: 40;
+      }
+
+      @media (min-width: 1024px) {
+        #sidebar {
+          top: 5rem;
+          height: calc(100vh - 5rem);
+        }
+      }
+
+      #sidebar.expanded {
+        width: 250px;
+      }
+
+      /* Main content adjusts width and margin based on sidebar state */
+      main {
+        transition:
+          width 0.3s ease,
+          margin-left 0.3s ease;
+        overflow-x: hidden;
+      }
+
+      /* Large screens - sidebar layout */
+      @media (min-width: 1024px) {
+        main {
+          width: calc(100vw - 80px);
+          max-width: calc(100vw - 80px);
+        }
+
+        main.sidebar-expanded {
+          width: calc(100vw - 250px);
+          margin-left: 200px;
+          max-width: calc(100vw - 250px);
+        }
+      }
+
+      /* Small screens - full width */
+      @media (max-width: 1023px) {
+        main {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          margin-left: 0 !important;
+        }
+      }
+
+      /* Hide labels by default, show when sidebar is expanded */
+      .sidebar-label {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        margin-left: 12px;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      #sidebar.expanded .sidebar-label {
+        display: inline;
+        opacity: 1;
+      }
+
+      /* Adjust sidebar items layout when expanded */
+      .sidebar-item {
+        transition: all 0.3s ease;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      #sidebar.expanded .sidebar-item {
+        justify-content: flex-start;
+        padding: 12px 16px;
+        width: 100%;
+      }
+
+      /* Rotate expand icon when sidebar is expanded */
+      #sidebar.expanded .expand-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Background colors for sidebar items */
+      #sidebar .sidebar-item {
+        background: #f1f0f1; /* bg-gray-100 for inactive items */
+      }
+
+      #sidebar .sidebar-item.active {
+        background: white; /* bg-white for active item */
+      }
+
+      #sidebar.expanded .sidebar-item {
+        background: transparent;
+      }
+
+      #sidebar.expanded .sidebar-item.active {
+        background: white;
+      }
+
+      /* Smooth transitions for all elements */
+      * {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#F5F5F5] flex flex-col min-h-screen">
+    <div class="main-container">
+      <!-- Header -->
+      <header class="fixed inset-0 bg-[#F5F5F5] z-40 h-16 lg:h-20">
+        <div class="py-2 hidden lg:flex mx-auto px-4 lg:pl-4 sm:px-6 lg:px-8">
+          <div class="flex w-full justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <a href="http://gharmish.com/" class="cursor-pointer">
+                  <a href="gharmish://" class="cursor-pointer">
+                    <img
+                      src="./assets/images/logo_full-removebg-preview.png"
+                      class="h-12 w-auto"
+                    />
+                  </a>
+                </a>
+              </div>
+            </div>
+            <!-- Navigation -->
+            <nav
+              class="hidden md:flex md:flex-row border border-[rgba(201, 197, 197, 0.68)] p-1 rounded-3xl items-center b space-x-2"
+            >
+              <a
+                href="./dashboard.html"
+                class="bg-[#0D6B37] text-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Features</a
+              >
+              <a
+                href="./dashboard_pricing.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Plan & Pricing</a
+              >
+              <a
+                href="./download.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Download</a
+              >
+              <a
+                href="./contact.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Contact</a
+              >
+            </nav>
+            <!-- Right side -->
+            <div class="flex items-center space-x-1">
+              <button
+                class="bg-white hover:bg-gray-50 search_btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M17.5 17.5L13.875 13.875"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                class="bg-white hover:bg-gray-50 notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.0002 2.25C8.32001 2.25 5.25022 5.06847 5.25022 8.64153V9.69723C5.25022 10.7247 4.9461 11.7291 4.37618 12.584C4.36613 12.599 4.35663 12.6145 4.3477 12.6302L3.96906 13.2984C3.47894 14.1633 3.31926 15.1751 3.51495 16.1479C3.52959 16.2207 3.55335 16.3222 3.59151 16.4448C4.05486 17.9332 5.50116 18.6986 6.69011 19.0567C7.04543 19.1637 7.42267 19.2581 7.81665 19.3398L7.86793 19.4217C8.96229 21.1684 10.4349 22.2 12.0508 22.2C13.6667 22.2 15.1393 21.1684 16.2336 19.4217L16.3004 19.3152C16.6543 19.2388 16.9941 19.1521 17.3159 19.055C18.5204 18.6916 19.9095 17.9122 20.3923 16.4556C20.4104 16.4008 20.4255 16.3522 20.437 16.315C20.45 16.2731 20.4556 16.2551 20.4596 16.2436C20.4702 16.2126 20.4788 16.1809 20.4853 16.1488C20.6824 15.175 20.5212 14.1628 20.0314 13.2984L19.6527 12.6302C19.6438 12.6145 19.6343 12.599 19.6243 12.584C19.0543 11.7291 18.7502 10.7247 18.7502 9.69723V8.64153C18.7502 5.06847 15.6804 2.25 12.0002 2.25ZM14.1888 19.6352C12.7973 19.7681 11.3186 19.7715 9.92262 19.6455C10.638 20.3892 11.3824 20.7 12.0508 20.7C12.7223 20.7 13.4704 20.3863 14.1888 19.6352ZM6.75022 8.64153C6.75022 5.98312 9.0595 3.75 12.0002 3.75C14.9409 3.75 17.2502 5.98312 17.2502 8.64153V9.69723C17.2502 11.0115 17.6365 12.2965 18.3607 13.3927L18.7263 14.0379C19.0312 14.576 19.136 15.204 19.0229 15.8111L19.0067 15.863L19.0041 15.8714C18.9928 15.9079 18.9815 15.9442 18.9684 15.9836C18.7159 16.7455 17.9157 17.3073 16.8826 17.6189C14.1506 18.4432 9.85676 18.4437 7.12262 17.6204C6.06682 17.3024 5.2572 16.749 5.02372 15.9989C5.00291 15.9321 4.99137 15.8813 4.98549 15.8521C4.8606 15.2313 4.9628 14.5873 5.2741 14.0379L5.63973 13.3927C6.36395 12.2965 6.75022 11.0115 6.75022 9.69723V8.64153Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M20.3876 8.2512C20.8012 8.27461 21.1174 8.62884 21.094 9.04239C21.06 9.64315 21.0781 10.0599 21.1743 10.4179C21.2661 10.7597 21.4425 11.0956 21.8042 11.4999C22.0804 11.8086 22.054 12.2827 21.7453 12.5589C21.4366 12.8351 20.9625 12.8088 20.6863 12.5001C20.198 11.9544 19.889 11.4154 19.7256 10.8071C19.5666 10.2151 19.5597 9.60685 19.5964 8.95761C19.6198 8.54406 19.9741 8.22779 20.3876 8.2512Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M4.40272 8.95761C4.37931 8.54406 4.02508 8.22779 3.61153 8.2512C3.19798 8.27461 2.88171 8.62884 2.90512 9.04239C2.93912 9.64315 2.92105 10.0599 2.82488 10.4179C2.73308 10.7597 2.5567 11.0956 2.19498 11.4999C1.91879 11.8086 1.94513 12.2827 2.25382 12.5589C2.56251 12.8351 3.03665 12.8088 3.31284 12.5001C3.80113 11.9544 4.11012 11.4154 4.27352 10.8071C4.43255 10.2151 4.43947 9.60685 4.40272 8.95761Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+              <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+                <img
+                  src="./assets/images/userr.png"
+                  alt="User"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- Mobile menu button -->
+              <button
+                class="md:hidden text-gray-600"
+                onclick="toggleMobileMenu()"
+              >
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="py-1 pt-2 lg:hidden flex items-center justify-between px-4">
+          <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+            <img
+              src="./assets/images/userr.png"
+              alt="User"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <button
+              class="bg-white notification-btn-sm size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+            >
+              <img src="./assets/images/notification.svg" />
+            </button>
+            <button
+              id="menuToggle"
+              class="bg-white notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+            >
+              <img src="./assets/images/menu.svg" />
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- sidebar menu toggle  -->
+      <div
+        id="menuOverlay"
+        class="fixed inset-0 lg:hidden menu-overlay sidebar-hidden transition-all duration-300 ease-in-out z-[500]"
+      >
+        <div class="flex justify-end h-full">
+          <div class="w-72 h-full bg-white shadow-2xl flex flex-col">
+            <div class="flex justify-start pl-7 pt-7 pb-7">
+              <button
+                id="closeBtn"
+                class="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <nav class="flex-1 px-6">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="./dashboard.html"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M13.4792 12.3566C13.6301 12.0462 13.5008 11.6722 13.1903 11.5213C12.8799 11.3704 12.5059 11.4997 12.355 11.8101C12.3046 11.9137 12.0517 12.256 11.6056 12.575C11.1747 12.883 10.6242 13.125 10.0004 13.125C8.69022 13.125 7.99143 12.3347 7.6082 11.7434C7.42046 11.4538 7.03345 11.3712 6.7438 11.5589C6.45414 11.7466 6.37152 12.1337 6.55926 12.4233C7.04023 13.1654 8.06984 14.375 10.0004 14.375C10.9536 14.375 11.7534 14.0059 12.3326 13.5918C12.8966 13.1885 13.3135 12.6975 13.4792 12.3566Z"
+                        fill="black"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.2561 2.15038L11.985 2.62786L18.6743 6.97591C18.9638 7.16403 19.0459 7.55115 18.8578 7.84056C18.6696 8.12997 18.2825 8.21209 17.9931 8.02397L17.2608 7.54796C17.2815 7.70262 17.2921 7.85957 17.2921 8.01795V15.0001C17.2921 16.9561 15.7064 18.5417 13.7504 18.5417H6.2504C4.29439 18.5417 2.70873 16.9561 2.70873 15.0001V8.01795C2.70873 7.85957 2.71932 7.70262 2.74001 7.54796L2.00768 8.02397C1.71827 8.21209 1.33116 8.12997 1.14304 7.84056C0.95492 7.55115 1.03704 7.16403 1.32645 6.97591L8.01575 2.62787L8.74474 2.15038C9.50733 1.65088 10.4935 1.65088 11.2561 2.15038ZM10.5681 3.19771L11.3019 3.67469L15.0061 6.10091C15.6525 6.52435 16.0421 7.24512 16.0421 8.01795V15.0001C16.0421 16.2657 15.0161 17.2917 13.7504 17.2917H6.2504C4.98475 17.2917 3.95873 16.2657 3.95873 15.0001V8.01795C3.95873 7.24512 4.34825 6.52435 4.99474 6.10091L8.69886 3.6747L9.4327 3.19771C9.77791 2.97332 10.2229 2.97332 10.5681 3.19771Z"
+                        fill="black"
+                      />
+                    </svg>
+                    <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./finance-account.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/finance.svg" />
+                    <span>Financial Accounts</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./transactions.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Transactions</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./budget.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Budgets</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./plan.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/planIcon.svg" />
+                    <span>Plan</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./report.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span>Reports</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_booking.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/billIcon.svg" />
+                    <span>Bills</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_category.html"
+                    style="
+                      border-radius: 60px;
+                      background: linear-gradient(
+                        178deg,
+                        #0d743b -32.88%,
+                        #fce166 151.27%
+                      );
+                    "
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span>Other</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_setting.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/setting.svg" />
+                    <span>Settings</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-1 pt-[70px] gap-5">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-12 hidden lg:flex"
+          style="
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          "
+        >
+          <aside
+            style="
+              overflow: auto;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            "
+            class="overflow-y-auto w-[80px] h-screen fixed inset-0 transition-all duration-300"
+            id="sidebar"
+          >
+            <div class="p-4">
+              <nav class="flex flex-col items-stretch h-full">
+                <div class="space-y-2">
+                  <a
+                    href="./dashboard.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full bg-[#FCFDFE] text-black hover:bg-white!"
+                  >
+                    <span class="dcenter block">
+                      <i class="fa-solid fa-house block"></i>
+                    </span>
+                    <span class="sidebar-label">Home</span>
+                  </a>
+
+                  <a
+                    href="./finance-account.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/finance.svg" />
+                    <span class="sidebar-label">Financial Accounts</span>
+                  </a>
+
+                  <a
+                    href="./transactions.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span class="sidebar-label">Transactions</span>
+                  </a>
+
+                  <a
+                    href="./budget.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/budgetIcon.svg" />
+                    <span class="sidebar-label">Budget</span>
+                  </a>
+
+                  <a
+                    href="./plan.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/planIcon.svg" />
+                    <span class="sidebar-label">Plan</span>
+                  </a>
+
+                  <a
+                    href="./report.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span class="sidebar-label">Reports</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_booking.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/billIcon.svg" />
+                    <span class="sidebar-label">Bills</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_category.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-white! hover:bg-white!"
+                  >
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span class="sidebar-label">Other</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_setting.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/setting.svg" />
+                    <span class="sidebar-label">Settings</span>
+                  </a>
+                  <div class="">
+                    <button
+                      id="expandBtn"
+                      style="
+                        background: linear-gradient(
+                          0deg,
+                          rgba(255, 255, 255, 0.36) 0%,
+                          rgba(252, 253, 254, 0.36) 100%
+                        );
+                        backdrop-filter: blur(40px);
+                      "
+                      class="sidebar-item size-[48px] rounded-full dcenter text-primary bg-[#FCFDFE] hover:bg-white! border-0 cursor-pointer transition-all"
+                    >
+                      <svg
+                        class="expand-icon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M5.41667 1.875C3.46066 1.875 1.875 3.46066 1.875 5.41667V14.5833C1.875 16.5393 3.46066 18.125 5.41667 18.125H14.5833C16.5393 18.125 18.125 16.5393 18.125 14.5833V5.41667C18.125 3.46066 16.5393 1.875 14.5833 1.875H5.41667ZM3.125 5.41667C3.125 4.15101 4.15101 3.125 5.41667 3.125H6.875L6.875 16.875H5.41667C4.15101 16.875 3.125 15.849 3.125 14.5833V5.41667ZM8.125 16.875H14.5833C15.849 16.875 16.875 15.849 16.875 14.5833V5.41667C16.875 4.15101 15.849 3.125 14.5833 3.125H8.125L8.125 16.875Z"
+                          fill="black"
+                        />
+                      </svg>
+                      <span class="sidebar-label text-black">Expand</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="absolute bottom-10">
+                  <a
+                    href="#"
+                    class="sidebar-item size-[48px] rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black"
+                  >
+                    <img src="./assets/images/call.svg" />
+                    <span class="sidebar-label">Support</span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 p- pb-32 md:pb-0 lg:p-8 lg:pr-4 lg:pt-6" id="mainContent">
+          <!-- Account Settings Header -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4"
+          >
+            <div>
+              <h1 class="lg:text-4xl text-2xl font-medium text-[#010101]">
+                Category Management
+              </h1>
+              <p
+                style="color: rgba(0, 0, 0, 0.6)"
+                class="lg:text-sm text-[10px] font-normal mt-1"
+              >
+                Customize your financial tracking by creating or updating a
+                category.
+              </p>
+            </div>
+          </div>
+          <!-- category Content -->
+          <!-- Category Management -->
+          <section
+            class="bg-[#FFFFFFB2] lg:p-3 p-2 border border-white shadow-lg"
+            style="
+              border-radius: 24px;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+
+              backdrop-filter: blur(40px);
+            "
+          >
+            <div
+              class="bg-white rounded-xl lg:p-4 p-3 border border-white"
+              style="
+                border-radius: 24px;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+
+                backdrop-filter: blur(40px);
+              "
+            >
+              <div>
+                <h1 class="text-lg lg:text-xl font-medium text-[#010101]">
+                  Categories
+                </h1>
+                <p
+                  style="color: rgba(0, 0, 0, 0.6)"
+                  class="text-xs font-normal mt-2"
+                >
+                  Customize your financial tracking by creating or updating a
+                  category.
+                </p>
+              </div>
+
+              <hr class="mt-6 text-[#e5e7eb]" />
+              <div class="flex justify-between items-center mt-8 mb-4">
+                <h2 class="text-lg font-medium text-[#010101]">Income</h2>
+                <button
+                  onclick="openExpenseModal()"
+                  class="px-4 h-[46px] text-sm font-medium text-white rounded-full gradient-green flex items-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M10 17.0832V2.9165"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M2.91602 10H17.0827"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <p class="pl-1">Create Group</p>
+                </button>
+              </div>
+              <!-- Income Group -->
+              <div
+                class="rounded-xl bg-[#d5d5d558] px-3 md:px-4 py-4 md:py-5 border border-white"
+              >
+                <!-- Gifts & Donations Starts here -->
+                <div class="toggle-box2">
+                  <!-- HEADER -->
+                  <div
+                    style="
+                      background: linear-gradient(
+                        90deg,
+                        #deede8 0%,
+                        #e8f3d8 100%
+                      );
+                    "
+                    class="headerplan2 hidden flex justify-between items-center rounded-2xl p-3 border border-white"
+                  >
+                    <span class="font-medium">Income</span>
+                    <button
+                      class="toggle-btn2 cursor-pointer text-gray-700 hover:text-gray-900 relative"
+                    >
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                  <!-- Table part -->
+                  <div class="contentplan2 transition-all duration-300">
+                    <div
+                      class="bg-[#ffffff90] rounded-2xl overflow-hidden border border-white!"
+                    >
+                      <div
+                        style="
+                          background: linear-gradient(
+                            90deg,
+                            #deede8 0%,
+                            #e8f3d8 100%
+                          );
+                        "
+                        class="flex justify-between items-center rounded-t p-3 border-b border-[#0000001A]"
+                      >
+                        <span class="font-medium">Income</span>
+                        <button
+                          class="text-gray-700 showSmPopup hover:text-gray-900 relative"
+                        >
+                          <i
+                            class="fas fa-ellipsis-v rounded-full p-2 border h-8 w-8 border-gray-300"
+                          ></i>
+                          <!-- dropdown -->
+                          <div
+                            class="list-none text-xs smpopup text-left absolute space-y-2 bg-white p-3 rounded-xl shadow-md top-2 hidden right-0 w-[150px]"
+                            style="list-style-type: none"
+                          >
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M8.01014 1.73223C8.98645 0.755923 10.5694 0.755921 11.5457 1.73223L12.4885 2.67504C13.4648 3.65135 13.4648 5.23426 12.4885 6.21057L6.83854 11.8605C6.60268 12.0964 6.29492 12.2469 5.96393 12.2883L2.86392 12.6758C2.50212 12.721 2.1397 12.5967 1.88188 12.3388C1.62406 12.081 1.49972 11.7186 1.54494 11.3568L1.93244 8.25678C1.97382 7.92579 2.12433 7.61804 2.3602 7.38217L8.01014 1.73223ZM10.8386 2.43934C10.2528 1.85355 9.30304 1.85355 8.71725 2.43934L8.4517 2.70488L11.5158 5.76901L11.7814 5.50347C12.3672 4.91768 12.3672 3.96793 11.7814 3.38215L10.8386 2.43934ZM3.06731 8.08928L7.7446 3.41199L10.8087 6.47612L6.13144 11.1534C6.05281 11.232 5.95023 11.2822 5.8399 11.296L3.49615 11.589L2.63175 10.7246L2.92472 8.38082C2.93851 8.27049 2.98869 8.1679 3.06731 8.08928Z"
+                                  fill="black"
+                                />
+                                <path
+                                  d="M2 13.8333C1.72386 13.8333 1.5 14.0572 1.5 14.3333C1.5 14.6095 1.72386 14.8333 2 14.8333H14C14.2761 14.8333 14.5 14.6095 14.5 14.3333C14.5 14.0572 14.2761 13.8333 14 13.8333H2Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Edit Section
+                            </li>
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M14.01 1.63649C14.2107 1.8261 14.2198 2.14255 14.0302 2.34331L2.69684 14.3433C2.50723 14.5441 2.19078 14.5531 1.99002 14.3635C1.78926 14.1739 1.78022 13.8574 1.96983 13.6567L4.03118 11.4741C3.18507 10.8987 2.4308 10.1235 1.82825 9.15271C1.39058 8.44756 1.39058 7.55244 1.82825 6.84729C3.94821 3.43171 7.92194 2.47033 11.0802 4.01042L13.3032 1.65669C13.4928 1.45593 13.8092 1.44689 14.01 1.63649ZM10.3549 4.77843C7.70268 3.6516 4.46034 4.50285 2.6779 7.37464C2.4407 7.7568 2.4407 8.2432 2.6779 8.62536C3.24021 9.53133 3.94562 10.2332 4.7281 10.7362L6.04727 9.3394C5.78566 8.9586 5.63216 8.497 5.63216 7.99999C5.63216 6.69241 6.69217 5.63241 7.99975 5.63241C8.44812 5.63241 8.86797 5.75741 9.22556 5.97414L10.3549 4.77843ZM8.5108 6.73095L6.76199 8.58263C6.67863 8.40589 6.63216 8.20848 6.63216 7.99999C6.63216 7.2447 7.24445 6.63241 7.99975 6.63241C8.18062 6.63241 8.35301 6.66735 8.5108 6.73095Z"
+                                  fill="#13193A"
+                                />
+                                <path
+                                  d="M13.0887 5.46302C12.8953 5.26596 12.5787 5.26302 12.3816 5.45646C12.1846 5.6499 12.1816 5.96647 12.3751 6.16353C12.7209 6.51588 13.0395 6.91931 13.3221 7.37464C13.5593 7.7568 13.5593 8.2432 13.3221 8.62536C11.8094 11.0626 9.2492 12.0402 6.89498 11.5995C6.62355 11.5487 6.36232 11.7275 6.31151 11.999C6.2607 12.2704 6.43955 12.5316 6.71098 12.5824C9.46933 13.0988 12.4407 11.9417 14.1717 9.15271C14.6094 8.44756 14.6094 7.55243 14.1717 6.84728C13.851 6.33053 13.4871 5.86884 13.0887 5.46302Z"
+                                  fill="#13193A"
+                                />
+                              </svg>
+                              Hide Section
+                            </li>
+
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                              >
+                                <path
+                                  d="M7.57007 3.04586C6.75976 2.05114 5.24043 2.05112 4.43009 3.04582L2.06146 5.95336C1.77915 6.2999 1.625 6.73319 1.625 7.18016C1.625 8.2529 2.49463 9.12254 3.56738 9.12254H8.43261C9.50536 9.12254 10.375 8.2529 10.375 7.18014C10.375 6.73319 10.2209 6.2999 9.93857 5.95337L7.57007 3.04586Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Move Up
+                            </li>
+
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                              >
+                                <path
+                                  d="M3.56739 2.875C2.49464 2.875 1.625 3.74464 1.625 4.81739C1.625 5.26435 1.77914 5.69763 2.06143 6.04416L4.42993 8.95168C5.24024 9.9464 6.75957 9.94642 7.56991 8.95172L9.93854 6.04417C10.2208 5.69764 10.375 5.26435 10.375 4.81738C10.375 3.74463 9.50537 2.875 8.43262 2.875H3.56739Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Move Down
+                            </li>
+
+                            <li
+                              class="text-red-600 cursor-pointer hover:text-red-800 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  d="M6.68716 8.00748C6.65066 7.73376 6.39918 7.54145 6.12546 7.57795C5.85174 7.61445 5.65944 7.86593 5.69593 8.13965L6.05763 10.8524C6.09413 11.1261 6.34561 11.3184 6.61933 11.2819C6.89305 11.2454 7.08536 10.994 7.04886 10.7202L6.68716 8.00748Z"
+                                  fill="#FC5452"
+                                />
+                                <path
+                                  d="M10.3042 8.13965C10.3407 7.86593 10.1483 7.61445 9.87463 7.57795C9.60091 7.54145 9.34943 7.73376 9.31293 8.00748L8.95123 10.7202C8.91473 10.994 9.10704 11.2454 9.38076 11.2819C9.65448 11.3184 9.90596 11.1261 9.94246 10.8524L10.3042 8.13965Z"
+                                  fill="#FC5452"
+                                />
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M5.42954 2.94687C5.76938 1.81407 6.82441 1.04395 8.00008 1.04395C9.17574 1.04395 10.2308 1.81407 10.5706 2.94687C10.5721 2.95193 10.5736 2.95702 10.5749 2.96212L10.647 3.2332H13.5537C14.3573 3.2332 14.7945 4.17234 14.2771 4.78733L13.8199 5.33083C13.6224 5.56556 13.4987 5.85342 13.4644 6.15824L12.7536 12.4636C12.647 13.409 12.0634 14.3455 11.0347 14.6161C10.3405 14.82 9.1404 14.909 7.96997 14.8944C6.7976 14.8798 5.54675 14.7602 4.7561 14.4946C3.75115 14.1869 3.19395 13.249 3.10509 12.3082L2.52541 6.17066C2.49567 5.85572 2.37063 5.55733 2.16698 5.31526L1.72282 4.78733C1.20543 4.17235 1.64262 3.2332 2.4463 3.2332H5.35459L5.4246 2.96448C5.42614 2.95858 5.42778 2.95271 5.42954 2.94687ZM9.61065 3.22713L9.61226 3.2332H6.38797L6.38984 3.22605C6.60342 2.52733 7.26186 2.04395 8.00008 2.04395C8.73868 2.04395 9.39742 2.52783 9.61065 3.22713ZM2.56345 4.2332L2.93219 4.67148C3.26673 5.06912 3.47212 5.55929 3.52098 6.07663L4.10066 12.2142C4.16217 12.8655 4.53015 13.3818 5.05335 13.5398C5.0586 13.5414 5.06382 13.5431 5.06901 13.5448C5.70335 13.7595 6.82718 13.8801 7.9824 13.8945C9.13865 13.9089 10.2174 13.8155 10.7586 13.655L10.7686 13.6522L10.7755 13.6503C11.3037 13.5136 11.686 13.0071 11.7599 12.3516L12.4706 6.04623C12.5271 5.5455 12.7303 5.07264 13.0547 4.68705L13.4365 4.2332H2.56345Z"
+                                  fill="#FC5452"
+                                />
+                              </svg>
+                              Delete
+                            </li>
+                          </div>
+                        </button>
+                      </div>
+                      <div class="mt-2 rounded-xl p-2">
+                        <ul class="space-y-2">
+                          <li
+                            class="flex items-center justify-between bg-white rounded-xl p-3 border"
+                          >
+                            <div class="flex items-center">
+                              <i class="fas fa-dollar-sign mr-2"></i>
+                              <span>Paycheck</span>
+                            </div>
+                            <button>
+                              <i class="fas fa-ellipsis-v text-gray-500"></i>
+                            </button>
+                          </li>
+                          <li
+                            class="flex items-center justify-between bg-white rounded-xl p-3 border border"
+                          >
+                            <div class="flex items-center">
+                              <i class="fa-solid fa-grip mr-2"></i>
+                              <span>Other Income</span>
+                            </div>
+                            <button>
+                              <i class="fas fa-ellipsis-v text-gray-500"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="dcenter">
+                        <button
+                          class="mt-3 flex justify-center hover:opacity-80 toggle-btn2 cursor-pointer"
+                        >
+                          <i class="fas fa-chevron-up"></i>
+                        </button>
+                      </div>
+
+                      <br />
+                    </div>
+
+                    <div
+                      onclick="openCreateCategoryModal()"
+                      class="cursor-pointer transition-colors mt-5 border border-white"
+                      style="
+                        display: flex;
+                        height: 60px;
+                        padding: 20px 16px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 12px;
+                        border-radius: 20px;
+                        border: 1px solid #fff;
+                        background: rgba(255, 255, 255, 0.4);
+                      "
+                    >
+                      <i class="fas fa-plus"></i>Create Category
+                    </div>
+                  </div>
+                </div>
+                <!-- Gifts & Donations Ends -->
+              </div>
+
+              <div class="flex justify-between items-center mt-8 mb-4">
+                <h2 class="text-lg font-medium text-[#010101]">Expense</h2>
+                <button
+                  onclick="openExpenseModal()"
+                  class="px-4 h-[46px] text-sm font-medium text-white rounded-full gradient-green flex items-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M10 17.0832V2.9165"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M2.91602 10H17.0827"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <p class="pl-1">Create Group</p>
+                </button>
+              </div>
+
+              <!-- Expenses Group -->
+              <div class="rounded-xl bg-[#d5d5d558] p-3 border border-white">
+                <!-- Gifts & Donations Starts here -->
+                <div class="toggle-box mt-3 mb-4">
+                  <!-- HEADER -->
+                  <div
+                    style="
+                      background: linear-gradient(
+                        90deg,
+                        #deede8 0%,
+                        #e8f3d8 100%
+                      );
+                    "
+                    class="headerplan flex justify-between items-center rounded-2xl p-3 border border-white!"
+                  >
+                    <span class="font-medium">Gifts & Donations</span>
+                    <button
+                      class="toggle-btn cursor-pointer text-gray-700 hover:text-gray-900 relative"
+                    >
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                  <!-- Table part -->
+                  <div class="contentplan hidden transition-all duration-300">
+                    <div
+                      class="bg-[#ffffff90] rounded-2xl overflow-hidden border border-white!"
+                    >
+                      <div
+                        style="
+                          background: linear-gradient(
+                            90deg,
+                            #deede8 0%,
+                            #e8f3d8 100%
+                          );
+                        "
+                        class="flex justify-between items-center rounded-t p-3 border border-white"
+                      >
+                        <span class="font-medium">Gifts & Donations</span>
+                        <button
+                          class="text-gray-700 showSmPopup hover:text-gray-900 relative"
+                        >
+                          <i
+                            class="fas fa-ellipsis-v rounded-full p-2 border h-8 w-8 border-gray-300"
+                          ></i>
+                          <!-- dropdown -->
+                          <div
+                            class="list-none text-xs smpopup text-left absolute space-y-2 bg-white p-3 rounded-xl shadow-md top-2 hidden right-0 w-[150px]"
+                            style="list-style-type: none"
+                          >
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M8.01014 1.73223C8.98645 0.755923 10.5694 0.755921 11.5457 1.73223L12.4885 2.67504C13.4648 3.65135 13.4648 5.23426 12.4885 6.21057L6.83854 11.8605C6.60268 12.0964 6.29492 12.2469 5.96393 12.2883L2.86392 12.6758C2.50212 12.721 2.1397 12.5967 1.88188 12.3388C1.62406 12.081 1.49972 11.7186 1.54494 11.3568L1.93244 8.25678C1.97382 7.92579 2.12433 7.61804 2.3602 7.38217L8.01014 1.73223ZM10.8386 2.43934C10.2528 1.85355 9.30304 1.85355 8.71725 2.43934L8.4517 2.70488L11.5158 5.76901L11.7814 5.50347C12.3672 4.91768 12.3672 3.96793 11.7814 3.38215L10.8386 2.43934ZM3.06731 8.08928L7.7446 3.41199L10.8087 6.47612L6.13144 11.1534C6.05281 11.232 5.95023 11.2822 5.8399 11.296L3.49615 11.589L2.63175 10.7246L2.92472 8.38082C2.93851 8.27049 2.98869 8.1679 3.06731 8.08928Z"
+                                  fill="black"
+                                />
+                                <path
+                                  d="M2 13.8333C1.72386 13.8333 1.5 14.0572 1.5 14.3333C1.5 14.6095 1.72386 14.8333 2 14.8333H14C14.2761 14.8333 14.5 14.6095 14.5 14.3333C14.5 14.0572 14.2761 13.8333 14 13.8333H2Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Edit Section
+                            </li>
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M14.01 1.63649C14.2107 1.8261 14.2198 2.14255 14.0302 2.34331L2.69684 14.3433C2.50723 14.5441 2.19078 14.5531 1.99002 14.3635C1.78926 14.1739 1.78022 13.8574 1.96983 13.6567L4.03118 11.4741C3.18507 10.8987 2.4308 10.1235 1.82825 9.15271C1.39058 8.44756 1.39058 7.55244 1.82825 6.84729C3.94821 3.43171 7.92194 2.47033 11.0802 4.01042L13.3032 1.65669C13.4928 1.45593 13.8092 1.44689 14.01 1.63649ZM10.3549 4.77843C7.70268 3.6516 4.46034 4.50285 2.6779 7.37464C2.4407 7.7568 2.4407 8.2432 2.6779 8.62536C3.24021 9.53133 3.94562 10.2332 4.7281 10.7362L6.04727 9.3394C5.78566 8.9586 5.63216 8.497 5.63216 7.99999C5.63216 6.69241 6.69217 5.63241 7.99975 5.63241C8.44812 5.63241 8.86797 5.75741 9.22556 5.97414L10.3549 4.77843ZM8.5108 6.73095L6.76199 8.58263C6.67863 8.40589 6.63216 8.20848 6.63216 7.99999C6.63216 7.2447 7.24445 6.63241 7.99975 6.63241C8.18062 6.63241 8.35301 6.66735 8.5108 6.73095Z"
+                                  fill="#13193A"
+                                />
+                                <path
+                                  d="M13.0887 5.46302C12.8953 5.26596 12.5787 5.26302 12.3816 5.45646C12.1846 5.6499 12.1816 5.96647 12.3751 6.16353C12.7209 6.51588 13.0395 6.91931 13.3221 7.37464C13.5593 7.7568 13.5593 8.2432 13.3221 8.62536C11.8094 11.0626 9.2492 12.0402 6.89498 11.5995C6.62355 11.5487 6.36232 11.7275 6.31151 11.999C6.2607 12.2704 6.43955 12.5316 6.71098 12.5824C9.46933 13.0988 12.4407 11.9417 14.1717 9.15271C14.6094 8.44756 14.6094 7.55243 14.1717 6.84728C13.851 6.33053 13.4871 5.86884 13.0887 5.46302Z"
+                                  fill="#13193A"
+                                />
+                              </svg>
+                              Hide Section
+                            </li>
+
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                              >
+                                <path
+                                  d="M7.57007 3.04586C6.75976 2.05114 5.24043 2.05112 4.43009 3.04582L2.06146 5.95336C1.77915 6.2999 1.625 6.73319 1.625 7.18016C1.625 8.2529 2.49463 9.12254 3.56738 9.12254H8.43261C9.50536 9.12254 10.375 8.2529 10.375 7.18014C10.375 6.73319 10.2209 6.2999 9.93857 5.95337L7.57007 3.04586Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Move Up
+                            </li>
+
+                            <li
+                              class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                              >
+                                <path
+                                  d="M3.56739 2.875C2.49464 2.875 1.625 3.74464 1.625 4.81739C1.625 5.26435 1.77914 5.69763 2.06143 6.04416L4.42993 8.95168C5.24024 9.9464 6.75957 9.94642 7.56991 8.95172L9.93854 6.04417C10.2208 5.69764 10.375 5.26435 10.375 4.81738C10.375 3.74463 9.50537 2.875 8.43262 2.875H3.56739Z"
+                                  fill="black"
+                                />
+                              </svg>
+                              Move Down
+                            </li>
+
+                            <li
+                              class="text-red-600 cursor-pointer hover:text-red-800 flex gap-2 items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                              >
+                                <path
+                                  d="M6.68716 8.00748C6.65066 7.73376 6.39918 7.54145 6.12546 7.57795C5.85174 7.61445 5.65944 7.86593 5.69593 8.13965L6.05763 10.8524C6.09413 11.1261 6.34561 11.3184 6.61933 11.2819C6.89305 11.2454 7.08536 10.994 7.04886 10.7202L6.68716 8.00748Z"
+                                  fill="#FC5452"
+                                />
+                                <path
+                                  d="M10.3042 8.13965C10.3407 7.86593 10.1483 7.61445 9.87463 7.57795C9.60091 7.54145 9.34943 7.73376 9.31293 8.00748L8.95123 10.7202C8.91473 10.994 9.10704 11.2454 9.38076 11.2819C9.65448 11.3184 9.90596 11.1261 9.94246 10.8524L10.3042 8.13965Z"
+                                  fill="#FC5452"
+                                />
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M5.42954 2.94687C5.76938 1.81407 6.82441 1.04395 8.00008 1.04395C9.17574 1.04395 10.2308 1.81407 10.5706 2.94687C10.5721 2.95193 10.5736 2.95702 10.5749 2.96212L10.647 3.2332H13.5537C14.3573 3.2332 14.7945 4.17234 14.2771 4.78733L13.8199 5.33083C13.6224 5.56556 13.4987 5.85342 13.4644 6.15824L12.7536 12.4636C12.647 13.409 12.0634 14.3455 11.0347 14.6161C10.3405 14.82 9.1404 14.909 7.96997 14.8944C6.7976 14.8798 5.54675 14.7602 4.7561 14.4946C3.75115 14.1869 3.19395 13.249 3.10509 12.3082L2.52541 6.17066C2.49567 5.85572 2.37063 5.55733 2.16698 5.31526L1.72282 4.78733C1.20543 4.17235 1.64262 3.2332 2.4463 3.2332H5.35459L5.4246 2.96448C5.42614 2.95858 5.42778 2.95271 5.42954 2.94687ZM9.61065 3.22713L9.61226 3.2332H6.38797L6.38984 3.22605C6.60342 2.52733 7.26186 2.04395 8.00008 2.04395C8.73868 2.04395 9.39742 2.52783 9.61065 3.22713ZM2.56345 4.2332L2.93219 4.67148C3.26673 5.06912 3.47212 5.55929 3.52098 6.07663L4.10066 12.2142C4.16217 12.8655 4.53015 13.3818 5.05335 13.5398C5.0586 13.5414 5.06382 13.5431 5.06901 13.5448C5.70335 13.7595 6.82718 13.8801 7.9824 13.8945C9.13865 13.9089 10.2174 13.8155 10.7586 13.655L10.7686 13.6522L10.7755 13.6503C11.3037 13.5136 11.686 13.0071 11.7599 12.3516L12.4706 6.04623C12.5271 5.5455 12.7303 5.07264 13.0547 4.68705L13.4365 4.2332H2.56345Z"
+                                  fill="#FC5452"
+                                />
+                              </svg>
+                              Delete
+                            </li>
+                          </div>
+                        </button>
+                      </div>
+                      <div class="mt-2 rounded-xl p-2">
+                        <ul class="space-y-2">
+                          <li
+                            class="flex items-center justify-between bg-white rounded-xl p-3 border"
+                          >
+                            <div class="flex items-center">
+                              <i class="fas fa-dollar-sign mr-2"></i>
+                              <span>Paycheck</span>
+                            </div>
+                            <button>
+                              <i class="fas fa-ellipsis-v text-gray-500"></i>
+                            </button>
+                          </li>
+                          <li
+                            class="flex items-center justify-between bg-white rounded-xl p-3 border border"
+                          >
+                            <div class="flex items-center">
+                              <i class="fa-solid fa-grip mr-2"></i>
+                              <span>Other Income</span>
+                            </div>
+                            <button>
+                              <i class="fas fa-ellipsis-v text-gray-500"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="dcenter">
+                        <button
+                          class="mt-3 flex justify-center hover:opacity-80 toggle-btn cursor-pointer"
+                        >
+                          <i class="fas fa-chevron-up"></i>
+                        </button>
+                      </div>
+
+                      <br />
+                    </div>
+
+                    <div
+                      onclick="openCreateCategoryModal()"
+                      class="cursor-pointer transition-colors mt-5 border border-white"
+                      style="
+                        display: flex;
+                        height: 60px;
+                        padding: 20px 16px;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 12px;
+                        border-radius: 20px;
+                        border: 1px solid #fff;
+                        background: rgba(255, 255, 255, 0.4);
+                      "
+                    >
+                      <i class="fas fa-plus"></i>Create Category
+                    </div>
+                  </div>
+                </div>
+                <!-- Gifts & Donations Ends -->
+                <!-- Auto & Transport Starts here -->
+                <div class="toggle-box mt-3 mb-4">
+                  <!-- HEADER -->
+                  <div
+                    style="
+                      background: linear-gradient(
+                        90deg,
+                        #deede8 0%,
+                        #e8f3d8 100%
+                      );
+                    "
+                    class="headerplan flex justify-between items-center rounded-2xl p-3 border border-white!"
+                  >
+                    <span class="font-medium">Auto & Transport</span>
+                    <button
+                      class="toggle-btn cursor-pointer text-gray-700 hover:text-gray-900 relative"
+                    >
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                  <!-- Table part -->
+
+                  <div
+                    class="bg-[#ffffff90] rounded-2xl overflow-hidden border border-white! contentplan hidden transition-all duration-300"
+                  >
+                    <div
+                      style="
+                        background: linear-gradient(
+                          90deg,
+                          #deede8 0%,
+                          #e8f3d8 100%
+                        );
+                      "
+                      class="flex justify-between items-center rounded-t p-3"
+                    >
+                      <span class="font-medium">Auto & Transport</span>
+                      <button
+                        class="text-gray-700 hover:text-gray-900 relative"
+                      >
+                        <i
+                          class="fas fa-ellipsis-v rounded-full p-2 border h-8 w-8 border-gray-300"
+                        ></i>
+                        <!-- dropdown -->
+                        <!-- <ul class="absolute right-0 mt-2 w-36 bg-white border rounded shadow-sm hidden group-hover:block">
+                      <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                        Edit Section
+                      </li>
+                      <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                        Hide Section
+                      </li>
+                      <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                        Move Up
+                      </li>
+                      <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer">
+                        Move Down
+                      </li>
+                      <li class="px-3 py-2 text-red-600 hover:bg-gray-100 cursor-pointer">
+                        Delete
+                      </li>
+                    </ul> -->
+
+                        <ul
+                          class="hidden group-hover:block absolute top-8 left-0 bg-white rounded-2xl shadow-xl border p-3 text-xs space-y-2 z-10"
+                        >
+                          <li
+                            class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M8.01014 1.73223C8.98645 0.755923 10.5694 0.755921 11.5457 1.73223L12.4885 2.67504C13.4648 3.65135 13.4648 5.23426 12.4885 6.21057L6.83854 11.8605C6.60268 12.0964 6.29492 12.2469 5.96393 12.2883L2.86392 12.6758C2.50212 12.721 2.1397 12.5967 1.88188 12.3388C1.62406 12.081 1.49972 11.7186 1.54494 11.3568L1.93244 8.25678C1.97382 7.92579 2.12433 7.61804 2.3602 7.38217L8.01014 1.73223ZM10.8386 2.43934C10.2528 1.85355 9.30304 1.85355 8.71725 2.43934L8.4517 2.70488L11.5158 5.76901L11.7814 5.50347C12.3672 4.91768 12.3672 3.96793 11.7814 3.38215L10.8386 2.43934ZM3.06731 8.08928L7.7446 3.41199L10.8087 6.47612L6.13144 11.1534C6.05281 11.232 5.95023 11.2822 5.8399 11.296L3.49615 11.589L2.63175 10.7246L2.92472 8.38082C2.93851 8.27049 2.98869 8.1679 3.06731 8.08928Z"
+                                fill="black"
+                              />
+                              <path
+                                d="M2 13.8333C1.72386 13.8333 1.5 14.0572 1.5 14.3333C1.5 14.6095 1.72386 14.8333 2 14.8333H14C14.2761 14.8333 14.5 14.6095 14.5 14.3333C14.5 14.0572 14.2761 13.8333 14 13.8333H2Z"
+                                fill="black"
+                              />
+                            </svg>
+                            Edit Section
+                          </li>
+                          <li
+                            class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M14.01 1.63649C14.2107 1.8261 14.2198 2.14255 14.0302 2.34331L2.69684 14.3433C2.50723 14.5441 2.19078 14.5531 1.99002 14.3635C1.78926 14.1739 1.78022 13.8574 1.96983 13.6567L4.03118 11.4741C3.18507 10.8987 2.4308 10.1235 1.82825 9.15271C1.39058 8.44756 1.39058 7.55244 1.82825 6.84729C3.94821 3.43171 7.92194 2.47033 11.0802 4.01042L13.3032 1.65669C13.4928 1.45593 13.8092 1.44689 14.01 1.63649ZM10.3549 4.77843C7.70268 3.6516 4.46034 4.50285 2.6779 7.37464C2.4407 7.7568 2.4407 8.2432 2.6779 8.62536C3.24021 9.53133 3.94562 10.2332 4.7281 10.7362L6.04727 9.3394C5.78566 8.9586 5.63216 8.497 5.63216 7.99999C5.63216 6.69241 6.69217 5.63241 7.99975 5.63241C8.44812 5.63241 8.86797 5.75741 9.22556 5.97414L10.3549 4.77843ZM8.5108 6.73095L6.76199 8.58263C6.67863 8.40589 6.63216 8.20848 6.63216 7.99999C6.63216 7.2447 7.24445 6.63241 7.99975 6.63241C8.18062 6.63241 8.35301 6.66735 8.5108 6.73095Z"
+                                fill="#13193A"
+                              />
+                              <path
+                                d="M13.0887 5.46302C12.8953 5.26596 12.5787 5.26302 12.3816 5.45646C12.1846 5.6499 12.1816 5.96647 12.3751 6.16353C12.7209 6.51588 13.0395 6.91931 13.3221 7.37464C13.5593 7.7568 13.5593 8.2432 13.3221 8.62536C11.8094 11.0626 9.2492 12.0402 6.89498 11.5995C6.62355 11.5487 6.36232 11.7275 6.31151 11.999C6.2607 12.2704 6.43955 12.5316 6.71098 12.5824C9.46933 13.0988 12.4407 11.9417 14.1717 9.15271C14.6094 8.44756 14.6094 7.55243 14.1717 6.84728C13.851 6.33053 13.4871 5.86884 13.0887 5.46302Z"
+                                fill="#13193A"
+                              />
+                            </svg>
+                            Hide Section
+                          </li>
+
+                          <li
+                            class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                            >
+                              <path
+                                d="M7.57007 3.04586C6.75976 2.05114 5.24043 2.05112 4.43009 3.04582L2.06146 5.95336C1.77915 6.2999 1.625 6.73319 1.625 7.18016C1.625 8.2529 2.49463 9.12254 3.56738 9.12254H8.43261C9.50536 9.12254 10.375 8.2529 10.375 7.18014C10.375 6.73319 10.2209 6.2999 9.93857 5.95337L7.57007 3.04586Z"
+                                fill="black"
+                              />
+                            </svg>
+                            Move Up
+                          </li>
+
+                          <li
+                            class="cursor-pointer hover:text-green-600 flex gap-2 items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                            >
+                              <path
+                                d="M3.56739 2.875C2.49464 2.875 1.625 3.74464 1.625 4.81739C1.625 5.26435 1.77914 5.69763 2.06143 6.04416L4.42993 8.95168C5.24024 9.9464 6.75957 9.94642 7.56991 8.95172L9.93854 6.04417C10.2208 5.69764 10.375 5.26435 10.375 4.81738C10.375 3.74463 9.50537 2.875 8.43262 2.875H3.56739Z"
+                                fill="black"
+                              />
+                            </svg>
+                            Move Down
+                          </li>
+
+                          <li
+                            class="text-red-600 cursor-pointer hover:text-red-800 flex gap-2 items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M6.68716 8.00748C6.65066 7.73376 6.39918 7.54145 6.12546 7.57795C5.85174 7.61445 5.65944 7.86593 5.69593 8.13965L6.05763 10.8524C6.09413 11.1261 6.34561 11.3184 6.61933 11.2819C6.89305 11.2454 7.08536 10.994 7.04886 10.7202L6.68716 8.00748Z"
+                                fill="#FC5452"
+                              />
+                              <path
+                                d="M10.3042 8.13965C10.3407 7.86593 10.1483 7.61445 9.87463 7.57795C9.60091 7.54145 9.34943 7.73376 9.31293 8.00748L8.95123 10.7202C8.91473 10.994 9.10704 11.2454 9.38076 11.2819C9.65448 11.3184 9.90596 11.1261 9.94246 10.8524L10.3042 8.13965Z"
+                                fill="#FC5452"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.42954 2.94687C5.76938 1.81407 6.82441 1.04395 8.00008 1.04395C9.17574 1.04395 10.2308 1.81407 10.5706 2.94687C10.5721 2.95193 10.5736 2.95702 10.5749 2.96212L10.647 3.2332H13.5537C14.3573 3.2332 14.7945 4.17234 14.2771 4.78733L13.8199 5.33083C13.6224 5.56556 13.4987 5.85342 13.4644 6.15824L12.7536 12.4636C12.647 13.409 12.0634 14.3455 11.0347 14.6161C10.3405 14.82 9.1404 14.909 7.96997 14.8944C6.7976 14.8798 5.54675 14.7602 4.7561 14.4946C3.75115 14.1869 3.19395 13.249 3.10509 12.3082L2.52541 6.17066C2.49567 5.85572 2.37063 5.55733 2.16698 5.31526L1.72282 4.78733C1.20543 4.17235 1.64262 3.2332 2.4463 3.2332H5.35459L5.4246 2.96448C5.42614 2.95858 5.42778 2.95271 5.42954 2.94687ZM9.61065 3.22713L9.61226 3.2332H6.38797L6.38984 3.22605C6.60342 2.52733 7.26186 2.04395 8.00008 2.04395C8.73868 2.04395 9.39742 2.52783 9.61065 3.22713ZM2.56345 4.2332L2.93219 4.67148C3.26673 5.06912 3.47212 5.55929 3.52098 6.07663L4.10066 12.2142C4.16217 12.8655 4.53015 13.3818 5.05335 13.5398C5.0586 13.5414 5.06382 13.5431 5.06901 13.5448C5.70335 13.7595 6.82718 13.8801 7.9824 13.8945C9.13865 13.9089 10.2174 13.8155 10.7586 13.655L10.7686 13.6522L10.7755 13.6503C11.3037 13.5136 11.686 13.0071 11.7599 12.3516L12.4706 6.04623C12.5271 5.5455 12.7303 5.07264 13.0547 4.68705L13.4365 4.2332H2.56345Z"
+                                fill="#FC5452"
+                              />
+                            </svg>
+                            Delete
+                          </li>
+                        </ul>
+                      </button>
+                    </div>
+                    <div class="mt-2 rounded-xl p-2">
+                      <ul class="space-y-2">
+                        <li
+                          class="flex items-center justify-between bg-white rounded-xl p-3 border"
+                        >
+                          <div class="flex items-center">
+                            <i class="fa-solid fa-bus mr-2"></i>
+                            <span>Public Transport</span>
+                          </div>
+                          <button>
+                            <i class="fas fa-ellipsis-v text-gray-500"></i>
+                          </button>
+                        </li>
+                        <li
+                          class="flex items-center justify-between bg-white rounded-xl p-3 border"
+                        >
+                          <div class="flex items-center">
+                            <i class="fa-solid fa-money-bill mr-2"></i>
+                            <span>Public Transit</span>
+                          </div>
+                          <button>
+                            <i class="fas fa-ellipsis-v text-gray-500"></i>
+                          </button>
+                        </li>
+
+                        <li
+                          class="flex items-center justify-between bg-white rounded-xl p-3 border border"
+                        >
+                          <div class="flex items-center">
+                            <i class="fa-solid fa-gas-pump mr-2"></i>
+                            <span>Gas</span>
+                          </div>
+                          <button>
+                            <i class="fas fa-ellipsis-v text-gray-500"></i>
+                          </button>
+                        </li>
+
+                        <li
+                          class="flex items-center justify-between bg-white rounded-xl p-3 border border"
+                        >
+                          <div class="flex items-center">
+                            <i class="fa-solid fa-wrench mr-2"></i>
+                            <span>Auto Maintainance</span>
+                          </div>
+                          <button>
+                            <i class="fas fa-ellipsis-v text-gray-500"></i>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="dcenter">
+                      <button
+                        class="mt-3 flex justify-center hover:opacity-80 toggle-btn cursor-pointer"
+                      >
+                        <i class="fas fa-chevron-up"></i>
+                      </button>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+                <!-- Auto & Transport Ends -->
+                <div
+                  onclick="openCreateCategoryModal()"
+                  class="cursor-pointer transition-colors mt-5 border border-white"
+                  style="
+                    display: flex;
+                    height: 60px;
+                    padding: 20px 16px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                    border-radius: 20px;
+                    border: 1px solid #fff;
+                    background: rgba(255, 255, 255, 0.4);
+                  "
+                >
+                  <i class="fas fa-plus"></i>Create Category
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <!-- notification popup -->
+    <div class="w-full popup max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close-pup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Notification Panel -->
+      <div class="bg-white rounded-3xl p-4 shadow-lg overflow-hidden">
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between py-3 border-b border-gray-100"
+        >
+          <h2 class="text-xl font-semibold text-gray-900">Notifications</h2>
+          <a href="#" class="text-sm text-green-600 hover:underline">
+            Mark all as read
+          </a>
+        </div>
+
+        <!-- Notification List -->
+        <div
+          id="notification-list"
+          class="divide-y h-[454px] px-3 overflow-y-auto divide-gray-100"
+        >
+          <!-- Notification Item 1 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- search popup -->
+    <div class="search_popup w-full max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close_search_popup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Search Panel -->
+      <div class="bg-white rounded-[26px] shadow-lg overflow-hidden">
+        <!-- Search Input -->
+        <div
+          class="-space-y-[7px] z-10 rounded-[26px] p-px"
+          style="
+            background: linear-gradient(
+              178deg,
+              #0d743b -32.88%,
+              #fce166 151.27%
+            );
+          "
+        >
+          <label for="search-input" class="sr-only"
+            >Search for accounts, transactions, holdings, categories</label
+          >
+          <div
+            class="relative flex items-center px-4 py-2 bg-white rounded-[26px]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search text-gray-500 mr-2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search for accounts, transactions, holdings, categories"
+              class="flex-1 py-1.5 outline-none placeholder:text-xs text-gray-900 placeholder-gray-500 bg-transparent"
+            />
+          </div>
+        </div>
+
+        <!-- Suggestions Heading -->
+        <h3 class="text-base font-normal text-gray-900 px-4 py-2">
+          Suggestions
+        </h3>
+
+        <!-- Suggestion List -->
+        <div class="">
+          <!-- Highlighted Suggestion Item (Transaction) -->
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Transaction
+            </div>
+          </div>
+          <!-- Other Suggestion Items (Account/Category) -->
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Account
+            </div>
+          </div>
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
+          </div>
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
+          </div>
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
+          </div>
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Category Modal (for Income) -->
+    <!-- <div id="createCategoryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+		<div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
+			<div class="flex justify-between items-center mb-4">
+				<h3 class="text-lg font-medium text-green-600">Create Category</h3>
+				<button onclick="closeIncomeModal()" class="text-gray-500 hover:text-gray-700">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+			
+			<div class="space-y-4">
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Icon & Name</label>
+					<div class="flex items-center space-x-2">
+						<div class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="none">
+								<path d="M10 17.0832V2.9165" stroke="gray" stroke-width="1.5" stroke-linecap="round" />
+								<path d="M2.91602 10H17.0827" stroke="gray" stroke-width="1.5" stroke-linecap="round" />
+							</svg>
+						</div>
+						<input type="text" placeholder="Category name" class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+					</div>
+				</div>
+			
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Group</label>
+					<select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+						<option>Select Here</option>
+						<option>Income</option>
+						<option>Other Income</option>
+					</select>
+				</div>
+			
+				<div class="flex items-start space-x-2">
+					<input type="checkbox" id="excludeCategory" class="mt-1">
+					<div>
+						<label for="excludeCategory" class="text-sm font-medium text-gray-700">Exclude this category</label>
+						<p class="text-xs text-gray-500">This category and any transactions linked to it will be hidden from your budget. <a href="#" class="text-green-600">Learn more</a></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="flex justify-end space-x-3 mt-6">
+				<button onclick="closeIncomeModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">Cancel</button>
+				<button class="px-4 py-2 bg-[#1BB15F] text-white rounded-md hover:bg-green-700">Save</button>
+			</div>
+		</div>
+	</div> -->
+
+    <!-- Create Group Modal (for Expenses) -->
+    <!-- <div id="createGroupModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+		<div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
+			<div class="flex justify-between items-center mb-4">
+				<h3 class="text-lg font-medium text-green-600">Create Group</h3>
+				<button onclick="closeExpenseModal()" class="text-gray-500 hover:text-gray-700">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+			
+			<div class="space-y-4">
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+					<input type="text" placeholder="Group name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+				</div>
+			
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Budget</label>
+					<select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+						<option>Select Here</option>
+						<option>Monthly Budget</option>
+						<option>Weekly Budget</option>
+						<option>Annual Budget</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="flex justify-end space-x-3 mt-6">
+				<button onclick="closeExpenseModal()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50">Cancel</button>
+				<button class="px-4 py-2 bg-[#1BB15F] text-white rounded-md hover:bg-green-700">Save</button>
+			</div>
+		</div>
+	</div> -->
+
+    <!-- Create Category Modal (for Income) -->
+
+    <!-- Create Group Modal (for Expenses) -->
+    <div
+      id="createCategoryModal"
+      class="hidden fixed inset-0 p-4 bg-[#00000066] bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="w-full max-w-md mx-4">
+        <!-- Added green header section with rounded top corners -->
+        <div class="bg-[#0B6B37] rounded-t-xl px-6 py-4">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-medium text-white">Create Category</h3>
+            <button
+              onclick="closeIncomeModal()"
+              class="text-white hover:text-gray-200 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- White content section with rounded bottom corners -->
+        <div class="bg-[#E6E6E6] rounded-b-lg lg:p-5 p-2">
+          <div class="space-y-3 bg-white/70 lg:p-4 p-3 rounded-2xl">
+            <!-- Icon & Name Field -->
+            <div class="bg-white w-full lg:p-4 p-2 rounded-2xl w-90 relative">
+              <label class="block text-sm font-medium text-black mb-3">
+                Icon & Name
+              </label>
+
+              <div class="flex items-center space-x-3">
+                <!-- Icon Button (SVG SAME) -->
+                <button
+                  id="iconBtn"
+                  type="button"
+                  class="w-[40px] h-[40px] border border-gray-300 rounded-xl flex items-center justify-center flex-shrink-0 cursor-pointer"
+                >
+                  <!-- ORIGINAL SVG -->
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.375 1.4585C12.3039 1.4585 10.625 3.13743 10.625 5.2085C10.625 7.27956 12.3039 8.9585 14.375 8.9585C16.4461 8.9585 18.125 7.27956 18.125 5.2085C18.125 3.13743 16.4461 1.4585 14.375 1.4585ZM11.875 5.2085C11.875 3.82778 12.9943 2.7085 14.375 2.7085C15.7557 2.7085 16.875 3.82778 16.875 5.2085C16.875 6.58921 15.7557 7.7085 14.375 7.7085C12.9943 7.7085 11.875 6.58921 11.875 5.2085Z"
+                      fill="black"
+                      fill-opacity="0.4"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M3.95833 1.66683C2.80774 1.66683 1.875 2.59957 1.875 3.75016V5.62516C1.875 7.35105 3.27411 8.75016 5 8.75016H6.875C8.02559 8.75016 8.95833 7.81742 8.95833 6.66683V3.75016C8.95833 2.59957 8.02559 1.66683 6.875 1.66683H3.95833ZM3.125 3.75016C3.125 3.28993 3.4981 2.91683 3.95833 2.91683H6.875C7.33524 2.91683 7.70833 3.28993 7.70833 3.75016V6.66683C7.70833 7.12707 7.33524 7.50016 6.875 7.50016H5C3.96447 7.50016 3.125 6.6607 3.125 5.62516V3.75016Z"
+                      fill="black"
+                      fill-opacity="0.4"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M13.125 10.8335C11.9744 10.8335 11.0417 11.7662 11.0417 12.9168V14.7918C11.0417 16.5177 12.4408 17.9168 14.1667 17.9168H16.0417C17.1923 17.9168 18.125 16.9841 18.125 15.8335V12.9168C18.125 11.7662 17.1923 10.8335 16.0417 10.8335H13.125ZM12.2917 12.9168C12.2917 12.4566 12.6648 12.0835 13.125 12.0835H16.0417C16.5019 12.0835 16.875 12.4566 16.875 12.9168V15.8335C16.875 16.2937 16.5019 16.6668 16.0417 16.6668H14.1667C13.1311 16.6668 12.2917 15.8274 12.2917 14.7918V12.9168Z"
+                      fill="black"
+                      fill-opacity="0.4"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M1.875 14.3752C1.875 12.3041 3.55393 10.6252 5.625 10.6252C7.69607 10.6252 9.375 12.3041 9.375 14.3752C9.375 16.4462 7.69607 18.1252 5.625 18.1252C3.55393 18.1252 1.875 16.4462 1.875 14.3752ZM5.625 11.8752C4.24429 11.8752 3.125 12.9945 3.125 14.3752C3.125 15.7559 4.24429 16.8752 5.625 16.8752C7.00571 16.8752 8.125 15.7559 8.125 14.3752C8.125 12.9945 7.00571 11.8752 5.625 11.8752Z"
+                      fill="black"
+                      fill-opacity="0.4"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Input -->
+                <input
+                  id="iconInput"
+                  type="text"
+                  placeholder="Select icon"
+                  class="flex-1 lg:px-4 px-2 h-[46px] border border-gray-300 rounded-[30px] placeholder:text-black! focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+              </div>
+
+              <!-- ICON POPUP CARD -->
+              <div
+                id="iconPopup"
+                class="hidden absolute top-[100%] left-0 mt-3 w-full bg-white border border-gray-200 rounded-2xl shadow-xl p-4 z-50"
+              >
+                <p class="text-sm font-medium mb-3 text-black!">Select an Icon</p>
+
+                <div class="grid grid-cols-5 gap-3 text-xl">
+                  <button class="iconItem cursor-pointer">⭐</button>
+                  <button class="iconItem cursor-pointer">🔥</button>
+                  <button class="iconItem cursor-pointer">💡</button>
+                  <button class="iconItem cursor-pointer">🎯</button>
+                  <button class="iconItem cursor-pointer">🚀</button>
+                  <button class="iconItem cursor-pointer">❤️</button>
+                  <button class="iconItem cursor-pointer">📌</button>
+                  <button class="iconItem cursor-pointer">⚡</button>
+                  <button class="iconItem cursor-pointer">🛒</button>
+                  <button class="iconItem cursor-pointer">👤</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group Field -->
+            <div class="bg-white lg:p-4 p-2 rounded-2xl">
+              <label class="block text-sm font-medium text-black mb-3"
+                >Group</label
+              >
+              <div class="relative">
+                <div class="custom-dropdown w-full">
+                  <button
+                    class="dropdown-trigger w-full h-[46px]"
+                    data-dropdown="dropdown1"
+                  >
+                    <span class="dropdown-value w-full text-start text-sm! font-medium text-black"
+                      >Select Here</span
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                        stroke="#667085"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu" id="dropdown1">
+                    <div class="dropdown-item" data-value="Select Here">
+                      Select Here
+                    </div>
+                    <div class="dropdown-item" data-value="Income">Income</div>
+                    <div class="dropdown-item" data-value="Expenses">
+                      Expenses
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            <!-- Exclude Category Section -->
+            <div class="bg-white lg:p-4 p-2 rounded-2xl">
+              <div class="flex items-center justify-between space-x-3">
+                <div class="flex-1">
+                  <label
+                    for="excludeCategory"
+                    class="block text-base font-medium text-black mb-1"
+                    >Exclude this category</label
+                  >
+                  <p class="text-xs text-black leading-relaxed max-w-62">
+                    This category and any transactions linked to it will be
+                    hidden from your budget.
+                    <a href="#" class="text-green-600 hover:underline"
+                      >Learn more</a
+                    >
+                  </p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" class="sr-only peer" checked />
+                  <div
+                    class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                  ></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-3 mt-6">
+            <button
+              onclick="closeIncomeModal()"
+              class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-100 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-6 py-3 bg-[#1BB15F] text-white font-medium rounded-full hover:bg-green-700 cursor-pointer"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Group Modal (for Expenses) -->
+    <div
+      id="createGroupModal"
+      class="hidden fixed inset-0 bg-[#00000066] bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="w-full max-w-md mx-4">
+        <!-- Added green header section with rounded top corners -->
+        <div class="bg-[#0B6B37] rounded-t-xl px-6 py-4">
+          <div class="flex justify-between items-center">
+            <h3 class="text-xl font-medium text-white">Create Group</h3>
+            <button
+              onclick="closeExpenseModal()"
+              class="text-white hover:text-gray-200 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- White content section with rounded bottom corners -->
+        <div class="bg-[#E6E6E6] rounded-b-lg lg:p-5 p-2">
+          <div class="space-y-3 bg-white/70 lg:p-4 p-3 rounded-3xl">
+            <!-- Name Field -->
+            <div class="bg-white lg:p-4 p-2 rounded-2xl relative">
+              <label class="block text-sm font-medium text-black mb-3">
+                Name
+              </label>
+              <div class="flex items-center space-x-3">
+                <!-- Input -->
+                <input
+                  id="iconInput"
+                  type="text"
+                  placeholder="Group name"
+                  class="flex-1 lg:px-4 px-2 h-[46px] border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-black placeholder:text-sm font-medium"
+                />
+              </div>
+            </div>
+
+            <!-- Budget Field -->
+            <div class="bg-white lg:p-4 p-2 rounded-2xl">
+              <label class="block text-sm font-medium text-black mb-3"
+                >Budget</label
+              >
+              <div class="relative">
+                <div class="custom-dropdown w-full">
+                  <button
+                    class="dropdown-trigger w-full h-[46px]"
+                    data-dropdown="dropdown1"
+                  >
+                    <span class="dropdown-value w-full text-start text-sm! font-medium text-black"
+                      >Select Here</span
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                        stroke="#667085"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu" id="dropdown1">
+                    <div class="dropdown-item" data-value="Select Here">
+                      Select Here
+                    </div>
+                    <div class="dropdown-item" data-value="Income">Income</div>
+                    <div class="dropdown-item" data-value="Expenses">
+                      Expenses
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-end space-x-3 mt-6">
+            <button
+              onclick="closeExpenseModal()"
+              class="px-6 py-3 text-gray-700 text-sm font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-100 cursor-pointer transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom nav -->
+    <div
+      style=""
+      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-99 sm:hidden"
+    >
+      <div
+        style="
+          background-image: url(&quot;./assets/images/float.svg&quot;);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        "
+        class="relative flex justify-between items-center shadow-lg p-1.5 rounded-full w-[90vw] max-w-md"
+      >
+        <!-- Home -->
+        <a class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full" href="./dashboard.html">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M16.1746 14.8279C16.3557 14.4554 16.2005 14.0066 15.828 13.8255C15.4555 13.6444 15.0067 13.7996 14.8256 14.1721C14.7651 14.2964 14.4616 14.7071 13.9263 15.0899C13.4093 15.4596 12.7486 15.75 12.0001 15.75C10.4279 15.75 9.58932 14.8016 9.12945 14.0921C8.90416 13.7445 8.43975 13.6453 8.09217 13.8706C7.74458 14.0959 7.64543 14.5603 7.87072 14.9079C8.44789 15.7984 9.68341 17.25 12.0001 17.25C13.144 17.25 14.1037 16.8071 14.7987 16.3101C15.4755 15.8262 15.9758 15.2369 16.1746 14.8279Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.5069 2.58041L14.3816 3.15338L22.4088 8.37105C22.7561 8.59679 22.8547 9.06133 22.6289 9.40862C22.4032 9.75592 21.9386 9.85446 21.5913 9.62871L20.7126 9.0575C20.7374 9.24309 20.7501 9.43144 20.7501 9.62149V18C20.7501 20.3473 18.8473 22.25 16.5001 22.25H7.50009C5.15288 22.25 3.25009 20.3473 3.25009 18V9.62149C3.25009 9.43144 3.26279 9.24309 3.28762 9.0575L2.40883 9.62871C2.06153 9.85446 1.597 9.75592 1.37126 9.40862C1.14551 9.06133 1.24405 8.59679 1.59135 8.37105L9.61851 3.15339L10.4933 2.58041C11.4084 1.98101 12.5918 1.98101 13.5069 2.58041ZM12.6813 3.8372L13.5619 4.40958L18.0069 7.32104C18.7827 7.82918 19.2501 8.6941 19.2501 9.62149V18C19.2501 19.5188 18.0189 20.75 16.5001 20.75H7.50009C5.9813 20.75 4.75009 19.5188 4.75009 18V9.62149C4.75009 8.6941 5.21751 7.82918 5.99329 7.32104L10.4382 4.4096L11.3189 3.8372C11.7331 3.56794 12.2671 3.56794 12.6813 3.8372Z"
+              fill="black"
+            />
+          </svg>
+          <!-- <p class="font-semibold">Home</p> -->
+        </a>
+
+        <!-- Finance -->
+        <a
+          href="./finance-account.html"
+          class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full mr-22"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M10.5 6.74976C10.0858 6.74976 9.75 7.08554 9.75 7.49976C9.75 7.91397 10.0858 8.24976 10.5 8.24976H13.5C13.9142 8.24976 14.25 7.91397 14.25 7.49976C14.25 7.08554 13.9142 6.74976 13.5 6.74976H10.5Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.2729 2.25346C12.0558 1.88065 12.9687 1.89894 13.736 2.3028L21.3499 6.31013C22.2109 6.76329 22.75 7.65619 22.75 8.62918C22.75 10.0765 21.5767 11.2498 20.1294 11.2498H19.75V18.2856C20.3388 18.4067 20.8345 18.8258 21.0437 19.407L21.5271 20.7498H22C22.4142 20.7498 22.75 21.0855 22.75 21.4998C22.75 21.914 22.4142 22.2498 22 22.2498H2C1.58579 22.2498 1.25 21.914 1.25 21.4998C1.25 21.0855 1.58579 20.7498 2 20.7498H2.47288L2.95627 19.407C3.16552 18.8258 3.66118 18.4067 4.25 18.2856V11.2498H3.83891C2.40909 11.2498 1.25 10.0907 1.25 8.6609C1.25 7.66234 1.82429 6.75279 2.72585 6.32348L11.2729 2.25346ZM19.6324 19.9151L19.9329 20.7498H4.06712L4.3676 19.9151C4.40331 19.8159 4.49741 19.7498 4.60283 19.7498H19.3972C19.5026 19.7498 19.5967 19.8159 19.6324 19.9151ZM8.75 18.2498H5.75V11.2498H8.75V18.2498ZM10.25 18.2498H13.75V11.2498H10.25V18.2498ZM15.25 18.2498H18.25V11.2498H15.25V18.2498ZM20.1294 9.74981H19.0093L19 9.74976L18.9907 9.74981H14.5093L14.5 9.74976L14.4907 9.74981H9.50928L9.5 9.74976L9.49072 9.74981H5.00928L5 9.74976L4.99072 9.74981H3.83891C3.23752 9.74981 2.75 9.26229 2.75 8.6609C2.75 8.2409 2.99155 7.85834 3.37075 7.67777L11.9178 3.60775C12.2736 3.43829 12.6886 3.44661 13.0374 3.63018L20.6513 7.6375C21.0195 7.83129 21.25 8.21311 21.25 8.62918C21.25 9.24809 20.7483 9.74981 20.1294 9.74981Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+
+        <!-- Floating Add Button (FIXED) -->
+        <button
+          type="button"
+          class="absolute -top-7 left-1/2 -translate-x-1/2 z-[10000] pointer-events-auto bg-gradient-to-b from-[#0D743B] to-[rgba(252,225,70,0.9)] text-white rounded-full shadow-xl p-4 hover:scale-105 active:scale-95 transition-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+
+        <!-- Transactions -->
+        <a href="./transactions.html" class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10.4383 3.80943C9.91632 2.73699 8.66258 2.53509 7.76094 2.96096L3.46177 4.99159C3.44689 4.99862 3.43224 5.00613 3.41785 5.01413C1.86182 5.87859 1.86043 8.11592 3.41538 8.98232C3.43001 8.99047 3.44491 8.99813 3.46005 9.00529L7.76487 11.0391C8.66321 11.4635 9.91444 11.2656 10.438 10.1963C10.8128 9.4308 11.0417 8.59755 11.1257 7.7491H19.5002C19.9144 7.7491 20.2502 7.41331 20.2502 6.9991C20.2502 6.58488 19.9144 6.2491 19.5002 6.2491H11.1241C11.0386 5.4029 10.8096 4.57229 10.4383 3.80943ZM8.84383 4.26952C8.96116 4.30182 9.0421 4.3683 9.08961 4.46592C9.85128 6.03071 9.85467 7.97666 9.09085 9.53666C9.04358 9.63322 8.96327 9.69902 8.84648 9.73094C8.72192 9.76499 8.56093 9.75621 8.40563 9.68285L4.12719 7.66149C3.6238 7.36379 3.62436 6.63256 4.12833 6.33566L8.40157 4.31727C8.55729 4.24372 8.71878 4.23509 8.84383 4.26952Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M16.2355 12.961C15.3339 12.5351 14.0801 12.737 13.5581 13.8094C13.1868 14.5723 12.9578 15.4029 12.8723 16.2492L4.5001 16.2501C4.08589 16.2501 3.75014 16.5859 3.75018 17.0002C3.75023 17.4144 4.08605 17.7501 4.50026 17.7501L12.8708 17.7492C12.9548 18.5976 13.1836 19.4308 13.5584 20.1963C14.082 21.2656 15.3332 21.4635 16.2316 21.0391L20.5364 19.0053C20.5516 18.9981 20.5664 18.9905 20.5811 18.9823C22.136 18.1159 22.1346 15.8786 20.5786 15.0141C20.5642 15.0061 20.5496 14.9986 20.5347 14.9916L16.2355 12.961ZM14.9068 14.4659C14.9544 14.3683 15.0353 14.3018 15.1526 14.2695C15.2777 14.2351 15.4392 14.2437 15.5949 14.3173L19.8681 16.3357C20.3721 16.6326 20.3727 17.3638 19.8693 17.6615L15.5908 19.6828C15.4355 19.7562 15.2745 19.765 15.15 19.7309C15.0332 19.699 14.9529 19.6332 14.9056 19.5367C14.1418 17.9767 14.1452 16.0307 14.9068 14.4659Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+
+        <!-- Settings -->
+        <a
+          href="./dashboard_setting.html"
+          class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.0005 8.24988C9.92942 8.24988 8.25049 9.92881 8.25049 11.9999C8.25049 14.0709 9.92942 15.7499 12.0005 15.7499C14.0716 15.7499 15.7505 14.0709 15.7505 11.9999C15.7505 9.92881 14.0716 8.24988 12.0005 8.24988ZM9.75049 11.9999C9.75049 10.7572 10.7578 9.74988 12.0005 9.74988C13.2431 9.74988 14.2505 10.7572 14.2505 11.9999C14.2505 13.2425 13.2431 14.2499 12.0005 14.2499C10.7578 14.2499 9.75049 13.2425 9.75049 11.9999Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.3271 1.62988C10.4086 1.62988 9.39382 1.97851 8.92679 2.91019L8.11511 4.47896C7.98182 4.73657 7.71195 4.89423 7.42209 4.88383L5.71321 4.82249C4.62733 4.69048 3.723 5.46171 3.26705 6.26365L3.25985 6.2766L2.68588 7.33416C2.19862 8.19635 2.14934 9.25896 2.60149 10.0163L3.54856 11.5392C3.70212 11.7862 3.69911 12.0996 3.54081 12.3436L2.61825 13.7653C2.01886 14.6725 2.23028 15.7695 2.68977 16.5776L3.36658 17.7437C3.37813 17.7636 3.39058 17.7829 3.40391 17.8017C3.97976 18.6119 4.85726 19.1808 5.747 19.1808C5.75597 19.1808 5.76494 19.1807 5.7739 19.1803L7.5183 19.1177C7.80816 19.1073 8.07803 19.265 8.21132 19.5226L9.02545 21.0961C9.03243 21.1096 9.03981 21.1229 9.0476 21.1359C9.4914 21.8793 10.4308 22.3717 11.4233 22.3717H12.674C13.5925 22.3717 14.6073 22.0231 15.0744 21.0914L15.8861 19.5226C16.0193 19.265 16.2892 19.1073 16.5791 19.1177L18.2879 19.1791C19.3738 19.3111 20.2782 18.5398 20.7341 17.7379L20.7413 17.725L21.3153 16.6674C21.5712 16.2144 21.6941 15.7095 21.7096 15.2407C21.7249 14.7787 21.6376 14.287 21.3997 13.8885L20.4526 12.3656C20.299 12.1187 20.3021 11.8052 20.4604 11.5613L21.3828 10.1397C21.9823 9.23243 21.7709 8.13545 21.3114 7.32727C21.3055 7.31695 21.2994 7.30677 21.293 7.29674L20.6196 6.23313C20.6124 6.22184 20.605 6.21075 20.5973 6.19987C20.0214 5.38963 19.1439 4.82073 18.2542 4.82073C18.2452 4.82073 18.2362 4.82089 18.2273 4.82121L16.4829 4.88383C16.193 4.89423 15.9231 4.73657 15.7898 4.47896L14.9757 2.90546C14.9687 2.89198 14.9614 2.8787 14.9536 2.86566C14.5098 2.12227 13.5704 1.62988 12.5778 1.62988H11.3271ZM10.2668 3.58418C10.3784 3.35995 10.7082 3.12988 11.3271 3.12988H12.5778C13.1124 3.12988 13.5139 3.39862 13.6563 3.61951L14.4576 5.16826C14.8575 5.94109 15.6671 6.41407 16.5367 6.38286L18.2647 6.32084C18.5287 6.3261 18.9846 6.52859 19.3637 7.05361L20.0156 8.08315C20.3166 8.62112 20.2965 9.06376 20.1306 9.3139L19.2021 10.7448C18.7272 11.4766 18.7181 12.4169 19.1788 13.1577L20.1141 14.6617C20.1642 14.7485 20.219 14.9319 20.2105 15.1909C20.202 15.4449 20.1337 15.7108 20.0074 15.9329L20.0002 15.9458L19.4268 17.0024C19.1195 17.5388 18.6975 17.723 18.457 17.6884C18.4305 17.6846 18.4039 17.6823 18.3773 17.6813L16.6329 17.6187C15.7633 17.5875 14.9537 18.0605 14.5538 18.8333L13.7396 20.4067L13.7343 20.4174C13.6228 20.6416 13.293 20.8717 12.674 20.8717H11.4233C10.8888 20.8717 10.4872 20.6029 10.3449 20.382L9.54356 18.8333C9.1437 18.0605 8.33407 17.5875 7.46449 17.6187L5.73649 17.6807C5.47432 17.6755 5.02289 17.4758 4.64544 16.9589L3.99222 15.8335C3.68423 15.2902 3.70346 14.8429 3.8706 14.591L4.7991 13.1601C5.27398 12.4283 5.28304 11.4879 4.82234 10.7471L3.88693 9.24294C3.76494 9.03305 3.71696 8.5555 3.99376 8.06866L4.00095 8.05572L4.57441 6.9991C4.88167 6.46278 5.30367 6.27858 5.5442 6.31312C5.57062 6.31691 5.59722 6.31929 5.62389 6.32025L7.36828 6.38286C8.23786 6.41407 9.04749 5.94109 9.44735 5.16826L10.2616 3.59481L10.2668 3.58418Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      function openIncomeModal() {
+        document
+          .getElementById("createCategoryModal")
+          .classList.remove("hidden");
+      }
+
+      function openCreateCategoryModal() {
+        document
+          .getElementById("createCategoryModal")
+          .classList.remove("hidden");
+      }
+
+      function closeIncomeModal() {
+        document.getElementById("createCategoryModal").classList.add("hidden");
+      }
+
+      function openExpenseModal() {
+        document.getElementById("createGroupModal").classList.remove("hidden");
+      }
+
+      function closeExpenseModal() {
+        document.getElementById("createGroupModal").classList.add("hidden");
+      }
+
+      // Close modals when clicking outside
+      window.onclick = function (event) {
+        const categoryModal = document.getElementById("createCategoryModal");
+        const groupModal = document.getElementById("createGroupModal");
+
+        if (event.target === categoryModal) {
+          closeIncomeModal();
+        }
+        if (event.target === groupModal) {
+          closeExpenseModal();
+        }
+      };
+    </script>
+    <!-- Plan page script Starts -->
+    <script>
+      document.querySelectorAll(".toggle-box").forEach((box) => {
+        const header = box.querySelector(".headerplan");
+        const content = box.querySelector(".contentplan");
+
+        box.querySelectorAll(".toggle-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            header.classList.toggle("hidden");
+            content.classList.toggle("hidden");
+          });
+        });
+      });
+      document.querySelectorAll(".toggle-box2").forEach((box) => {
+        const header = box.querySelector(".headerplan2");
+        const content = box.querySelector(".contentplan2");
+
+        box.querySelectorAll(".toggle-btn2").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            header.classList.toggle("hidden");
+            content.classList.toggle("hidden");
+          });
+        });
+      });
+    </script>
+    <!-- Plan page script Ends -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdowns = document.querySelectorAll(".custom-dropdown");
+
+        dropdowns.forEach((dropdown) => {
+          const trigger = dropdown.querySelector(".dropdown-trigger");
+          const menu = dropdown.querySelector(".dropdown-menu");
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const valueSpan = dropdown.querySelector(".dropdown-value");
+
+          // Toggle dropdown
+          trigger.addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            // Close other dropdowns
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) {
+                d.classList.remove("active");
+              }
+            });
+
+            dropdown.classList.toggle("active");
+          });
+
+          // Select item
+          items.forEach((item) => {
+            item.addEventListener("click", function (e) {
+              e.stopPropagation();
+
+              // Remove selected class from all items
+              items.forEach((i) => i.classList.remove("selected"));
+
+              // Add selected class to clicked item
+              this.classList.add("selected");
+
+              // Update trigger value
+              valueSpan.textContent = this.getAttribute("data-value");
+
+              // Close dropdown
+              dropdown.classList.remove("active");
+            });
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          dropdowns.forEach((dropdown) => {
+            dropdown.classList.remove("active");
+          });
+        });
+
+        // Set initial selected state
+        dropdowns.forEach((dropdown) => {
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const currentValue =
+            dropdown.querySelector(".dropdown-value").textContent;
+          items.forEach((item) => {
+            if (item.getAttribute("data-value") === currentValue) {
+              item.classList.add("selected");
+            }
+          });
+        });
+      });
+    </script>
+    <script src="./assets/js/dashboard.js"></script>
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/search-popup.js"></script>
+    <script src="./assets/js/notification.js"></script>
+    <script src="./assets/js/menu.js"></script>
+    <script src="./index.js"></script>
+
+    <script>
+      // Expand functionality - only on large screens
+      function initializeExpandFunctionality() {
+        const expandBtn = document.getElementById("expandBtn");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+
+        if (!expandBtn || !sidebar || !mainContent) {
+          console.log("Expand elements not found");
+          return;
+        }
+
+        let isExpanded = false;
+
+        expandBtn.addEventListener("click", () => {
+          // Only work on large screens (>= 1024px)
+          if (window.innerWidth >= 1024) {
+            isExpanded = !isExpanded;
+
+            if (isExpanded) {
+              sidebar.classList.add("expanded");
+              mainContent.classList.add("sidebar-expanded");
+              console.log("[v0] Sidebar expanded");
+            } else {
+              sidebar.classList.remove("expanded");
+              mainContent.classList.remove("sidebar-expanded");
+              console.log("[v0] Sidebar collapsed");
+            }
+          }
+        });
+      }
+
+      // Initialize expand functionality when DOM is loaded
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeExpandFunctionality,
+      );
+    </script>
+    <script>
+      const iconBtn = document.getElementById("iconBtn");
+      const iconPopup = document.getElementById("iconPopup");
+      const iconInput = document.getElementById("iconInput");
+
+      // Toggle popup
+      iconBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        iconPopup.classList.toggle("hidden");
+      });
+
+      // Select icon → ONLY input update
+      document.querySelectorAll(".iconItem").forEach((icon) => {
+        icon.addEventListener("click", () => {
+          iconInput.value = icon.innerText;
+          iconPopup.classList.add("hidden");
+        });
+      });
+
+      // Outside click close
+      document.addEventListener("click", () => {
+        iconPopup.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>

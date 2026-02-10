@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Smarter Money Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+    </style>
+  <link href="assets/css/index.css" rel="stylesheet"></head>
+  <body class="bg-white font-sans">
+    <div class="flex min-h-screen overflow-hidden">
+      <!-- Left Side - Login Form -->
+      <div class="flex-1 flex items-center justify-center bg-white p-8 md:p-16">
+        <div class="w-full max-w-md">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img
+              src="./assets/images/logo_full-removebg-preview.svg"
+              class="h-12 w-auto" />
+          </div>
+          <!-- Welcome Back -->
+          <h1 class="text-3xl font-semibold text-black mb-8">Welcome Back!</h1>
+          <!-- Login Form -->
+          <form class="flex flex-col gap-6">
+            <div>
+              <label class="block text-base font-medium text-black mb-3"
+                >Email</label
+              >
+              <input
+                type="email"
+                placeholder="Type Your Email"
+                class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-base font-medium text-black mb-3"
+                >Password</label
+              >
+              <div class="relative flex items-center">
+                <input
+                  id="login-password"
+                  type="password"
+                  placeholder="Type Your Password"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition" />
+                <button
+                  type="button"
+                  id="toggle-password"
+                  class="absolute right-4 -translate-y-1/2 top-1/2 flex items-center justify-center text-gray-500 hover:text-gray-700 focus:outline-none cursor-pointer"
+                  tabindex="-1"
+                  style="height: 24px; width: 24px">
+                  <i class="fa-regular fa-eye" id="eye-icon"></i>
+                </button>
+              </div>
+              <div class="text-right mt-2">
+                <a
+                  href="forgot-password.html"
+                  class="text-sm text-gray-500 hover:text-green-600 transition"
+                  >Forgot Password?</a
+                >
+              </div>
+            </div>
+            <a href="./dashboard.html"
+              ><button
+                type="button"
+                class="w-full gradient-green text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition">
+                Login
+              </button></a
+            >
+          </form>
+          <!-- Social Login -->
+          <div class="mt-8">
+            <div class="flex items-center mb-8">
+              <div class="flex-1 h-px bg-gray-200"></div>
+              <p class="mx-4 text-sm text-gray-500">or sign in with</p>
+              <div class="flex-1 h-px bg-gray-200"></div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <button
+                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-full bg-white font-medium hover:bg-gray-50 transition">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z"
+                    fill="#FFC107" />
+                  <path
+                    d="M3.15234 7.3455L6.43784 9.755C7.32684 7.554 9.47984 6 11.9993 6C13.5288 6 14.9203 6.577 15.9798 7.5195L18.8083 4.691C17.0223 3.0265 14.6333 2 11.9993 2C8.15834 2 4.82734 4.1685 3.15234 7.3455Z"
+                    fill="#FF3D00" />
+                  <path
+                    d="M12.0002 22.0001C14.5832 22.0001 16.9302 21.0116 18.7047 19.4041L15.6097 16.7851C14.5719 17.5743 13.3039 18.0011 12.0002 18.0001C9.39916 18.0001 7.19066 16.3416 6.35866 14.0271L3.09766 16.5396C4.75266 19.7781 8.11366 22.0001 12.0002 22.0001Z"
+                    fill="#4CAF50" />
+                  <path
+                    d="M21.8055 10.0415H21V10H12V14H17.6515C17.2571 15.1082 16.5467 16.0766 15.608 16.7855L15.6095 16.7845L18.7045 19.4035C18.4855 19.6025 22 17 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z"
+                    fill="#1976D2" />
+                </svg>
+                <span>Continue with Google</span>
+              </button>
+              <button
+                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-full bg-white font-medium hover:bg-gray-50 transition">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M16 2C16.3632 4.17921 14.0879 5.83084 12.8158 6.57142C12.4406 6.78988 12.0172 6.5117 12.0819 6.08234C12.2993 4.63878 13.0941 2.00008 16 2Z"
+                    fill="black" />
+                  <path
+                    d="M9 6.5C9.89676 6.5 10.6905 6.69941 11.2945 6.92013C12.0563 7.19855 12.9437 7.19854 13.7055 6.92012C14.3094 6.6994 15.1032 6.5 15.9999 6.5C17.0852 6.5 18.4649 7.08889 19.4999 8.26666C16 11 17 15.5 20.269 16.6916C19.2253 19.5592 17.2413 21.5 15.4999 21.5C13.9999 21.5 14 20.8 12.5 20.8C11 20.8 11 21.5 9.5 21.5C7 21.5 4 17.5 4 12.5C4 8.5 7 6.5 9 6.5Z"
+                    fill="black" />
+                </svg>
+                <span>Continue with Apple ID</span>
+              </button>
+            </div>
+          </div>
+          <!-- Create Account -->
+          <div class="text-center mt-8">
+            <span class="text-gray-800">Don't have account? </span>
+            <a
+              href="signup.html"
+              class="text-black font-medium hover:text-green-600 transition"
+              >Create Account</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Right Side - Dashboard Preview -->
+      <div
+        class="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-transparent via-transparent to-green-100">
+        <img
+          src="./assets/images/login.svg"
+          class="object-contain w-full h-full" />
+      </div>
+    </div>
+  <script defer src="index.js"></script></body>
+  <script>
+    const passwordInput = document.getElementById("login-password");
+    const togglePassword = document.getElementById("toggle-password");
+    const eyeIcon = document.getElementById("eye-icon");
+    togglePassword.addEventListener("click", function () {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      eyeIcon.classList.toggle("fa-eye");
+      eyeIcon.classList.toggle("fa-eye-slash");
+    });
+  </script>
+</html>

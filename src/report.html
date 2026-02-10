@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Dashboard</title>
+    <!-- Keep only the UMD version for Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="./css/font.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#22c55e",
+              "primary-dark": "#16a34a",
+            },
+          },
+        },
+      };
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+
+      .check-icon {
+        width: 16px;
+        height: 16px;
+        background-color: #1bb15f;
+        /* Green background */
+        border-radius: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+
+      .check-icon::after {
+        content: "✓";
+        color: white;
+        /* White checkmark */
+        font-size: 10px;
+        font-weight: bold;
+      }
+    </style>
+    <!-- Card style -->
+    <style>
+      .gradient-green {
+        background: linear-gradient(283deg, #1bb15f 1.61%, #0b6b37 111.05%);
+      }
+
+      .gradient-red {
+        background: linear-gradient(
+          279deg,
+          rgba(242, 143, 136, 0.7) -19.65%,
+          rgba(240, 68, 56, 0.7) 110.97%
+        );
+
+        color: #000;
+      }
+
+      .gradient-yellow {
+        background: linear-gradient(
+          90deg,
+          rgba(250, 246, 118, 0.7) -9.12%,
+          rgba(250, 246, 118, 0.7) 58.9%,
+          rgba(254, 199, 0, 0.7) 116.41%
+        );
+
+        color: #000;
+      }
+
+      .gradient-green-light {
+        background: linear-gradient(
+          99deg,
+          rgba(189, 233, 86, 0.2) -8.96%,
+          rgba(189, 233, 86, 0.7) 121.66%
+        );
+
+        color: #000;
+      }
+
+      .card {
+        border-radius: 24px;
+        padding: 20px 24px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+
+    <style>
+      /* Enhanced CSS for sidebar expand/collapse with proper layout management */
+      #sidebar {
+        width: 80px;
+        transition: width 0.3s ease;
+        position: fixed;
+        left: 0;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        z-index: 40;
+      }
+
+      @media (min-width: 1024px) {
+        #sidebar {
+          top: 5rem;
+          height: calc(100vh - 5rem);
+        }
+      }
+
+      #sidebar.expanded {
+        width: 250px;
+      }
+
+      /* Main content adjusts width and margin based on sidebar state */
+      main {
+        transition: width 0.3s ease, margin-left 0.3s ease;
+        overflow-x: hidden;
+      }
+
+      /* Large screens - sidebar layout */
+      @media (min-width: 1024px) {
+        main {
+          width: calc(100vw - 80px);
+          max-width: calc(100vw - 80px);
+        }
+
+        main.sidebar-expanded {
+          width: calc(100vw - 250px);
+          margin-left: 200px;
+          max-width: calc(100vw - 250px);
+        }
+      }
+
+      /* Small screens - full width */
+      @media (max-width: 1023px) {
+        main {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          margin-left: 0 !important;
+        }
+
+        .card {
+          padding: 12px;
+        }
+      }
+
+      /* Hide labels by default, show when sidebar is expanded */
+      .sidebar-label {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        margin-left: 12px;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      #sidebar.expanded .sidebar-label {
+        display: inline;
+        opacity: 1;
+      }
+
+      /* Adjust sidebar items layout when expanded */
+      .sidebar-item {
+        transition: all 0.3s ease;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      #sidebar.expanded .sidebar-item {
+        justify-content: flex-start;
+        padding: 12px 16px;
+        width: 100%;
+      }
+
+      /* Rotate expand icon when sidebar is expanded */
+      #sidebar.expanded .expand-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Background colors for sidebar items */
+      #sidebar .sidebar-item {
+        background: #f1f0f1;
+        /* bg-gray-100 for inactive items */
+      }
+
+      #sidebar .sidebar-item.active {
+        background: white;
+        /* bg-white for active item */
+      }
+
+      #sidebar.expanded .sidebar-item {
+        background: transparent;
+      }
+
+      #sidebar.expanded .sidebar-item.active {
+        background: white;
+      }
+
+      /* Smooth transitions for all elements */
+      * {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#F5F5F5]">
+    <div class="main-container">
+      <!-- Header -->
+      <header class="fixed inset-0 bg-[#F5F5F5] z-40 h-16 lg:h-20">
+        <div class="py-2 hidden lg:flex mx-auto px-4 lg:pl-4 sm:px-6 lg:px-8">
+          <div class="flex w-full justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <a href="http://gharmish.com/" class="cursor-pointer">
+                  <a href="gharmish://" class="cursor-pointer">
+                    <img
+                      src="./assets/images/logo_full-removebg-preview.png"
+                      class="h-12 w-auto" />
+                  </a>
+                </a>
+              </div>
+            </div>
+            <!-- Navigation -->
+            <nav
+              class="hidden md:flex md:flex-row border border-[rgba(201, 197, 197, 0.68)] p-1 rounded-3xl items-center b space-x-2">
+              <a
+                href="./dashboard.html"
+                class="bg-[#0D6B37] text-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Features</a
+              >
+              <a
+                href="./dashboard_pricing.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Plan & Pricing</a
+              >
+              <a
+                href="./download.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Download</a
+              >
+              <a
+                href="./contact.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Contact</a
+              >
+            </nav>
+            <!-- Right side -->
+            <div class="flex items-center space-x-0">
+              <button
+                class="bg-white hover:bg-gray-50 search_btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none">
+                  <path
+                    d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M17.5 17.5L13.875 13.875"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button
+                class="bg-white hover:bg-gray-50 notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.0002 2.25C8.32001 2.25 5.25022 5.06847 5.25022 8.64153V9.69723C5.25022 10.7247 4.9461 11.7291 4.37618 12.584C4.36613 12.599 4.35663 12.6145 4.3477 12.6302L3.96906 13.2984C3.47894 14.1633 3.31926 15.1751 3.51495 16.1479C3.52959 16.2207 3.55335 16.3222 3.59151 16.4448C4.05486 17.9332 5.50116 18.6986 6.69011 19.0567C7.04543 19.1637 7.42267 19.2581 7.81665 19.3398L7.86793 19.4217C8.96229 21.1684 10.4349 22.2 12.0508 22.2C13.6667 22.2 15.1393 21.1684 16.2336 19.4217L16.3004 19.3152C16.6543 19.2388 16.9941 19.1521 17.3159 19.055C18.5204 18.6916 19.9095 17.9122 20.3923 16.4556C20.4104 16.4008 20.4255 16.3522 20.437 16.315C20.45 16.2731 20.4556 16.2551 20.4596 16.2436C20.4702 16.2126 20.4788 16.1809 20.4853 16.1488C20.6824 15.175 20.5212 14.1628 20.0314 13.2984L19.6527 12.6302C19.6438 12.6145 19.6343 12.599 19.6243 12.584C19.0543 11.7291 18.7502 10.7247 18.7502 9.69723V8.64153C18.7502 5.06847 15.6804 2.25 12.0002 2.25ZM14.1888 19.6352C12.7973 19.7681 11.3186 19.7715 9.92262 19.6455C10.638 20.3892 11.3824 20.7 12.0508 20.7C12.7223 20.7 13.4704 20.3863 14.1888 19.6352ZM6.75022 8.64153C6.75022 5.98312 9.0595 3.75 12.0002 3.75C14.9409 3.75 17.2502 5.98312 17.2502 8.64153V9.69723C17.2502 11.0115 17.6365 12.2965 18.3607 13.3927L18.7263 14.0379C19.0312 14.576 19.136 15.204 19.0229 15.8111L19.0067 15.863L19.0041 15.8714C18.9928 15.9079 18.9815 15.9442 18.9684 15.9836C18.7159 16.7455 17.9157 17.3073 16.8826 17.6189C14.1506 18.4432 9.85676 18.4437 7.12262 17.6204C6.06682 17.3024 5.2572 16.749 5.02372 15.9989C5.00291 15.9321 4.99137 15.8813 4.98549 15.8521C4.8606 15.2313 4.9628 14.5873 5.2741 14.0379L5.63973 13.3927C6.36395 12.2965 6.75022 11.0115 6.75022 9.69723V8.64153Z"
+                    fill="black" />
+                  <path
+                    d="M20.3876 8.2512C20.8012 8.27461 21.1174 8.62884 21.094 9.04239C21.06 9.64315 21.0781 10.0599 21.1743 10.4179C21.2661 10.7597 21.4425 11.0956 21.8042 11.4999C22.0804 11.8086 22.054 12.2827 21.7453 12.5589C21.4366 12.8351 20.9625 12.8088 20.6863 12.5001C20.198 11.9544 19.889 11.4154 19.7256 10.8071C19.5666 10.2151 19.5597 9.60685 19.5964 8.95761C19.6198 8.54406 19.9741 8.22779 20.3876 8.2512Z"
+                    fill="black" />
+                  <path
+                    d="M4.40272 8.95761C4.37931 8.54406 4.02508 8.22779 3.61153 8.2512C3.19798 8.27461 2.88171 8.62884 2.90512 9.04239C2.93912 9.64315 2.92105 10.0599 2.82488 10.4179C2.73308 10.7597 2.5567 11.0956 2.19498 11.4999C1.91879 11.8086 1.94513 12.2827 2.25382 12.5589C2.56251 12.8351 3.03665 12.8088 3.31284 12.5001C3.80113 11.9544 4.11012 11.4154 4.27352 10.8071C4.43255 10.2151 4.43947 9.60685 4.40272 8.95761Z"
+                    fill="black" />
+                </svg>
+              </button>
+              <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+                <img
+                  src="./assets/images/userr.png"
+                  alt="User"
+                  class="w-full h-full object-cover" />
+              </div>
+              <!-- Mobile menu button -->
+              <button
+                class="md:hidden text-gray-600"
+                onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="py-1 pt-2 lg:hidden flex items-center justify-between px-4">
+          <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+            <img
+              src="./assets/images/userr.png"
+              alt="User"
+              class="w-full h-full object-cover" />
+          </div>
+          <div class="flex items-center gap-1">
+            <button
+              class="bg-white notification-btn-sm size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+              <img src="./assets/images/notification.svg" />
+            </button>
+            <button
+              id="menuToggle"
+              class="bg-white notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+              <img src="./assets/images/menu.svg" />
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- sidebar menu toggle  -->
+      <div
+        id="menuOverlay"
+        class="fixed inset-0 lg:hidden menu-overlay sidebar-hidden transition-all duration-300 ease-in-out z-[500]">
+        <div class="flex justify-end h-full">
+          <div class="w-72 h-full bg-white shadow-2xl flex flex-col">
+            <div class="flex justify-start pl-7 pt-7 pb-7">
+              <button
+                id="closeBtn"
+                class="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <svg
+                  class="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            <nav class="flex-1 px-6">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="./dashboard.html"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none">
+                      <path
+                        d="M13.4792 12.3566C13.6301 12.0462 13.5008 11.6722 13.1903 11.5213C12.8799 11.3704 12.5059 11.4997 12.355 11.8101C12.3046 11.9137 12.0517 12.256 11.6056 12.575C11.1747 12.883 10.6242 13.125 10.0004 13.125C8.69022 13.125 7.99143 12.3347 7.6082 11.7434C7.42046 11.4538 7.03345 11.3712 6.7438 11.5589C6.45414 11.7466 6.37152 12.1337 6.55926 12.4233C7.04023 13.1654 8.06984 14.375 10.0004 14.375C10.9536 14.375 11.7534 14.0059 12.3326 13.5918C12.8966 13.1885 13.3135 12.6975 13.4792 12.3566Z"
+                        fill="black" />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.2561 2.15038L11.985 2.62786L18.6743 6.97591C18.9638 7.16403 19.0459 7.55115 18.8578 7.84056C18.6696 8.12997 18.2825 8.21209 17.9931 8.02397L17.2608 7.54796C17.2815 7.70262 17.2921 7.85957 17.2921 8.01795V15.0001C17.2921 16.9561 15.7064 18.5417 13.7504 18.5417H6.2504C4.29439 18.5417 2.70873 16.9561 2.70873 15.0001V8.01795C2.70873 7.85957 2.71932 7.70262 2.74001 7.54796L2.00768 8.02397C1.71827 8.21209 1.33116 8.12997 1.14304 7.84056C0.95492 7.55115 1.03704 7.16403 1.32645 6.97591L8.01575 2.62787L8.74474 2.15038C9.50733 1.65088 10.4935 1.65088 11.2561 2.15038ZM10.5681 3.19771L11.3019 3.67469L15.0061 6.10091C15.6525 6.52435 16.0421 7.24512 16.0421 8.01795V15.0001C16.0421 16.2657 15.0161 17.2917 13.7504 17.2917H6.2504C4.98475 17.2917 3.95873 16.2657 3.95873 15.0001V8.01795C3.95873 7.24512 4.34825 6.52435 4.99474 6.10091L8.69886 3.6747L9.4327 3.19771C9.77791 2.97332 10.2229 2.97332 10.5681 3.19771Z"
+                        fill="black" />
+                    </svg>
+                    <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./finance-account.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/finance.svg" />
+                    <span>Financial Accounts</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./transactions.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Transactions</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./budget.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Budgets</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./plan.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/planIcon.svg" />
+                    <span>Plan</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./report.html"
+                    style="
+                      border-radius: 60px;
+                      background: linear-gradient(
+                        178deg,
+                        #0d743b -32.88%,
+                        #fce166 151.27%
+                      );
+                    "
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span>Reports</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_booking.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/billIcon.svg" />
+                    <span>Bills</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_category.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span>Other</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_setting.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home">
+                    <img src="./assets/images/setting.svg" />
+                    <span>Settings</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-5">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-12 hidden lg:flex"
+          style="
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          ">
+          <aside
+            style="
+              overflow: auto;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            "
+            class="overflow-y-auto w-[80px] h-screen fixed inset-0 transition-all duration-300"
+            id="sidebar">
+            <div class="p-4">
+              <nav class="flex flex-col items-stretch h-full">
+                <div class="space-y-2">
+                  <a
+                    href="./dashboard.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full bg-[#FCFDFE] text-black hover:bg-white!">
+                    <span class="dcenter block">
+                      <i class="fa-solid fa-house block"></i>
+                    </span>
+                    <span class="sidebar-label">Home</span>
+                  </a>
+
+                  <a
+                    href="./finance-account.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/finance.svg" />
+                    <span class="sidebar-label">Financial Accounts</span>
+                  </a>
+
+                  <a
+                    href="./transactions.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/transactions.svg" />
+                    <span class="sidebar-label">Transactions</span>
+                  </a>
+
+                  <a
+                    href="./budget.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/budgetIcon.svg" />
+                    <span class="sidebar-label">Budget</span>
+                  </a>
+
+                  <a
+                    href="./plan.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/planIcon.svg" />
+                    <span class="sidebar-label">Plan</span>
+                  </a>
+
+                  <a
+                    href="./report.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-white! hover:bg-white!">
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span class="sidebar-label">Reports</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_booking.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/billIcon.svg" />
+                    <span class="sidebar-label">Bills</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_category.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span class="sidebar-label">Other</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_setting.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!">
+                    <img src="./assets/images/setting.svg" />
+                    <span class="sidebar-label">Settings</span>
+                  </a>
+                  <div class="">
+                    <button
+                      id="expandBtn"
+                      style="
+                        background: linear-gradient(
+                          0deg,
+                          rgba(255, 255, 255, 0.36) 0%,
+                          rgba(252, 253, 254, 0.36) 100%
+                        );
+                        backdrop-filter: blur(40px);
+                      "
+                      class="sidebar-item size-[48px] rounded-full dcenter text-primary bg-[#FCFDFE] hover:bg-white! border-0 cursor-pointer transition-all">
+                      <svg
+                        class="expand-icon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M5.41667 1.875C3.46066 1.875 1.875 3.46066 1.875 5.41667V14.5833C1.875 16.5393 3.46066 18.125 5.41667 18.125H14.5833C16.5393 18.125 18.125 16.5393 18.125 14.5833V5.41667C18.125 3.46066 16.5393 1.875 14.5833 1.875H5.41667ZM3.125 5.41667C3.125 4.15101 4.15101 3.125 5.41667 3.125H6.875L6.875 16.875H5.41667C4.15101 16.875 3.125 15.849 3.125 14.5833V5.41667ZM8.125 16.875H14.5833C15.849 16.875 16.875 15.849 16.875 14.5833V5.41667C16.875 4.15101 15.849 3.125 14.5833 3.125H8.125L8.125 16.875Z"
+                          fill="black" />
+                      </svg>
+                      <span class="sidebar-label text-black">Expand</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="absolute bottom-10">
+                  <a
+                    href="#"
+                    class="sidebar-item size-[48px] rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black">
+                    <img src="./assets/images/call.svg" />
+                    <span class="sidebar-label">Support</span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Main Content -->
+        <main
+          class="flex-1 p-2 lg:p-8 lg:pr-4 lg:pt-11 w-full overflow-x-auto"
+          id="mainContent">
+          <div class="pt-14 mb-4">
+            <div>
+              <h1 class="lg:text-4xl text-2xl font-medium text-[#010101]">
+                Report
+              </h1>
+              <p
+                style="color: rgba(0, 0, 0, 0.6)"
+                class="lg:text-sm text-[10px] font-normal mt-1">
+                Get a quick overview of your income, spending, and savings.
+              </p>
+            </div>
+          </div>
+          <!-- Cards -->
+          <div
+            class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            <!-- Total Income Card -->
+            <div class="card gradient-green text-white">
+              <div class="flex justify-between items-center mb-4">
+                <p
+                  class="text-[14px] md:text-[20px] font-medium text-[#FFF1F1]">
+                  Total Income
+                </p>
+                <div
+                  class="flex items-center border-1 border-white/20 h-10 md:h-14 w-10 md:w-14 rounded-full justify-center">
+                  <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+              </div>
+              <p class="text-[28px] md:text-[32px] font-normal">$4,200</p>
+            </div>
+
+            <!-- Total Expenses Card -->
+            <div class="card gradient-red text-black">
+              <div class="flex justify-between items-center mb-4">
+                <p class="text-[14px] md:text-[20px] font-medium opacity-90">
+                  Total Expenses
+                </p>
+                <div
+                  class="flex items-center border-1 border-black/10 h-10 md:h-14 w-10 md:w-14 rounded-full justify-center">
+                  <i class="fa-solid fa-arrow-trend-down text-black"></i>
+                </div>
+              </div>
+              <p class="text-[28px] md:text-[32px] font-normal">$3,720</p>
+            </div>
+
+            <!-- Net Income Card -->
+            <div class="card gradient-green-light text-black">
+              <div class="flex justify-between items-center mb-4">
+                <p class="text-[14px] md:text-[20px] font-medium opacity-90">
+                  Net Income
+                </p>
+                <div
+                  class="flex items-center border-1 border-black/10 h-10 md:h-14 w-10 md:w-14 rounded-full justify-center">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M14.25 14.3702C14.25 12.8515 15.4812 11.6202 17 11.6202C18.5188 11.6202 19.75 12.8515 19.75 14.3702C19.75 15.889 18.5188 17.1202 17 17.1202C15.4812 17.1202 14.25 15.889 14.25 14.3702ZM17 13.1202C16.3096 13.1202 15.75 13.6799 15.75 14.3702C15.75 15.0606 16.3096 15.6202 17 15.6202C17.6904 15.6202 18.25 15.0606 18.25 14.3702C18.25 13.6799 17.6904 13.1202 17 13.1202Z"
+                      fill="black" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M1.26817 5.00012H1.25V18.4689C1.25 20.7401 3.19912 22.5001 5.5 22.5001H18.5C20.8009 22.5001 22.75 20.7401 22.75 18.4689V10.2814C22.75 8.01011 20.8009 6.25012 18.5 6.25012H17.75V5.23695C17.75 2.96899 15.7525 1.2201 13.5044 1.51985L3.37684 2.87018C2.25959 3.01915 1.4019 3.90595 1.26817 5.00012ZM13.7026 3.00669C15.0515 2.82684 16.25 3.87617 16.25 5.23695V6.25012H6.25C6.24726 6.25012 6.24453 6.25014 6.2418 6.25017H3.70074C3.17566 6.25017 2.75 5.82451 2.75 5.29943C2.75 4.82291 3.10275 4.42 3.57509 4.35703L13.7026 3.00669ZM18.5 7.75012C20.0651 7.75012 21.25 8.92826 21.25 10.2814V18.4689C21.25 19.822 20.0651 21.0001 18.5 21.0001H5.5C3.93489 21.0001 2.75 19.822 2.75 18.4689V7.55893C3.04235 7.68209 3.36359 7.75017 3.70074 7.75017L18.5 7.75012Z"
+                      fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <p class="text-[28px] md:text-[32px] font-normal">$480.54</p>
+            </div>
+
+            <!-- Saving Rate Card -->
+            <div class="card gradient-yellow text-black">
+              <div class="flex justify-between items-center mb-4">
+                <p class="text-[14px] md:text-[20px] font-medium opacity-90">
+                  Saving Rate
+                </p>
+                <div
+                  class="flex items-center border-1 border-black/10 h-10 md:h-14 w-10 md:w-14 rounded-full justify-center">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.5 2.25C16.9142 2.25 17.25 2.58579 17.25 3V7.25H17.5C18.7426 7.25 19.75 8.25736 19.75 9.5V19.5C19.75 20.7426 18.7426 21.75 17.5 21.75H15.5C14.2574 21.75 13.25 20.7426 13.25 19.5V9.5C13.25 8.25736 14.2574 7.25 15.5 7.25H15.75V3C15.75 2.58579 16.0858 2.25 16.5 2.25ZM15.5 8.75C15.0858 8.75 14.75 9.08579 14.75 9.5V19.5C14.75 19.9142 15.0858 20.25 15.5 20.25H17.5C17.9142 20.25 18.25 19.9142 18.25 19.5V9.5C18.25 9.08579 17.9142 8.75 17.5 8.75H15.5ZM8.25 7C8.25 6.58579 7.91421 6.25 7.5 6.25C7.08579 6.25 6.75 6.58579 6.75 7V9.25H6.5C5.25736 9.25 4.25 10.2574 4.25 11.5V15.5C4.25 16.7426 5.25736 17.75 6.5 17.75H8.5C9.74264 17.75 10.75 16.7426 10.75 15.5V11.5C10.75 10.2574 9.74264 9.25 8.5 9.25H8.25V7ZM6.5 10.75C6.08579 10.75 5.75 11.0858 5.75 11.5V15.5C5.75 15.9142 6.08579 16.25 6.5 16.25H8.5C8.91421 16.25 9.25 15.9142 9.25 15.5V11.5C9.25 11.0858 8.91421 10.75 8.5 10.75H6.5Z"
+                      fill="black" />
+                  </svg>
+                </div>
+              </div>
+              <p class="text-[28px] md:text-[32px] font-normal">11%</p>
+            </div>
+          </div>
+          <!-- Main Graph -->
+          <div
+            class="w-full bg-[#FDFDFDA3] border border-[#FFFFFF33] lg:p-3 p-2"
+            style="
+              border-radius: 24px;
+              border: 1px solid rgba(0, 0, 0, 0.05);
+
+              backdrop-filter: blur(40px);
+            ">
+            <div
+              class="pt-4 flex flex-col lg:flex-row justify-between lg:items-center">
+              <div
+                class="border-gray-50 flex justify-between items-center gap-2 lg:gap-5">
+                <h1 class="text-xl font-medium text-[#010101]">Reports</h1>
+                <!-- Tabs-->
+                <div
+                  class="bg-[#EBEAEA33] border border-[#C9C5C5AD] rounded-full p-1 w-fit flex">
+                  <div
+                    class="bg-[#1BB15F] rounded-full cursor-pointer p-2 md:p-3 h-full w-fit text-xs text-white px-4">
+                    <p>Cash flow</p>
+                  </div>
+                  <div
+                    class="rounded-full cursor-pointer p-2 md:p-3 h-full w-fit text-xs text-gray-600 px-4">
+                    <p>Spending</p>
+                  </div>
+                  <div
+                    class="rounded-full cursor-pointer p-2 md:p-3 h-full w-fit text-xs text-gray-600 px-4">
+                    <p>Income</p>
+                  </div>
+                </div>
+              </div>
+              <div class="pr-4 hidden lg:flex gap-2 relative">
+                <div class="custom-dropdown">
+                  <button
+                    class="dropdown-trigger flex items-center"
+                    data-dropdown="dropdown1"
+                    style="margin-right: 0; padding: 12px 16px; height: 48px">
+                    <span class="dropdown-value text-sm">Monthly</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none">
+                      <path
+                        d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                        stroke="#667085"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu" id="dropdown1">
+                    <div class="dropdown-item" data-value="Monthly">
+                      Monthly
+                    </div>
+                    <div class="dropdown-item" data-value="Yearly">Yearly</div>
+                    <div class="dropdown-item" data-value="Weekly">Weekly</div>
+                  </div>
+                </div>
+
+                <button
+                  class="pl-3.5 pr-4 h-[46px] flex items-center text-white space-x-1 rounded-full gradient-green">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M5.43317 12.4378C5.69771 12.2161 6.09192 12.2508 6.31364 12.5154L7.29297 13.6838V9.16683C7.29297 8.82165 7.57279 8.54183 7.91797 8.54183C8.26315 8.54183 8.54297 8.82165 8.54297 9.16683V13.6835L9.52235 12.5153C9.74412 12.2508 10.1383 12.2161 10.4028 12.4379C10.6674 12.6596 10.702 13.0539 10.4803 13.3184L8.94559 15.1489C8.67952 15.4663 8.29872 15.6251 7.91797 15.6252C7.53703 15.6252 7.15607 15.4665 6.88989 15.1489L5.35563 13.3183C5.1339 13.0538 5.16862 12.6595 5.43317 12.4378Z"
+                      fill="white" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.2786 1.4585C12.0876 1.4585 12.8325 1.87796 13.467 2.42965C14.1103 2.98908 14.7115 3.74579 15.2447 4.56253C16.3112 6.19588 17.172 8.17185 17.5877 9.58679C17.676 9.88759 17.7096 10.1892 17.7096 10.4801V15.0002C17.7096 16.9562 16.124 18.5418 14.168 18.5418H5.83464C3.87863 18.5418 2.29297 16.9562 2.29297 15.0002V5.00016C2.29297 3.04415 3.87863 1.4585 5.83464 1.4585H11.2786ZM10.6147 2.7085H5.83464C4.56898 2.7085 3.54297 3.73451 3.54297 5.00016V15.0002C3.54297 16.2658 4.56898 17.2918 5.83464 17.2918H14.168C15.4336 17.2918 16.4596 16.2658 16.4596 15.0002V10.6625L12.2267 7.71457L12.2218 7.71108C11.9599 7.52112 11.7628 7.33024 11.5653 7.07083C11.0819 6.43577 11.0644 5.82031 11.1686 5.26531C11.2063 5.06476 11.2632 4.85583 11.314 4.66982C11.3266 4.62335 11.339 4.57805 11.3505 4.53493C11.4119 4.30436 11.4624 4.09026 11.4865 3.86801C11.5751 3.05023 11.1302 2.74387 10.8433 2.7251C10.7902 2.72163 10.7562 2.71862 10.7271 2.71607C10.691 2.71288 10.6626 2.71037 10.6147 2.7085ZM16.0069 8.82394C15.5711 7.68934 14.9356 6.37549 14.1981 5.2459C13.7283 4.52635 13.2317 3.90434 12.7372 3.45352C12.7518 3.63029 12.7497 3.81406 12.7292 4.00269C12.6946 4.32209 12.624 4.61031 12.5583 4.85681C12.5423 4.91681 12.5271 4.97294 12.5126 5.02612C12.4641 5.20453 12.4246 5.34968 12.3971 5.496C12.3359 5.82236 12.3544 6.0437 12.56 6.31371C12.6806 6.47217 12.7883 6.57727 12.951 6.69578L16.0069 8.82394Z"
+                      fill="white" />
+                  </svg>
+                  <span class="text-xs">Export All</span>
+                </button>
+              </div>
+            </div>
+            <div class="grid grid-cols-12 gap-2">
+              <div class="col-span-8 md:col-span-9 xl:col-span-10">
+                <div class="overflow-x-auto">
+                  <div
+                    id="sankey_multiple"
+                    class="w-full min-w-[800px] h-screen bg-white lg:p-4 rounded-xl mt-4"></div>
+                </div>
+              </div>
+              <div class="col-span-4 md:col-span-3 xl:col-span-2">
+                <div class="pt-18">
+                  <ul>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Rent: 9,388.20</span
+                      >
+                    </li>
+                    <li class="mb-3">
+                      <span class="text-xs text-black block"
+                        >Furniture/Supplies/Etc: 411.21</span
+                      >
+                    </li>
+                    <li class="mb-6">
+                      <span class="text-xs text-black block"
+                        >Renters insurance: 150.00</span
+                      >
+                    </li>
+                    <li class="mb-3">
+                      <span class="text-xs text-black block"
+                        >Groceries: 2,326.46</span
+                      >
+                    </li>
+                    <li class="mb-10">
+                      <span class="text-xs text-black block"
+                        >Restaurants: 273.11</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Fuel: 1,533.39</span
+                      >
+                    </li>
+                    <li class="mb-8">
+                      <span class="text-xs text-black block"
+                        >Maintenance: 1,475.29</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >Power: 1,121.28</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Internet: 604.89</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Water/Gas/Sewage: 600.00</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block">Work: 143.80</span>
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Gifts: 590.35</span
+                      >
+                    </li>
+                    <li class="mb-5">
+                      <span class="text-xs text-black block"
+                        >Tech/Games: 347.44</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Cosmetics: 199.83</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Random: 195.84</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Microtransactions: 164.94</span
+                      >
+                    </li>
+                    <li class="mb-7">
+                      <span class="text-xs text-black block"
+                        >Entertainment: 159.60</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >Clothes: 58.18</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Travel: 967.50</span
+                      >
+                    </li>
+                    <li class="mb-4">
+                      <span class="text-xs text-black block"
+                        >Amazon: 143.24</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >Spotify: 109.89</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >YouTube: 26.24</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Income Tax: 5,581.67</span
+                      >
+                    </li>
+                    <li class="mb-6">
+                      <span class="text-xs text-black block"
+                        >Social Security/Medicare: 3,154.61</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >Roth IRA: 6,000.00</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Gym Membership: 49.99</span
+                      >
+                    </li>
+                    <li class="mb-6">
+                      <span class="text-xs text-black block"
+                        >Mobile Phone Bill: 89.00</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Streaming Services (Other): 12.99</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Health Insurance: 320.00</span
+                      >
+                    </li>
+                    <li class="mb-2.5">
+                      <span class="text-xs text-black block"
+                        >Medical Bills: 110.50</span
+                      >
+                    </li>
+                    <li class="mb-6">
+                      <span class="text-xs text-black block"
+                        >Therapy/Counseling: 150.00</span
+                      >
+                    </li>
+                    <li class="mb-5">
+                      <span class="text-xs text-black block"
+                        >Childcare: 800.00</span
+                      >
+                    </li>
+                    <li class="mb-9">
+                      <span class="text-xs text-black block"
+                        >Tuition Fees: 1,200.00</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >School Supplies: 78.40</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Pet Supplies: 65.75</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Vet Bills: 200.00</span
+                      >
+                    </li>
+                    <li class="mb-10">
+                      <span class="text-xs text-black block"
+                        >Home Insurance: 250.00</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Car Insurance: 180.00</span
+                      >
+                    </li>
+                    <li class="mb-3">
+                      <span class="text-xs text-black block"
+                        >Public Transport: 45.00</span
+                      >
+                    </li>
+                    <li class="mb-5">
+                      <span class="text-xs text-black block"
+                        >Parking Fees: 35.00</span
+                      >
+                    </li>
+                    <li class="mb-5">
+                      <span class="text-xs text-black block"
+                        >Donations: 100.00</span
+                      >
+                    </li>
+                    <li class="mb-2">
+                      <span class="text-xs text-black block"
+                        >Savings Transfer: 500.00</span
+                      >
+                    </li>
+                    <li class="mb-1">
+                      <span class="text-xs text-black block"
+                        >Emergency Fund: 300.00</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script type="text/javascript">
+            google.charts.load("current", { packages: ["sankey"] });
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var data = new google.visualization.DataTable();
+              data.addColumn("string", "From");
+              data.addColumn("string", "To");
+              data.addColumn("number", "Weight");
+              data.addRows([
+                ["Brazil", "Portugal", 5],
+                ["Brazil", "France", 1],
+                ["Brazil", "Spain", 5],
+                ["Brazil", "England", 1],
+                ["Canada", "Portugal", 1],
+                ["Canada", "France", 5],
+                ["Canada", "England", 1],
+                ["Mexico", "Portugal", 1],
+                ["Mexico", "France", 1],
+                ["Mexico", "Spain", 5],
+                ["Mexico", "England", 5],
+                ["USA", "Portugal", 1],
+                ["USA", "France", 1],
+                ["USA", "Spain", 5],
+                ["USA", "England", 5],
+                ["Portugal", "Angola", 2],
+                ["Portugal", "Senegal", 1],
+                ["Portugal", "Morocco", 1],
+                ["Portugal", "South Africa", 3],
+                ["France", "Angola", 1],
+                ["France", "Senegal", 3],
+                ["France", "Mali", 3],
+                ["France", "Morocco", 3],
+                ["France", "South Africa", 1],
+                ["Spain", "Senegal", 1],
+                ["Spain", "Morocco", 3],
+                ["Spain", "South Africa", 1],
+                ["England", "Angola", 1],
+                ["England", "Senegal", 1],
+                ["England", "Morocco", 2],
+                ["England", "South Africa", 7],
+                ["South Africa", "China", 2],
+                ["South Africa", "India", 1],
+                ["South Africa", "Japan", 3],
+                ["Angola", "China", 5],
+                ["Angola", "India", 1],
+                ["Angola", "Japan", 3],
+                ["Senegal", "China", 5],
+                ["Senegal", "India", 1],
+                ["Senegal", "Japan", 3],
+                ["Mali", "China", 5],
+                ["Mali", "India", 1],
+                ["Mali", "Japan", 3],
+                ["Morocco", "China", 5],
+                ["Spain", "India", 1],
+                ["Morocco", "Japan", 2],
+                ["Bangladesh", "India", 1],
+                ["Bangladesh", "Pakistan", 2],
+                ["Bangladesh", "Nepal", 1],
+                ["South Africa", "Nepal", 2],
+                ["Pakistan", "Nepal", 2],
+              ]);
+
+              var colors = [
+                "#a6cee3",
+                "#b2df8a",
+                "#fb9a99",
+                "#fdbf6f",
+                "#cab2d6",
+                "#ffff99",
+                "#1f78b4",
+                "#33a02c",
+              ];
+
+              var options = {
+                width: "100%",
+                sankey: {
+                  node: {
+                    colors: colors,
+                  },
+                  link: {
+                    colorMode: "gradient",
+                    colors: colors,
+                  },
+                },
+              };
+
+              // Set chart options
+              // var options = {
+              //   width: "100%",
+              // };
+
+              // Instantiate and draw our chart, passing in some options.
+              var chart = new google.visualization.Sankey(
+                document.getElementById("sankey_multiple")
+              );
+              chart.draw(data, options);
+            }
+          </script>
+        </main>
+      </div>
+    </div>
+
+    <!-- notification popup -->
+    <div class="w-full popup max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close-pup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Notification Panel -->
+      <div class="bg-white rounded-3xl p-4 shadow-lg overflow-hidden">
+        <!-- Header -->
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <h2 class="text-xl font-semibold text-gray-900">Notifications</h2>
+          <a href="#" class="text-sm text-green-600 hover:underline">
+            Mark all as read
+          </a>
+        </div>
+
+        <!-- Notification List -->
+        <div id="notification-list" class="divide-y h-[454px] px-3 overflow-y-auto divide-gray-100">
+          <!-- Notification Item 1 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- search popup -->
+    <div class="search_popup w-full max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close_search_popup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Search Panel -->
+      <div class="bg-white rounded-[26px] shadow-lg overflow-hidden">
+        <!-- Search Input -->
+        <div class=" -space-y-[7px] z-10 rounded-[26px] p-px " style="
+  background: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);">
+          <label for="search-input" class="sr-only">Search for accounts, transactions, holdings, categories</label>
+          <div class="relative flex items-center  px-4 py-2 bg-white rounded-[26px]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-search text-gray-500 mr-2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input id="search-input" type="text" placeholder="Search for accounts, transactions, holdings, categories"
+              class="flex-1 py-1.5 outline-none placeholder:text-xs text-gray-900 placeholder-gray-500 bg-transparent" />
+          </div>
+        </div>
+
+        <!-- Suggestions Heading -->
+        <h3 class="text-base font-normal text-gray-900 px-4 py-2">
+          Suggestions
+        </h3>
+
+        <!-- Suggestion List -->
+        <div class="">
+          <!-- Highlighted Suggestion Item (Transaction) -->
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Transaction</div>          
+          </div>
+          <!-- Other Suggestion Items (Account/Category) -->
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Account</div>     
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+         <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+   <!-- Bottom nav -->
+    <div
+      style=""
+      class="fixed bottom-4 left-1/2 -translate-x-1/2 z-99 sm:hidden"
+    >
+      <div
+        style="
+          background-image: url(&quot;./assets/images/float.svg&quot;);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        "
+        class="relative flex justify-between items-center shadow-lg p-1.5 rounded-full w-[90vw] max-w-md"
+      >
+        <!-- Home -->
+        <a class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full" href="./dashboard.html">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M16.1746 14.8279C16.3557 14.4554 16.2005 14.0066 15.828 13.8255C15.4555 13.6444 15.0067 13.7996 14.8256 14.1721C14.7651 14.2964 14.4616 14.7071 13.9263 15.0899C13.4093 15.4596 12.7486 15.75 12.0001 15.75C10.4279 15.75 9.58932 14.8016 9.12945 14.0921C8.90416 13.7445 8.43975 13.6453 8.09217 13.8706C7.74458 14.0959 7.64543 14.5603 7.87072 14.9079C8.44789 15.7984 9.68341 17.25 12.0001 17.25C13.144 17.25 14.1037 16.8071 14.7987 16.3101C15.4755 15.8262 15.9758 15.2369 16.1746 14.8279Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M13.5069 2.58041L14.3816 3.15338L22.4088 8.37105C22.7561 8.59679 22.8547 9.06133 22.6289 9.40862C22.4032 9.75592 21.9386 9.85446 21.5913 9.62871L20.7126 9.0575C20.7374 9.24309 20.7501 9.43144 20.7501 9.62149V18C20.7501 20.3473 18.8473 22.25 16.5001 22.25H7.50009C5.15288 22.25 3.25009 20.3473 3.25009 18V9.62149C3.25009 9.43144 3.26279 9.24309 3.28762 9.0575L2.40883 9.62871C2.06153 9.85446 1.597 9.75592 1.37126 9.40862C1.14551 9.06133 1.24405 8.59679 1.59135 8.37105L9.61851 3.15339L10.4933 2.58041C11.4084 1.98101 12.5918 1.98101 13.5069 2.58041ZM12.6813 3.8372L13.5619 4.40958L18.0069 7.32104C18.7827 7.82918 19.2501 8.6941 19.2501 9.62149V18C19.2501 19.5188 18.0189 20.75 16.5001 20.75H7.50009C5.9813 20.75 4.75009 19.5188 4.75009 18V9.62149C4.75009 8.6941 5.21751 7.82918 5.99329 7.32104L10.4382 4.4096L11.3189 3.8372C11.7331 3.56794 12.2671 3.56794 12.6813 3.8372Z"
+              fill="black"
+            />
+          </svg>
+          <!-- <p class="font-semibold">Home</p> -->
+        </a>
+
+        <!-- Finance -->
+        <a
+          href="./finance-account.html"
+          class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full mr-22"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M10.5 6.74976C10.0858 6.74976 9.75 7.08554 9.75 7.49976C9.75 7.91397 10.0858 8.24976 10.5 8.24976H13.5C13.9142 8.24976 14.25 7.91397 14.25 7.49976C14.25 7.08554 13.9142 6.74976 13.5 6.74976H10.5Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.2729 2.25346C12.0558 1.88065 12.9687 1.89894 13.736 2.3028L21.3499 6.31013C22.2109 6.76329 22.75 7.65619 22.75 8.62918C22.75 10.0765 21.5767 11.2498 20.1294 11.2498H19.75V18.2856C20.3388 18.4067 20.8345 18.8258 21.0437 19.407L21.5271 20.7498H22C22.4142 20.7498 22.75 21.0855 22.75 21.4998C22.75 21.914 22.4142 22.2498 22 22.2498H2C1.58579 22.2498 1.25 21.914 1.25 21.4998C1.25 21.0855 1.58579 20.7498 2 20.7498H2.47288L2.95627 19.407C3.16552 18.8258 3.66118 18.4067 4.25 18.2856V11.2498H3.83891C2.40909 11.2498 1.25 10.0907 1.25 8.6609C1.25 7.66234 1.82429 6.75279 2.72585 6.32348L11.2729 2.25346ZM19.6324 19.9151L19.9329 20.7498H4.06712L4.3676 19.9151C4.40331 19.8159 4.49741 19.7498 4.60283 19.7498H19.3972C19.5026 19.7498 19.5967 19.8159 19.6324 19.9151ZM8.75 18.2498H5.75V11.2498H8.75V18.2498ZM10.25 18.2498H13.75V11.2498H10.25V18.2498ZM15.25 18.2498H18.25V11.2498H15.25V18.2498ZM20.1294 9.74981H19.0093L19 9.74976L18.9907 9.74981H14.5093L14.5 9.74976L14.4907 9.74981H9.50928L9.5 9.74976L9.49072 9.74981H5.00928L5 9.74976L4.99072 9.74981H3.83891C3.23752 9.74981 2.75 9.26229 2.75 8.6609C2.75 8.2409 2.99155 7.85834 3.37075 7.67777L11.9178 3.60775C12.2736 3.43829 12.6886 3.44661 13.0374 3.63018L20.6513 7.6375C21.0195 7.83129 21.25 8.21311 21.25 8.62918C21.25 9.24809 20.7483 9.74981 20.1294 9.74981Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+
+        <!-- Floating Add Button (FIXED) -->
+        <button
+          type="button"
+          class="absolute -top-7 left-1/2 -translate-x-1/2 z-[10000] pointer-events-auto bg-gradient-to-b from-[#0D743B] to-[rgba(252,225,70,0.9)] text-white rounded-full shadow-xl p-4 hover:scale-105 active:scale-95 transition-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+
+        <!-- Transactions -->
+        <a href="./transactions.html" class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10.4383 3.80943C9.91632 2.73699 8.66258 2.53509 7.76094 2.96096L3.46177 4.99159C3.44689 4.99862 3.43224 5.00613 3.41785 5.01413C1.86182 5.87859 1.86043 8.11592 3.41538 8.98232C3.43001 8.99047 3.44491 8.99813 3.46005 9.00529L7.76487 11.0391C8.66321 11.4635 9.91444 11.2656 10.438 10.1963C10.8128 9.4308 11.0417 8.59755 11.1257 7.7491H19.5002C19.9144 7.7491 20.2502 7.41331 20.2502 6.9991C20.2502 6.58488 19.9144 6.2491 19.5002 6.2491H11.1241C11.0386 5.4029 10.8096 4.57229 10.4383 3.80943ZM8.84383 4.26952C8.96116 4.30182 9.0421 4.3683 9.08961 4.46592C9.85128 6.03071 9.85467 7.97666 9.09085 9.53666C9.04358 9.63322 8.96327 9.69902 8.84648 9.73094C8.72192 9.76499 8.56093 9.75621 8.40563 9.68285L4.12719 7.66149C3.6238 7.36379 3.62436 6.63256 4.12833 6.33566L8.40157 4.31727C8.55729 4.24372 8.71878 4.23509 8.84383 4.26952Z"
+              fill="black"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M16.2355 12.961C15.3339 12.5351 14.0801 12.737 13.5581 13.8094C13.1868 14.5723 12.9578 15.4029 12.8723 16.2492L4.5001 16.2501C4.08589 16.2501 3.75014 16.5859 3.75018 17.0002C3.75023 17.4144 4.08605 17.7501 4.50026 17.7501L12.8708 17.7492C12.9548 18.5976 13.1836 19.4308 13.5584 20.1963C14.082 21.2656 15.3332 21.4635 16.2316 21.0391L20.5364 19.0053C20.5516 18.9981 20.5664 18.9905 20.5811 18.9823C22.136 18.1159 22.1346 15.8786 20.5786 15.0141C20.5642 15.0061 20.5496 14.9986 20.5347 14.9916L16.2355 12.961ZM14.9068 14.4659C14.9544 14.3683 15.0353 14.3018 15.1526 14.2695C15.2777 14.2351 15.4392 14.2437 15.5949 14.3173L19.8681 16.3357C20.3721 16.6326 20.3727 17.3638 19.8693 17.6615L15.5908 19.6828C15.4355 19.7562 15.2745 19.765 15.15 19.7309C15.0332 19.699 14.9529 19.6332 14.9056 19.5367C14.1418 17.9767 14.1452 16.0307 14.9068 14.4659Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+
+        <!-- Settings -->
+        <a
+          href="./dashboard_setting.html"
+          class="p-3.5 bg-transparent backdrop-blur-[2px] rounded-full"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.0005 8.24988C9.92942 8.24988 8.25049 9.92881 8.25049 11.9999C8.25049 14.0709 9.92942 15.7499 12.0005 15.7499C14.0716 15.7499 15.7505 14.0709 15.7505 11.9999C15.7505 9.92881 14.0716 8.24988 12.0005 8.24988ZM9.75049 11.9999C9.75049 10.7572 10.7578 9.74988 12.0005 9.74988C13.2431 9.74988 14.2505 10.7572 14.2505 11.9999C14.2505 13.2425 13.2431 14.2499 12.0005 14.2499C10.7578 14.2499 9.75049 13.2425 9.75049 11.9999Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.3271 1.62988C10.4086 1.62988 9.39382 1.97851 8.92679 2.91019L8.11511 4.47896C7.98182 4.73657 7.71195 4.89423 7.42209 4.88383L5.71321 4.82249C4.62733 4.69048 3.723 5.46171 3.26705 6.26365L3.25985 6.2766L2.68588 7.33416C2.19862 8.19635 2.14934 9.25896 2.60149 10.0163L3.54856 11.5392C3.70212 11.7862 3.69911 12.0996 3.54081 12.3436L2.61825 13.7653C2.01886 14.6725 2.23028 15.7695 2.68977 16.5776L3.36658 17.7437C3.37813 17.7636 3.39058 17.7829 3.40391 17.8017C3.97976 18.6119 4.85726 19.1808 5.747 19.1808C5.75597 19.1808 5.76494 19.1807 5.7739 19.1803L7.5183 19.1177C7.80816 19.1073 8.07803 19.265 8.21132 19.5226L9.02545 21.0961C9.03243 21.1096 9.03981 21.1229 9.0476 21.1359C9.4914 21.8793 10.4308 22.3717 11.4233 22.3717H12.674C13.5925 22.3717 14.6073 22.0231 15.0744 21.0914L15.8861 19.5226C16.0193 19.265 16.2892 19.1073 16.5791 19.1177L18.2879 19.1791C19.3738 19.3111 20.2782 18.5398 20.7341 17.7379L20.7413 17.725L21.3153 16.6674C21.5712 16.2144 21.6941 15.7095 21.7096 15.2407C21.7249 14.7787 21.6376 14.287 21.3997 13.8885L20.4526 12.3656C20.299 12.1187 20.3021 11.8052 20.4604 11.5613L21.3828 10.1397C21.9823 9.23243 21.7709 8.13545 21.3114 7.32727C21.3055 7.31695 21.2994 7.30677 21.293 7.29674L20.6196 6.23313C20.6124 6.22184 20.605 6.21075 20.5973 6.19987C20.0214 5.38963 19.1439 4.82073 18.2542 4.82073C18.2452 4.82073 18.2362 4.82089 18.2273 4.82121L16.4829 4.88383C16.193 4.89423 15.9231 4.73657 15.7898 4.47896L14.9757 2.90546C14.9687 2.89198 14.9614 2.8787 14.9536 2.86566C14.5098 2.12227 13.5704 1.62988 12.5778 1.62988H11.3271ZM10.2668 3.58418C10.3784 3.35995 10.7082 3.12988 11.3271 3.12988H12.5778C13.1124 3.12988 13.5139 3.39862 13.6563 3.61951L14.4576 5.16826C14.8575 5.94109 15.6671 6.41407 16.5367 6.38286L18.2647 6.32084C18.5287 6.3261 18.9846 6.52859 19.3637 7.05361L20.0156 8.08315C20.3166 8.62112 20.2965 9.06376 20.1306 9.3139L19.2021 10.7448C18.7272 11.4766 18.7181 12.4169 19.1788 13.1577L20.1141 14.6617C20.1642 14.7485 20.219 14.9319 20.2105 15.1909C20.202 15.4449 20.1337 15.7108 20.0074 15.9329L20.0002 15.9458L19.4268 17.0024C19.1195 17.5388 18.6975 17.723 18.457 17.6884C18.4305 17.6846 18.4039 17.6823 18.3773 17.6813L16.6329 17.6187C15.7633 17.5875 14.9537 18.0605 14.5538 18.8333L13.7396 20.4067L13.7343 20.4174C13.6228 20.6416 13.293 20.8717 12.674 20.8717H11.4233C10.8888 20.8717 10.4872 20.6029 10.3449 20.382L9.54356 18.8333C9.1437 18.0605 8.33407 17.5875 7.46449 17.6187L5.73649 17.6807C5.47432 17.6755 5.02289 17.4758 4.64544 16.9589L3.99222 15.8335C3.68423 15.2902 3.70346 14.8429 3.8706 14.591L4.7991 13.1601C5.27398 12.4283 5.28304 11.4879 4.82234 10.7471L3.88693 9.24294C3.76494 9.03305 3.71696 8.5555 3.99376 8.06866L4.00095 8.05572L4.57441 6.9991C4.88167 6.46278 5.30367 6.27858 5.5442 6.31312C5.57062 6.31691 5.59722 6.31929 5.62389 6.32025L7.36828 6.38286C8.23786 6.41407 9.04749 5.94109 9.44735 5.16826L10.2616 3.59481L10.2668 3.58418Z"
+              fill="black"
+              fill-opacity="0.6"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      // Pricing data
+      const pricingData = {
+        monthly: {
+          standard: { price: "$44", period: "/per month" },
+          multisite: { price: "$128", period: "/per month" },
+          extended: { price: "$520", period: "/per month" },
+        },
+        yearly: {
+          standard: { price: "$480", period: "/per year" },
+          multisite: { price: "$1380", period: "/per year" },
+          extended: { price: "$5600", period: "/per year" },
+        },
+      };
+
+      // Function to update prices
+      function updatePrices(period) {
+        const data = pricingData[period];
+
+        // Update Standard plan
+        document.getElementById(
+          "standard-price"
+        ).innerHTML = `${data.standard.price}<span class="text-base font-normal text-gray-500" id="standard-period">${data.standard.period}</span>`;
+
+        // Update Multisite plan
+        document.getElementById(
+          "multisite-price"
+        ).innerHTML = `${data.multisite.price}<span class="text-base font-normal text-gray-500" id="multisite-period">${data.multisite.period}</span>`;
+
+        // Update Extended plan
+        document.getElementById(
+          "extended-price"
+        ).innerHTML = `${data.extended.price}<span class="text-base font-normal text-gray-500" id="extended-period">${data.extended.period}</span>`;
+      }
+
+      // Monthly toggle event
+      document
+        .getElementById("monthly-toggle")
+        .addEventListener("click", function () {
+          this.classList.add("bg-[#0D6B37]", "text-white");
+          this.classList.remove("text-gray-600", "hover:bg-gray-100");
+          document
+            .getElementById("yearly-toggle")
+            .classList.remove("bg-[#0D6B37]", "text-white");
+          document
+            .getElementById("yearly-toggle")
+            .classList.add("text-gray-600", "hover:bg-gray-100");
+
+          // Update prices to monthly
+          updatePrices("monthly");
+        });
+
+      // Yearly toggle event
+      document
+        .getElementById("yearly-toggle")
+        .addEventListener("click", function () {
+          this.classList.add("bg-[#0D6B37]", "text-white");
+          this.classList.remove("text-gray-600", "hover:bg-gray-100");
+          document
+            .getElementById("monthly-toggle")
+            .classList.remove("bg-[#0D6B37]", "text-white");
+          document
+            .getElementById("monthly-toggle")
+            .classList.add("text-gray-600", "hover:bg-gray-100");
+
+          // Update prices to yearly
+          updatePrices("yearly");
+        });
+    </script>
+
+    <!-- JS Files -->
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/search-popup.js"></script>
+    <script src="./assets/js/menu.js"></script>
+    <script src="./assets/js/notification.js"></script>
+    <script src="./assets/js/dashboard.js"></script>
+
+    <script>
+      // Expand functionality - only on large screens
+      function initializeExpandFunctionality() {
+        const expandBtn = document.getElementById("expandBtn");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+
+        if (!expandBtn || !sidebar || !mainContent) {
+          console.log("Expand elements not found");
+          return;
+        }
+
+        let isExpanded = false;
+
+        expandBtn.addEventListener("click", () => {
+          // Only work on large screens (>= 1024px)
+          if (window.innerWidth >= 1024) {
+            isExpanded = !isExpanded;
+
+            if (isExpanded) {
+              sidebar.classList.add("expanded");
+              mainContent.classList.add("sidebar-expanded");
+              console.log("[v0] Sidebar expanded");
+            } else {
+              sidebar.classList.remove("expanded");
+              mainContent.classList.remove("sidebar-expanded");
+              console.log("[v0] Sidebar collapsed");
+            }
+          }
+        });
+      }
+
+      // Initialize expand functionality when DOM is loaded
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeExpandFunctionality
+      );
+    </script>
+
+    <script>
+      // Custom Dropdown JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdowns = document.querySelectorAll(".custom-dropdown");
+
+        dropdowns.forEach((dropdown) => {
+          const trigger = dropdown.querySelector(".dropdown-trigger");
+          const menu = dropdown.querySelector(".dropdown-menu");
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const valueSpan = dropdown.querySelector(".dropdown-value");
+
+          // Toggle dropdown
+          trigger.addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            // Close other dropdowns
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) {
+                d.classList.remove("active");
+              }
+            });
+
+            dropdown.classList.toggle("active");
+          });
+
+          // Select item
+          items.forEach((item) => {
+            item.addEventListener("click", function (e) {
+              e.stopPropagation();
+
+              // Remove selected class from all items
+              items.forEach((i) => i.classList.remove("selected"));
+
+              // Add selected class to clicked item
+              this.classList.add("selected");
+
+              // Update trigger value
+              valueSpan.textContent = this.getAttribute("data-value");
+
+              // Close dropdown
+              dropdown.classList.remove("active");
+            });
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          dropdowns.forEach((dropdown) => {
+            dropdown.classList.remove("active");
+          });
+        });
+
+        // Set initial selected state
+        dropdowns.forEach((dropdown) => {
+          const items = dropdown.querySelectorAll(".dropdown-item");
+          const currentValue =
+            dropdown.querySelector(".dropdown-value").textContent;
+          items.forEach((item) => {
+            if (item.getAttribute("data-value") === currentValue) {
+              item.classList.add("selected");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

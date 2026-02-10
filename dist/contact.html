@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyClean - Financial Management</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+
+      .check-icon {
+        width: 16px;
+        height: 16px;
+        border: #666666;
+        border-radius: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+
+      .check-icon::after {
+        content: "✓";
+        color: #666666;
+        font-size: 10px;
+        font-weight: bold;
+      }
+    </style>
+  <link href="assets/css/index.css" rel="stylesheet"></head>
+
+  <body class="bg-white">
+    <!-- Hero/Banner Section -->
+    <section
+      class="relative h-[350px] md:h-[380px] lg:h-[520px] bg-[url('../images/banner.svg')] bg-cover bg-center pt-4 lg:pt-10"
+    >
+      <!-- Navbar -->
+      <nav
+        class="flex justify-between container mx-auto items-center p-4 sm:py-6 gap-5 z-[99999999]"
+      >
+        <div>
+          <a href="./index.html" class="cursor-pointer Shrink">
+            <img
+              class="min-w-[100px]"
+              src="./assets/images/logo.svg"
+              alt="MoneyClean Logo"
+            />
+          </a>
+        </div>
+        <!-- Rounded Navigation Container -->
+        <div
+          class="hidden md:flex bg-[#496a518a] rounded-full py-3 px-1 relative max-lg:min-w-[430px]"
+        >
+          <ul class="flex list-none m-0">
+            <li class="ml-6 xl:ml-8">
+              <a
+                href="./index.html"
+                class="text-white font-medium text-sm xl:text-base hover:text-lime-200 transition"
+              >
+                Home
+              </a>
+            </li>
+            <li class="ml-6 xl:ml-8">
+              <a
+                href="./about.html"
+                class="text-white font-medium text-sm xl:text-base hover:text-lime-200 transition"
+              >
+                Plans & Pricing
+              </a>
+            </li>
+            <li class="ml-6 xl:ml-8">
+              <a
+                href="./download.html"
+                class="text-white font-medium text-sm xl:text-base hover:text-lime-200 transition"
+              >
+                Download
+              </a>
+            </li>
+            <li class="pl-4">
+              <a
+                href="./contact.html"
+                class="text-white font-medium text-sm xl:text-base border border-white/20! rounded-full px-8 bg-[#ffffff0f] py-2 transition shadow-sm relative z-10"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hidden md:flex gap-3">
+          <a
+            href="./login.html"
+            class="button-gradient-border font-medium text-sm xl:text-base transition text-white px-6 xl:px-9 py-2.5 xl:py-3 hover:-translate-y-0.5"
+            >Login</a
+          >
+          <a
+            href="./signup.html"
+            class="signup-btn text-white px-5 xl:px-8 py-2.5 xl:py-3 text-sm xl:text-base"
+            >SignUp</a
+          >
+        </div>
+        <button
+          class="menu-toggle flex md:hidden items-center justify-center bg-white/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 border-none cursor-pointer z-20"
+          aria-label="Open menu"
+        >
+          <img
+            src="./assets/images/merged.png"
+            alt="Menu Icon"
+            class="h-3 sm:h-7"
+          />
+        </button>
+        <div
+          class="mobile-menu flex-col absolute top-20 bg-[#23573186] bg-opacity-95 rounded-xl shadow-lg p-2 gap-6 z-[9999] hidden md:hidden w-[95%] left-0 right-0 mx-auto"
+        >
+          <div class="flex flex-col gap-2 sm:gap-6 bg-[#1c4426] p-6 rounded-xl">
+            <a href="./index.html" class="text-white text-lg font-medium"
+              >Home</a
+            >
+            <a href="./about.html" class="text-white text-lg font-medium"
+              >Plans & Pricing</a
+            >
+            <a href="./download.html" class="text-white text-lg font-medium"
+              >Download</a
+            >
+            <a href="./contact.html" class="text-white text-lg font-medium"
+              >Contact</a
+            >
+            <div class="flex justify-between">
+              <a
+                href="./login.html"
+                class="button-gradient-border font-medium text-sm xl:text-base transition text-white px-6 xl:px-9 py-1.5 xl:py-3 hover:-translate-y-0.5"
+                >Login</a
+              >
+              <a
+                href="./signup.html"
+                class="signup-btn text-white px-5 xl:px-8 py-1.5 xl:py-3 text-sm xl:text-base"
+                >SignUp</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container mx-auto h-[80%] flex items-center">
+        <!-- Hero Content -->
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          class="text-start text-white relative z-10"
+        >
+          <h1
+            class="lg:text-[72px] text-[36px] font-medium text-white mb-[20px] leading-tight tracking-tight"
+          >
+            Get in Touch
+          </h1>
+          <p
+            style="line-height: 28px"
+            class="text-[20px] text-start mb-10 opacity-90 max-w-2xl leading-relaxed font-regular"
+          >
+            Reach out with your questions or feedback — we’re here to support
+            your financial journey.
+          </p>
+        </div>
+      </div>
+      <!-- end .container -->
+    </section>
+
+    <!-- Contact Section -->
+    <section class="w-full py-10 bg-white">
+      <div
+        class="container mx-auto grid gap-10 px-4 md:px-6 lg:grid-cols-2 lg:gap-16"
+      >
+        <!-- Left Column: Contact Information -->
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          class="flex flex-col space-y-6 md:space-y-10"
+        >
+          <div class="space-y-2">
+            <h2 class="text-[32px] font-[500] tracking-tighter mb-[4px]">
+              Contact us today
+            </h2>
+            <p
+              class="max-w-[466px] text-gray-500 text-[16px]"
+              style="margin-top: 0px !important; line-height: 24px"
+            >
+              Our doors are open for inquiries, feedback, and collaboration.
+              Reach out to us and let's connect. Let me know if you need any
+              further modifications!
+            </p>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <img src="./assets/images/Mail.svg" alt="Mail Icon" />
+
+              <a
+                href="mailto:support@moneyseen.com"
+                class="text-gray-700 hover:underline"
+              >
+                support@moneyseen.com
+              </a>
+            </div>
+            <div class="flex items-center gap-3">
+              <img src="./assets/images/Phone.svg" alt="Location Icon" />
+              <a
+                href="tel:+1646-588-7983"
+                class="text-gray-700 hover:underline"
+              >
+                +1 646-588-7983
+              </a>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4 pt-4">
+              <a
+                href="#"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1BB15F] text-white transition-colors hover:bg-v0-light-green"
+                aria-label="Facebook"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1BB15F] text-white transition-colors hover:bg-v0-light-green"
+                aria-label="X (Twitter)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_2802_171)">
+                    <path
+                      d="M9.48938 6.775L15.3176 0H13.9364L8.87588 5.8825L4.83388 0H0.171875L6.28412 8.8955L0.171875 16H1.55312L6.89738 9.78788L11.1659 16H15.8279L9.489 6.775H9.48938ZM7.59763 8.97375L6.97825 8.088L2.05075 1.03975H4.17225L8.14863 6.728L8.76787 7.61375L13.937 15.0075H11.8158L7.59763 8.97412V8.97375Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2802_171">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1BB15F] text-white transition-colors hover:bg-v0-light-green"
+                aria-label="Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M11.7954 7.41569C11.7265 7.38266 11.6565 7.35087 11.5856 7.32043C11.4621 5.04485 10.2187 3.74208 8.13081 3.72875C8.12135 3.72869 8.11194 3.72869 8.10248 3.72869C6.85368 3.72869 5.81508 4.26174 5.17582 5.23173L6.32407 6.0194C6.80162 5.29486 7.55108 5.1404 8.10303 5.1404C8.10941 5.1404 8.11581 5.1404 8.12212 5.14046C8.80957 5.14484 9.32832 5.34472 9.66407 5.7345C9.9084 6.01828 10.0718 6.41042 10.1527 6.90532C9.54323 6.80173 8.88407 6.76988 8.1794 6.81028C6.19438 6.92462 4.91824 8.08232 5.00395 9.691C5.04744 10.507 5.45396 11.209 6.14857 11.6676C6.73585 12.0553 7.49223 12.2448 8.27834 12.2019C9.31648 12.145 10.1309 11.7489 10.6991 11.0247C11.1306 10.4747 11.4035 9.76192 11.524 8.86383C12.0187 9.16242 12.3854 9.55533 12.5879 10.0277C12.9322 10.8306 12.9523 12.15 11.8757 13.2257C10.9325 14.168 9.79865 14.5757 8.08511 14.5883C6.18433 14.5742 4.7468 13.9646 3.81216 12.7764C2.93694 11.6638 2.48463 10.0568 2.46775 8C2.48463 5.94315 2.93694 4.33613 3.81216 3.22356C4.7468 2.03541 6.18431 1.42583 8.08508 1.41171C9.99965 1.42594 11.4622 2.03845 12.4327 3.23233C12.9085 3.8178 13.2672 4.55407 13.5037 5.41253L14.8493 5.05352C14.5627 3.99685 14.1116 3.08631 13.4977 2.33117C12.2537 0.800557 10.4342 0.0162623 8.08978 0H8.08039C5.74078 0.0162058 3.94166 0.803483 2.73301 2.33994C1.65748 3.7072 1.10268 5.60964 1.08404 7.99438L1.08398 8L1.08404 8.00562C1.10268 10.3903 1.65748 12.2928 2.73301 13.6601C3.94166 15.1965 5.74078 15.9838 8.08039 16H8.08978C10.1698 15.9856 11.636 15.441 12.8438 14.2343C14.4241 12.6555 14.3765 10.6766 13.8557 9.46175C13.482 8.59058 12.7696 7.88302 11.7954 7.41569ZM8.20403 10.7923C7.33403 10.8413 6.43018 10.4508 6.38562 9.61433C6.35258 8.99417 6.82697 8.30217 8.25742 8.21973C8.42123 8.21028 8.58198 8.20567 8.7399 8.20567C9.25949 8.20567 9.74557 8.25614 10.1875 8.35275C10.0227 10.4113 9.05582 10.7455 8.20403 10.7923Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1BB15F] text-white transition-colors hover:bg-v0-light-green"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="16"
+                  viewBox="0 0 18 16"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_2802_8612)">
+                    <path
+                      d="M0.669922 1.9357C0.669922 1.40237 0.856589 0.96237 1.22992 0.615703C1.60326 0.269036 2.08859 0.0957031 2.68592 0.0957031C3.27259 0.0957031 3.74726 0.26637 4.10992 0.607703C4.48326 0.959703 4.66992 1.41837 4.66992 1.9837C4.66992 2.4957 4.48859 2.92237 4.12592 3.2637C3.75259 3.6157 3.26192 3.7917 2.65392 3.7917H2.63792C2.05126 3.7917 1.57659 3.6157 1.21392 3.2637C0.851255 2.9117 0.669922 2.46904 0.669922 1.9357ZM0.877922 15.9357V5.2477H4.42992V15.9357H0.877922ZM6.39792 15.9357H9.94992V9.9677C9.94992 9.59437 9.99259 9.30637 10.0779 9.1037C10.2273 8.74104 10.4539 8.43437 10.7579 8.1837C11.0619 7.93304 11.4433 7.8077 11.9019 7.8077C13.0966 7.8077 13.6939 8.61304 13.6939 10.2237V15.9357H17.2459V9.8077C17.2459 8.22904 16.8726 7.0317 16.1259 6.2157C15.3793 5.3997 14.3926 4.9917 13.1659 4.9917C11.7899 4.9917 10.7179 5.5837 9.94992 6.7677V6.7997H9.93392L9.94992 6.7677V5.2477H6.39792C6.41926 5.58904 6.42992 6.65037 6.42992 8.4317C6.42992 10.213 6.41926 12.7144 6.39792 15.9357Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2802_8612">
+                      <rect
+                        width="16.5"
+                        height="16"
+                        fill="white"
+                        transform="translate(0.75)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-[#1BB15F] text-white transition-colors hover:bg-v0-light-green"
+                aria-label="Another Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_2802_8614)">
+                    <path
+                      d="M7.99998 1.44147C10.1361 1.44147 10.3891 1.4496 11.2327 1.48809C12.0126 1.52369 12.4362 1.65401 12.7182 1.76354C13.0916 1.90867 13.3581 2.08205 13.638 2.36198C13.9179 2.64191 14.0913 2.90844 14.2364 3.28183C14.346 3.56376 14.4763 3.98735 14.5119 4.76731C14.5504 5.61091 14.5585 5.86391 14.5585 8.00002C14.5585 10.1361 14.5504 10.3891 14.5119 11.2327C14.4763 12.0127 14.346 12.4363 14.2364 12.7182C14.0913 13.0916 13.9179 13.3581 13.638 13.638C13.3581 13.918 13.0916 14.0914 12.7182 14.2365C12.4362 14.346 12.0126 14.4763 11.2327 14.5119C10.3892 14.5504 10.1362 14.5586 7.99998 14.5586C5.86375 14.5586 5.61075 14.5504 4.76731 14.5119C3.98732 14.4763 3.56373 14.346 3.28183 14.2365C2.90841 14.0914 2.64188 13.918 2.36195 13.638C2.08202 13.3581 1.90863 13.0916 1.76354 12.7182C1.65398 12.4363 1.52366 12.0127 1.48806 11.2327C1.44957 10.3891 1.44144 10.1361 1.44144 8.00002C1.44144 5.86391 1.44957 5.61091 1.48806 4.76735C1.52366 3.98735 1.65398 3.56376 1.76354 3.28183C1.90863 2.90844 2.08202 2.64191 2.36195 2.36198C2.64188 2.08205 2.90841 1.90867 3.28183 1.76354C3.56373 1.65401 3.98732 1.52369 4.76728 1.48809C5.61088 1.4496 5.86388 1.44147 7.99998 1.44147ZM7.99998 0C5.8273 0 5.5549 0.00920926 4.70161 0.0481422C3.85007 0.0870116 3.26855 0.222229 2.75966 0.420006C2.23359 0.624451 1.78745 0.897997 1.34271 1.34274C0.897966 1.78748 0.624419 2.23363 0.419974 2.7597C0.222197 3.26859 0.0869798 3.8501 0.0481104 4.70164C0.0091775 5.5549 0 5.82733 0 8.00002C0 10.1727 0.0091775 10.4451 0.0481104 11.2984C0.0869798 12.1499 0.222197 12.7314 0.419974 13.2403C0.624419 13.7664 0.897966 14.2125 1.34271 14.6573C1.78745 15.102 2.23359 15.3756 2.75966 15.58C3.26855 15.7778 3.85007 15.913 4.70161 15.9519C5.5549 15.9908 5.8273 16 7.99998 16C10.1727 16 10.4451 15.9908 11.2984 15.9519C12.1499 15.913 12.7314 15.7778 13.2403 15.58C13.7664 15.3756 14.2125 15.102 14.6573 14.6573C15.102 14.2125 15.3755 13.7664 15.58 13.2403C15.7778 12.7314 15.913 12.1499 15.9519 11.2984C15.9908 10.4451 16 10.1727 16 8.00002C16 5.82733 15.9908 5.5549 15.9519 4.70164C15.913 3.8501 15.7778 3.26859 15.58 2.7597C15.3755 2.23363 15.102 1.78748 14.6573 1.34274C14.2125 0.897997 13.7664 0.624451 13.2403 0.420006C12.7314 0.222229 12.1499 0.0870116 11.2984 0.0481422C10.4451 0.00920926 10.1727 0 7.99998 0ZM7.99998 3.89189C5.73114 3.89189 3.89186 5.73117 3.89186 8.00002C3.89186 10.2689 5.73114 12.1081 7.99998 12.1081C10.2688 12.1081 12.1081 10.2689 12.1081 8.00002C12.1081 5.73117 10.2688 3.89189 7.99998 3.89189ZM7.99998 10.6667C6.52723 10.6667 5.3333 9.47277 5.3333 8.00002C5.3333 6.52727 6.52723 5.33333 7.99998 5.33333C9.47273 5.33333 10.6667 6.52727 10.6667 8.00002C10.6667 9.47277 9.47273 10.6667 7.99998 10.6667ZM13.2304 3.72959C13.2304 4.25979 12.8006 4.68961 12.2704 4.68961C11.7402 4.68961 11.3104 4.25979 11.3104 3.72959C11.3104 3.19939 11.7402 2.7696 12.2704 2.7696C12.8006 2.7696 13.2304 3.19939 13.2304 3.72959Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2802_8614">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </div>
+            <p class="text-sm text-gray-500">
+              Do you still have question? Could you take a look through our FAQ?
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Form -->
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          class="rounded-3xl bg-[#1BB15F] p-8 shadow-lg"
+        >
+          <h3 class="mb-6 text-2xl font-bold text-white">Send us a message</h3>
+          <form class="grid gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="name" class="text-white block text-sm font-medium">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  placeholder="Type your name"
+                  class="flex h-12 w-full rounded-md border-0 bg-white px-3 py-2 text-sm file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 outline-none"
+                  type="text"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  for="subject"
+                  class="text-white block text-sm font-medium"
+                >
+                  Subject
+                </label>
+                <input
+                  id="subject"
+                  placeholder="Type here"
+                  class="flex h-12 w-full rounded-md border-0 bg-white px-3 py-2 text-sm file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 outline-none"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="email" class="text-white block text-sm font-medium">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Type your email"
+                  class="flex h-12 w-full rounded-md border-0 bg-white px-3 py-2 text-sm file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 outline-none"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="phone" class="text-white block text-sm font-medium">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  placeholder="Type your number"
+                  class="flex h-12 w-full rounded-md border-0 bg-white px-3 py-2 text-sm file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 outline-none"
+                />
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label
+                for="description"
+                class="text-white block text-sm font-medium"
+              >
+                Description
+              </label>
+              <textarea
+                id="description"
+                placeholder="Write your description"
+                class="flex min-h-[180px] w-full rounded-md border-0 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900 outline-none"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="cursor-pointer inline-flex rounded-full items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-12 p-4 w-full bg-white text-v0-green hover:bg-gray-100"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-white pb-12 md:py-20 sm:pb-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-24 items-start"
+        >
+          <div class="pr-4 sm:pr-8 md:sticky md:top-10">
+            <div class="text-start mb-4">
+              <span
+                class="button-gradient-border inline-block text-white text-xs font-medium px-3 py-1 rounded-full"
+              >
+                FAQ
+              </span>
+            </div>
+            <h2
+              class="text-4xl lg:text-[56px] font-medium text-gray-800 mb-4 sm:mb-6 leading-12 lg:leading-18"
+            >
+              Your Financial Flow, Month to Month
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base w-full lg:w-[398px]">
+              Visualize how your income compares to your expenses with intuitive
+              charts. No surprises <br />
+              <span class="font-light">— just financial clarity.</span>
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-col gap-4 lg:p-0 divide-gray-200">
+              <!-- FAQ Item -->
+              <div
+                class="faq-item py-4 px-4 border rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                  onclick="toggleFaq(this)"
+                >
+                  How often is my financial data updated?
+                  <svg
+                    class="faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    Your financial data is updated in real-time as transactions
+                    occur. Most bank connections sync automatically multiple
+                    times per day, ensuring you always have the most current
+                    view of your finances.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item py-4 px-4 border rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                  onclick="toggleFaq(this)"
+                >
+                  Does MoneySeen support international currencies?
+                  <svg
+                    class="faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    Yes! MoneySeen supports over 150 international currencies
+                    with real-time exchange rates. You can track accounts in
+                    multiple currencies and view consolidated reports in your
+                    preferred base currency.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item py-4 px-4 border rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1300"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                  onclick="toggleFaq(this)"
+                >
+                  Can I get bill reminders and alerts?
+                  <svg
+                    class="faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    Set up custom alerts for upcoming bills, low balances,
+                    unusual spending, and budget limits. You'll receive
+                    notifications via email, SMS, or push notifications on your
+                    mobile device.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item py-4 px-4 border rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1400"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                  onclick="toggleFaq(this)"
+                >
+                  Is there a mobile app available?
+                  <svg
+                    class="faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    Yes, MoneySeen is available on both iOS and Android devices.
+                    The mobile app includes all the features of the web version,
+                    optimized for on-the-go financial management.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item py-4 px-4 border rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1500"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                  onclick="toggleFaq(this)"
+                >
+                  Can I share my account with a partner or advisor?
+                  <svg
+                    class="faq-icon faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    Yes, you can securely share access with trusted partners,
+                    family members, or financial advisors. You control what
+                    information they can see and what actions they can perform
+                    on your account.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item py-4 px-4 border border-[#00000019] rounded-xl sm:py-6"
+                data-aos="fade-up"
+                data-aos-duration="1600"
+              >
+                <button
+                  class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none"
+                  onclick="toggleFaq(this)"
+                >
+                  What happens if I miss a payment or bill?
+                  <svg
+                    class="faq-icon w-5 h-5 ml-4 text-gray-400 transition-transform duration-300"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div
+                  class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base"
+                >
+                  <p>
+                    MoneySeen will send you immediate alerts if a scheduled
+                    payment fails or if you miss a bill deadline. We also
+                    provide suggestions for next steps and can help you set up
+                    automatic payments to prevent future missed payments.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Hidden Banner Section (copied from index.html) -->
+    <div
+      class="hidden bg-[url('./assets/images/banner.svg')] bg-cover bg-center rounded-[30px] text-white text-center px-6 py-20 max-w-screen-xl mx-auto pb-12 mb-16"
+    >
+      <h1 class="text-3xl md:text-5xl font-semibold mb-4">
+        Your Finances, Finally in Focus
+      </h1>
+      <p class="text-base md:text-lg mb-8">
+        Start tracking smarter today — it only takes a minute to get set up.
+      </p>
+      <button
+        class="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition"
+      >
+        Get Started — It’s Free →
+      </button>
+    </div>
+
+    <!-- Footer Section (copied from index.html) -->
+    <!-- Footer Section -->
+    <section
+      class="relative bg-cover bg-center bg-no-repeat pt-12 pb-8 sm:pt-16"
+      style="background-image: url('./assets/images/footer.png')"
+    >
+      <div class="relative z-10 container mx-auto text-gray-300">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 mb-12 items-start"
+        >
+          <!-- Company Info -->
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2 mb-4">
+              <img src="./assets/images/logo.svg" alt="MoneySeen Logo" />
+            </div>
+            <p class="text-sm opacity-80 mb-5">
+              Manage smarter. Spend better. Stay in the loop.
+            </p>
+            <div class="flex gap-3 flex-wrap">
+              <img
+                src="./assets/images/apple.svg"
+                alt="Apple Store"
+                class="h-8"
+              />
+              <img
+                src="./assets/images/google.svg"
+                alt="Google Play"
+                class="h-8"
+              />
+            </div>
+          </div>
+
+          <div class="col-span-3 grid grid-cols-3 gap-8">
+            <!-- Product Links -->
+            <div class="flex flex-col items-start">
+              <h3 class="text-base font-semibold text-white mb-4">Product</h3>
+              <ul class="list-none space-y-2">
+                <li>
+                  <a
+                    href="./index.html"
+                    class="text-gray-300 hover:text-white text-sm"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./about.html"
+                    class="text-gray-300 hover:text-white text-sm"
+                    >Plan & Pricing</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./download.html"
+                    class="text-gray-300 hover:text-white text-sm"
+                    >Download</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./contact.html"
+                    class="text-gray-300 hover:text-white text-sm"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Resources Links -->
+            <div class="flex flex-col items-start">
+              <h3 class="text-base font-semibold text-white mb-4">Resources</h3>
+              <ul class="list-none space-y-2">
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >Downloads</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >Documentation</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="flex flex-col items-start">
+              <h3 class="text-base font-semibold text-white mb-4">
+                Social Media
+              </h3>
+              <ul class="list-none space-y-2">
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >Facebook</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >Twitter</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >LinkedIn</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white text-sm"
+                    >YouTube</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Newsletter Signup -->
+        <div
+          class="border-t border-[#ffffff23] pt-8 mt-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div class="text-left w-full">
+            <h3 class="text-lg font-semibold text-white mb-2">
+              Newsletter Signup
+            </h3>
+            <p class="text-sm opacity-80">
+              Stay updated with smart finance tips.
+            </p>
+          </div>
+          <div
+            class="flex relative flex-col sm:flex-row w-full md:w-auto sm:rounded-full sm:overflow-hidden gap-2 sm:gap-0"
+          >
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-grow w-full md:w-[450px] px-3 py-3 bg-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 border-none rounded-full sm:rounded-none"
+            />
+            <button
+              style="
+                background: linear-gradient(
+                  178deg,
+                  #0d743b -32.88%,
+                  #fce166 151.27%
+                );
+              "
+              class="px-6 py-2 absolute right-1 text-white font-semibold whitespace-nowrap rounded-full top-[4px]"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+
+        <!-- Copyright and Policy Links -->
+        <div
+          class="flex flex-row-reverse justify-between pt-7 border-t border-[#ffffff23]"
+        >
+          <a
+            href="./terms-condition.html"
+            class="text-white text-[12px] lg:text-[16px] hover:text-white"
+            >Terms & Conditions</a
+          >
+
+          <div class="flex gap-4 sm:gap-6">
+            <div class="text-[12px] lg:text-[16px] text-white">
+              © Copyright 2025
+            </div>
+            <a
+              href="#"
+              class="text-white text-[12px] lg:text-[16px] hover:text-white"
+              >Privacy Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
+    <script src="./assets/js/faq.js"></script>
+    <script src="./assets/js/testimonial.js"></script>
+  <script defer src="index.js"></script></body>
+</html>
