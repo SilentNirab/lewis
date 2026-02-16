@@ -730,28 +730,28 @@
                 >
                   <button
                     id="general-tab"
-                    class="px-3 md:px-7 py-2 md:py-3 text-xs lg:text-sm rounded-full active-color cursor-pointer"
+                    class="px-3 md:px-7 py-2 text-xs text-black/70 rounded-full active-color cursor-pointer"
                     data-tab="general"
                   >
                     General
                   </button>
                   <button
                     id="billing-tab"
-                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
+                    class="px-4 md:px-7 py-2 text-xs text-black/70 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="billing"
                   >
                     Billing
                   </button>
                   <button
                     id="password-tab"
-                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
+                    class="px-4 md:px-7 py-2 text-xs text-black/70 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="password"
                   >
                     Password
                   </button>
                   <button
                     id="notifications-tab"
-                    class="px-4 md:px-7 py-2 md:py-3 text-xs lg:text-sm text-gray-600 hover:text-gray-800 rounded-full cursor-pointer"
+                    class="px-4 md:px-7 py-2 text-xs text-black/70 hover:text-gray-800 rounded-full cursor-pointer"
                     data-tab="notifications"
                   >
                     Notifications
@@ -760,10 +760,10 @@
                 <!-- Tab Content -->
                 <div
                   id="general-content"
-                  class="tab-content bg-white/60 border-1 border-white p-4 rounded-lg"
+                  class="tab-content bg-white/60 border border-white p-4 rounded-lg"
                 >
                   <div class="flex justify-between items-center">
-                    <h2 class="text-lg font-semibold text-gray-800">General</h2>
+                    <h2 class="text-xl font-medium text-black">General</h2>
 
                     <!-- Buttons for large devices - hidden on small devices -->
                     <div class="hidden lg:flex space-x-3">
@@ -772,7 +772,7 @@
                       >
                         Cancel
                       </button>
-                      <button 
+                      <button
                         class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
                       >
                         Save
@@ -780,7 +780,7 @@
                     </div>
                   </div>
 
-                  <span class="text-sm mt-2 text-[#00000099] mb-3"
+                  <span class="text-sm mt-2 text-black/60 mb-3"
                     >By filling your data you get a much better experience using
                     our website</span
                   >
@@ -792,13 +792,13 @@
                       <div class="block lg:flex">
                         <label
                           for="your-name"
-                          class="block w-1/2 text-sm font-medium text-gray-700 mb-1"
+                          class="block w-1/2 text-sm font-medium text-black mb-1"
                           >Your Name</label
                         >
                         <input
                           type="text"
                           id="your-name"
-                          class="w-full text-black px-4 py-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0"
+                          class="w-full text-black px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0"
                         />
                       </div>
                     </div>
@@ -810,14 +810,14 @@
                       <div class="block lg:flex">
                         <label
                           for="bio"
-                          class="block w-1/2 text-sm font-medium text-gray-700 mb-1"
+                          class="block w-1/2 text-sm font-medium text-black mb-1"
                           >Bio</label
                         >
                         <textarea
                           type="text"
                           id="bio"
                           placeholder="Enter here"
-                          class="w-full min-h-[80px] text-black px-4 py-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0"
+                          class="w-full min-h-20 text-black px-4 py-3 border border-gray-300 text-sm rounded-xl focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0 placeholder:text-black/60"
                         ></textarea>
                       </div>
                     </div>
@@ -829,12 +829,12 @@
                       <div class="block lg:flex">
                         <label
                           for="username"
-                          class="block w-1/2 text-sm font-medium text-gray-700 mb-1"
+                          class="block w-1/2 text-sm font-medium text-black mb-1"
                           >Username</label
                         >
                         <div class="flex w-[103%] mt-3 md:mt-0">
                           <span
-                            class="inline-flex items-center px-3 text-sm text-black/60 bg-white border border-r-0 border-gray-300 rounded-l-[12px]"
+                            class="inline-flex items-center px-4 text-sm text-black/60 bg-white border border-r-0 border-gray-300 rounded-l-full"
                           >
                             lewis.com/
                           </span>
@@ -842,7 +842,7 @@
                             type="text"
                             id="username"
                             value="olivia"
-                            class="w-full text-black px-4 py-3 border border-gray-300 rounded-r-[12px] focus:outline-none focus:ring focus:ring-green-100"
+                            class="w-full text-black px-4 py-3 border border-gray-300 rounded-r-full focus:outline-none focus:ring focus:ring-green-100"
                           />
                         </div>
                       </div>
@@ -855,7 +855,7 @@
                       <div
                         class="block lg:flex items-center justify-between mb-4"
                       >
-                        <label class="text-sm w-1/2 font-medium text-gray-700"
+                        <label class="text-sm w-1/2 font-medium text-black"
                           >Avatar</label
                         >
                         <div
@@ -868,12 +868,12 @@
                           />
                           <div class="flex space-x-2">
                             <button
-                              class="text-xs text-red-600 hover:text-red-800 font-medium"
+                              class="text-sm text-red-600 hover:text-red-800 font-medium"
                             >
                               Delete
                             </button>
                             <button
-                              class="text-xs text-green-600 hover:text-green-800 font-medium"
+                              class="text-sm text-green-600 hover:text-green-800 font-medium"
                             >
                               Update
                             </button>
@@ -885,7 +885,7 @@
                     <!-- Image Section -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div class="block lg:flex items-center justify-between">
-                        <label class="text-sm w-1/2 font-medium text-gray-700"
+                        <label class="text-sm w-1/2 font-medium text-black"
                           >Username</label
                         >
                         <div
@@ -932,7 +932,7 @@
                     <!-- Privacy Section -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div class="block lg:flex items-center justify-between">
-                        <label class="text-sm w-1/2 font-medium text-gray-700"
+                        <label class="text-sm w-1/2 font-medium text-black"
                           >Privacy</label
                         >
                         <div
@@ -940,11 +940,19 @@
                         >
                           <div class="flex-1 w-full">
                             <div class="flex gap-2 items-center">
-                              <label class="toggle-switch">
-                                <input type="checkbox" />
-                                <span class="toggle-slider"></span>
+                              <label
+                                class="relative inline-flex items-center cursor-pointer"
+                              >
+                                <input
+                                  type="checkbox"
+                                  class="sr-only peer"
+                                  checked
+                                />
+                                <div
+                                  class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                                ></div>
                               </label>
-                              <p class="text-xs text-black/80">
+                              <p class="text-sm font-medium text-black/80">
                                 Make my profile public
                               </p>
                             </div>
@@ -981,7 +989,7 @@
                     <div class="mb-2 sm:mb-8">
                       <!-- Plan Information -->
                       <div
-                        class="mb-6 max-w-full border-1 border-gray-300 rounded-lg"
+                        class="mb-6 max-w-full border border-gray-300 rounded-lg"
                       >
                         <div
                           class="flex items-center justify-between my-4 mx-5"
@@ -1886,125 +1894,82 @@
                         Select default authentication
                       </p>
                     </div>
-                    <div class="w-full lg:w-2/3 pt-4 lg:pt-0">
+
+                    <div class="w-full lg:w-2/3 pt-4 lg:pt-0 space-y-4">
+                      <!-- CARD 1 -->
                       <div
-                        class="p-[1.5px] w-full lg:w-2/3 mb-4 rounded-xl"
-                        style="
-                          background: linear-gradient(
-                            178deg,
-                            #0d743b -32.88%,
-                            #fce166 151.27%
-                          );
-                        "
+                        class="auth-card cursor-pointer rounded-xl transition-all duration-300 w-full lg:w-2/3"
+                        data-gradient="178deg,#0d743b -32.88%,#fce166 151.27%"
                       >
                         <div
-                          class="w-full bg-white flex justify-between items-center rounded-xl p-4"
+                          class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
                         >
                           <div>
-                            <p class="text-sm">Authentication App</p>
+                            <p class="text-sm font-semibold">
+                              Authentication App
+                            </p>
                             <p class="text-black/60 text-xs mb-2">
-                              Goole Auth app
+                              Google Auth app
                             </p>
-                            <p class="text-xs">
-                              Set as defualt
-                              <a href="http://#" class="text-green-500">
-                                Edit</a
-                              >
+                            <p class="text-xs text-black/40">
+                              Set as default
+                              <a href="#" class="text-green-500">Edit</a>
                             </p>
                           </div>
-                          <div class="self-start">
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <rect
-                                x="0.5"
-                                y="0.5"
-                                width="15"
-                                height="15"
-                                rx="7.5"
-                                fill="url(#paint0_linear_603_2847)"
-                              />
-                              <rect
-                                x="0.5"
-                                y="0.5"
-                                width="15"
-                                height="15"
-                                rx="7.5"
-                                stroke="url(#paint1_linear_603_2847)"
-                              />
-                              <path
-                                d="M11.3327 5.5L6.74935 10.0833L4.66602 8"
-                                stroke="white"
-                                stroke-width="1.66667"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                              <defs>
-                                <linearGradient
-                                  id="paint0_linear_603_2847"
-                                  x1="-20.2757"
-                                  y1="-4.70996"
-                                  x2="-19.1562"
-                                  y2="25.7939"
-                                  gradientUnits="userSpaceOnUse"
-                                >
-                                  <stop stop-color="#0D743B" />
-                                  <stop offset="1" stop-color="#FCE166" />
-                                </linearGradient>
-                                <linearGradient
-                                  id="paint1_linear_603_2847"
-                                  x1="-20.2757"
-                                  y1="-4.70996"
-                                  x2="-19.1562"
-                                  y2="25.7939"
-                                  gradientUnits="userSpaceOnUse"
-                                >
-                                  <stop stop-color="#0D743B" />
-                                  <stop offset="1" stop-color="#FCE166" />
-                                </linearGradient>
-                              </defs>
-                            </svg>
+
+                          <div class="check-icon-active hidden self-start">
+                            <!-- check icon injected -->
                           </div>
                         </div>
                       </div>
 
+                      <!-- CARD 2 -->
                       <div
-                        class="border w-full lg:w-2/3 flex justify-between items-center rounded-xl border-gray-300 p-4 mb-4"
+                        class="auth-card cursor-pointer rounded-xl transition-all duration-300 w-full lg:w-2/3"
+                        data-gradient="178deg,#0d743b -32.88%,#fce166 151.27%"
                       >
-                        <div>
-                          <p class="text-sm">Primary email</p>
-                          <p class="text-black/60 text-xs mb-2">
-                            E-mail used to send notifications
-                          </p>
-                          <p class="text-xs text-black/40">
-                            Set as defualt
-                            <a href="http://#" class="text-green-500"> Edit</a>
-                          </p>
-                        </div>
-                        <div>
-                          <!-- <input type="radio" /> -->
+                        <div
+                          class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
+                        >
+                          <div>
+                            <p class="text-sm font-semibold">Primary Email</p>
+                            <p class="text-black/60 text-xs mb-2">
+                              E-mail used to send notifications
+                            </p>
+                            <p class="text-xs text-black/40">
+                              Set as default
+                              <a href="#" class="text-green-500">Edit</a>
+                            </p>
+                          </div>
+
+                          <div
+                            class="check-icon-active hidden self-start"
+                          ></div>
                         </div>
                       </div>
 
+                      <!-- CARD 3 -->
                       <div
-                        class="border w-full lg:w-2/3 flex justify-between items-center rounded-xl border-gray-300 p-4 mb-4"
+                        class="auth-card cursor-pointer rounded-xl transition-all duration-300 w-full lg:w-2/3"
+                        data-gradient="178deg,#0d743b -32.88%,#fce166 151.27%"
                       >
-                        <div>
-                          <p class="text-sm">SMS Recovery</p>
-                          <p class="text-black/60 text-xs mb-2">
-                            Your phone number or something
-                          </p>
-                          <p class="text-xs text-black/40">
-                            Set as defualt
-                            <a href="http://#" class="text-green-500"> Edit</a>
-                          </p>
-                        </div>
-                        <div>
-                          <!-- <input type="radio" /> -->
+                        <div
+                          class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
+                        >
+                          <div>
+                            <p class="text-sm font-semibold">SMS Recovery</p>
+                            <p class="text-black/60 text-xs mb-2">
+                              Your phone number or something
+                            </p>
+                            <p class="text-xs text-black/40">
+                              Set as default
+                              <a href="#" class="text-green-500">Edit</a>
+                            </p>
+                          </div>
+
+                          <div
+                            class="check-icon-active hidden self-start"
+                          ></div>
                         </div>
                       </div>
                     </div>
@@ -2034,10 +1999,10 @@
                 >
                   <div class="flex justify-between flex-wrap items-start mb-6">
                     <div>
-                      <h2 class="text-xl font-semibold text-gray-900 mb-2">
+                      <h2 class="text-xl font-medium text-black mb-2">
                         Marketing Preferences
                       </h2>
-                      <p class="text-sm text-gray-600 mb-3">
+                      <p class="text-sm font-medium text-black/60 mb-3">
                         By filling your data you get a much better experience
                         using our website
                       </p>
@@ -2063,10 +2028,10 @@
                     <!-- Notifications from us -->
                     <div class="flex flex-col sm:flex-row items-start">
                       <div class="w-full sm:w-1/2">
-                        <h3 class="text-base font-medium text-gray-900">
+                        <h3 class="text-sm font-medium text-black">
                           Notifications from us
                         </h3>
-                        <p class="text-sm text-gray-600 max-w-[320px]">
+                        <p class="text-sm text-black/60 max-w-78">
                           Receive the latest news, updates and industry
                           tutorials from us.
                         </p>
@@ -2084,7 +2049,7 @@
                               checked
                             />
                             <div
-                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
                             ></div>
                           </label>
                           <span class="text-sm font-medium text-black/80"
@@ -2101,7 +2066,7 @@
                               checked
                             />
                             <div
-                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
                             ></div>
                           </label>
                           <span class="text-sm font-medium text-black/80"
@@ -2118,7 +2083,7 @@
                               checked
                             />
                             <div
-                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
                             ></div>
                           </label>
                           <span class="text-sm font-medium text-black/80"
@@ -2133,10 +2098,10 @@
                     <!-- Reminders -->
                     <div class="flex flex-col sm:flex-row items-start">
                       <div class="w-full sm:w-1/2">
-                        <h3 class="text-base font-medium text-gray-900">
+                        <h3 class="text-sm font-medium text-black">
                           Reminders
                         </h3>
-                        <p class="text-sm text-gray-600 max-w-[320px]">
+                        <p class="text-sm text-black/60 max-w-86">
                           These are notifications to remind you of updates you
                           might have missed.
                         </p>
@@ -2154,7 +2119,7 @@
                               checked
                             />
                             <div
-                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
+                              class="w-11 h-6 bg-gray-200 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 peer-checked:bg-[#1BB15F] after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white"
                             ></div>
                           </label>
                           <span class="text-sm font-medium text-black/80"
@@ -2202,10 +2167,10 @@
                     <!-- More activity about you -->
                     <div class="flex flex-col sm:flex-row items-start">
                       <div class="w-full sm:w-1/2">
-                        <h3 class="text-base font-medium text-gray-900">
+                        <h3 class="text-sm font-medium text-black">
                           More activity about you
                         </h3>
-                        <p class="text-sm text-gray-600 max-w-[320px]">
+                        <p class="text-sm text-black/60 max-w-[320px]">
                           These are notifications for posts on your profile,
                           likes and other reactions to your posts, and more.
                         </p>
@@ -3167,6 +3132,60 @@
             closeExpenseModal();
           }
         };
+      </script>
+
+      <script>
+        const cards = document.querySelectorAll(".auth-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("click", () => {
+            // Reset all cards
+            cards.forEach((c) => {
+              const inner = c.querySelector(".card-inner");
+              const icon = c.querySelector(".check-icon-active");
+
+              c.style.background = "";
+              inner.classList.remove("bg-white");
+              inner.classList.add("border", "border-gray-300");
+
+              if (icon) {
+                icon.classList.add("hidden");
+                icon.innerHTML = "";
+              }
+            });
+
+            // Activate selected card
+            const inner = card.querySelector(".card-inner");
+            const icon = card.querySelector(".check-icon-active");
+
+            card.style.padding = "1.5px";
+            card.style.background = `linear-gradient(${card.dataset.gradient})`;
+
+            inner.classList.remove("border", "border-gray-300");
+            inner.classList.add("bg-white", "rounded-xl");
+
+            if (icon) {
+              icon.classList.remove("hidden");
+              icon.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
+              fill="url(#paint0)" />
+            <path d="M11.3327 5.5L6.74935 10.0833L4.66602 8"
+              stroke="white" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="paint0"
+                x1="-20" y1="-5" x2="-19" y2="25"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0D743B"/>
+                <stop offset="1" stop-color="#FCE166"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        `;
+            }
+          });
+        });
       </script>
 
       <script src="./assets/js/dashboard.js"></script>
