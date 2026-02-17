@@ -2076,7 +2076,9 @@
           width: 40px;
           height: 24px;
         }
-
+        .hidden {
+  display: none;
+}
         .toggle-switch input {
           opacity: 0;
           width: 0;
@@ -2498,7 +2500,7 @@
         >
           <h2 class="text-lg font-semibold">Categories</h2>
           <button
-            id="closeModal1"
+            id="formContent"
             class="text-white hover:text-gray-200 cursor-pointer"
           >
             <svg
@@ -2520,32 +2522,34 @@
 
         <!-- Modal content -->
         <div
+          id="loaderSection"
           class="p-5 bg-[#E6E6E6] rounded-b-lg overflow-y-auto"
           style="scrollbar-width: none; -ms-overflow-style: none"
         >
-          <div class="otddata1">
-            <div
-              class="space-y-4 bg-white/70 p-3 rounded-md"
-              style="
-                border-radius: 24px;
-                border: 1px solid rgba(0, 0, 0, 0.05);
+          <div
+            id="topContent"
+            class="space-y-4 bg-white/70 p-3 rounded-md"
+            style="
+              border-radius: 24px;
+              border: 1px solid rgba(0, 0, 0, 0.05);
 
-                backdrop-filter: blur(40px);
-              "
-            >
-              <!-- Institution Info -->
-              <div class="bg-white rounded-xl p-4 py-6">
-                <p class="text-[16px] font-medium text-gray-900">
-                  Category Options
-                </p>
-                <p class="text-[12px] mt-2 text-gray-600">
-                  You can select the category you find more appropriate for this
-                  transaction
-                </p>
-              </div>
+              backdrop-filter: blur(40px);
+            "
+          >
+            <!-- Institution Info -->
+            <div class="rounded-xl p-4 pt-6">
+              <p class="text-[16px] font-medium text-gray-900">
+                Category Options
+              </p>
+              <p class="text-[12px] mt-2 text-gray-600">
+                You can select the category you find more appropriate for this
+                transaction
+              </p>
+            </div>
 
+            <div class="bg-white flex flex-col gap-4 rounded-xl p-4 py-6">
               <!-- Categories Group -->
-              <div class="bg-white rounded-xl p-4 py-6 mt-3">
+              <div class="">
                 <p class="text-sm! font-medium text-black mb-1">
                   Categories Group
                 </p>
@@ -2583,7 +2587,7 @@
               </div>
 
               <!-- Category -->
-              <div class="bg-white rounded-xl p-4 py-6">
+              <div class="">
                 <p class="text-sm font-medium text-black mb-1">Category</p>
                 <div class="custom-dropdown w-full">
                   <button
@@ -2617,27 +2621,39 @@
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Status -->
-              <div class="bg-white rounded-xl p-4 py-6">
-                <p class="text-xs font-normal text-black/70">
-                  <span class="text-black font-medium"
-                    >Can’ find the category you’re looking for? </span
-                  >Create a new one or customize an existing one in Category
-                  Management
-                </p>
-                <button
-                  class="w-full bg-white border border-gray-200 text-black py-3 px-4 rounded-full font-medium hover:text-white hover:bg-green-700 transition-colors cursor-pointer mt-2 trasation-all duration-300"
+            <!-- Status -->
+            <div class="bg-white rounded-xl p-4 py-6">
+              <p class="text-xs font-normal text-black/70">
+                <span class="text-black font-medium"
+                  >Can’ find the category you’re looking for? </span
+                >Create a new one or customize an existing one in Category
+                Management
+              </p>
+              <button
+                class="w-full bg-white border border-gray-200 text-black py-3 px-4 rounded-full font-medium hover:text-white hover:bg-green-700 transition-colors cursor-pointer mt-2 trasation-all duration-300"
+              >
+                <a href="./dashboard_category.html" class="text-sm"
+                  >Go to Category Management</a
                 >
-                  <a href="./dashboard_category.html" class="text-sm"
-                    >Go to Category Management</a
-                  >
-                </button>
-              </div>
+              </button>
             </div>
           </div>
 
           <style>
+            @keyframes spinSlow {
+              0% {
+                transform: rotate(0deg);
+              }
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+
+            .animate-spin-slow {
+              animation: spinSlow 1.2s linear infinite;
+            }
             .circle {
               border-radius: 50%;
               position: relative;
@@ -2689,10 +2705,35 @@
             </button>
 
             <button
+              id="saveBtn"
               class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
             >
               Save Change
             </button>
+          </div>
+        </div>
+        <!-- Content -->
+        <div
+          id="loadcontent"
+          class="bg-[#FFFFFFB2] rounded-3xl p-6 text-center"
+        >
+          <p class="text-black mb-8 text-base font-medium">
+            Current transaction details
+          </p>
+
+          <!-- Loader Wrapper -->
+          <div class="flex justify-center items-center">
+            <div class="relative w-40 h-40">
+              <!-- Background circle -->
+              <div
+                class="absolute inset-0 rounded-full border-[16px] border-gray-300"
+              ></div>
+
+              <!-- Animated circle -->
+              <div
+                class="absolute inset-0 rounded-full border-[16px] border-transparent border-t-red-500 border-r-red-500 animate-spin-slow"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2713,42 +2754,68 @@
       });
     </script>
 
-    <script>
-      // Get modal elements
-      const modalOverlay1 = document.getElementById("modalOverlay1");
-      const openModalBtn1 = document.getElementById("openModal1");
-      const closeModalBtn1 = document.getElementById("closeModal1");
+    
 
-      // Open modal function
-      function openModal1() {
-        modalOverlay1.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
-      }
+   <script>
+  // Get modal elements
+  const modalOverlay1 = document.getElementById("modalOverlay1");
+  const openModalBtn1 = document.getElementById("openModal1");
+  const closeModalBtn1 = document.getElementById("closeModal1");
 
-      // Close modal function
-      function closeModal1() {
-        modalOverlay1.classList.add("hidden");
-        document.body.style.overflow = "auto"; // Restore scrolling
-      }
+  // Get loader and content elements
+  const saveBtn = document.getElementById("saveBtn");
+  const loaderSection = document.getElementById("loaderSection"); // make sure ID matches HTML
+  const loadContent = document.getElementById("loadcontent");
 
-      // Event listeners
-      openModalBtn1.addEventListener("click", openModal1);
-      closeModalBtn1.addEventListener("click", closeModal1);
+  // Initially hide loader and content
+  loaderSection.classList.add("hidden");
+  loadContent.classList.add("hidden");
 
-      // Close modal when clicking outside
-      modalOverlay1.addEventListener("click", (e) => {
-        if (e.target === modalOverlay1) {
-          closeModal1();
-        }
-      });
+  // Open modal function
+  function openModal1() {
+    modalOverlay1.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+  }
 
-      // Close modal on Escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modalOverlay1.classList.contains("hidden")) {
-          closeModal1();
-        }
-      });
-    </script>
+  // Close modal function
+  function closeModal1() {
+    modalOverlay1.classList.add("hidden");
+    document.body.style.overflow = "auto"; // Restore scrolling
+  }
+
+  // Event listeners for modal
+  openModalBtn1.addEventListener("click", openModal1);
+  closeModalBtn1.addEventListener("click", closeModal1);
+
+  // Close modal when clicking outside
+  modalOverlay1.addEventListener("click", (e) => {
+    if (e.target === modalOverlay1) closeModal1();
+  });
+
+  // Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modalOverlay1.classList.contains("hidden")) closeModal1();
+  });
+
+  // Save button logic
+  saveBtn.addEventListener("click", () => {
+    // Show loader
+    loaderSection.classList.remove("hidden");
+
+    // After 1 second
+    setTimeout(() => {
+      // Hide loader
+      loaderSection.classList.add("hidden");
+
+      // Show content
+      loadContent.classList.remove("hidden");
+
+      // Close modal
+      closeModal1();
+    }, 1000); // 1 second
+  });
+</script>
+
 
     <!-- notification popup -->
     <div class="w-full popup max-w-md mx-auto">
@@ -3387,110 +3454,6 @@
             }
           });
         });
-      });
-    </script>
-
-    <!-- Card Slider Script -->
-    <script>
-      // Function to show card for mobile slider
-      function showCardMobile(index) {
-        const slider = document.querySelector(".card-slider-mobile");
-        const dots = document.querySelectorAll(".dot-mobile");
-
-        if (slider && dots.length > 0) {
-          // Update slider position
-          slider.style.transform = `translateX(-${index * 100}%)`;
-
-          // Update dot colors
-          dots.forEach((dot, i) => {
-            if (i === index) {
-              dot.classList.remove("bg-gray-300");
-              dot.classList.add("bg-green-500");
-            } else {
-              dot.classList.remove("bg-green-500");
-              dot.classList.add("bg-gray-300");
-            }
-          });
-        }
-      }
-
-      // Function to show card for desktop slider
-      function showCardDesktop(index) {
-        const slider = document.querySelector(".card-slider-desktop");
-        const dots = document.querySelectorAll(".dot-desktop");
-
-        if (slider && dots.length > 0) {
-          // Update slider position
-          slider.style.transform = `translateX(-${index * 100}%)`;
-
-          // Update dot colors
-          dots.forEach((dot, i) => {
-            if (i === index) {
-              dot.classList.remove("bg-gray-300");
-              dot.classList.add("bg-green-500");
-            } else {
-              dot.classList.remove("bg-green-500");
-              dot.classList.add("bg-gray-300");
-            }
-          });
-        }
-      }
-
-      // Add event listeners to mobile dots
-      document.querySelectorAll(".dot-mobile").forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          showCardMobile(index);
-        });
-      });
-
-      // Add event listeners to desktop dots
-      document.querySelectorAll(".dot-desktop").forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          showCardDesktop(index);
-        });
-      });
-
-      // Initialize sliders to first card
-      showCardMobile(0);
-      showCardDesktop(0);
-    </script>
-
-    <script>
-      const totalsToggle = document.getElementById("totals-toggle");
-      const percentToggle = document.getElementById("percent-toggle");
-
-      function setActive(activeBtn, inactiveBtn, mode) {
-        // Active button style
-        activeBtn.classList.add("bg-[#1BB15F]", "text-white");
-        activeBtn.classList.remove("text-gray-700", "bg-transparent");
-        activeBtn.style.background = "#1BB15F";
-
-        // Inactive button style
-        inactiveBtn.classList.remove("bg-[#1BB15F]", "text-white");
-        inactiveBtn.classList.add("text-gray-700", "bg-transparent");
-        inactiveBtn.style.background = "";
-
-        // Update text values
-        document
-          .querySelectorAll("[data-totals], [data-percent]")
-          .forEach((el) => {
-            el.textContent = el.getAttribute(`data-${mode}`) || el.textContent;
-          });
-      }
-
-      // Default: Percent active
-      document.addEventListener("DOMContentLoaded", () => {
-        setActive(percentToggle, totalsToggle, "percent");
-      });
-
-      // Totals click
-      totalsToggle.addEventListener("click", () => {
-        setActive(totalsToggle, percentToggle, "totals");
-      });
-
-      // Percent click
-      percentToggle.addEventListener("click", () => {
-        setActive(percentToggle, totalsToggle, "percent");
       });
     </script>
 
