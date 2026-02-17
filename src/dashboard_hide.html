@@ -708,769 +708,500 @@
               class="grid lg:grid-cols-3 grid-cols-1 items-center gap-y-3 lg:gap-3"
             >
               <!-- Accounts -->
-              <div class="col-span-2">
-                <div
-                  class="bg-white rounded-xl shadow-sm lg:p-3 p-3"
-                  style="
-                    border-radius: 24px;
-                    border: 1px solid rgba(0, 0, 0, 0.05);
+            <div class="col-span-2">
+              <div class="bg-white rounded-xl shadow-sm lg:p-3 p-3" style="
+                  border-radius: 24px;
+                  border: 1px solid rgba(0, 0, 0, 0.05);
+                  
+                  backdrop-filter: blur(40px);
+                ">
+                <div class="flex justify-between items-center mb-4">
+                  <h2 style="
+                      color: var(--black-100, #010101);
+                      font-size: var(--font-Size-Title-3, 20px);
+                      font-style: normal;
+                      font-weight: 500;
+                      line-height: 24px;
+                    " class="text-xl font-medium text-[#010101]">
+                    Accounts
+                  </h2>
+                  <div class="flex items-center space-x-2 text-sm text-gray-600">
+                    <span style="
+                        color: rgba(0, 0, 0, 0.6);
 
-                    backdrop-filter: blur(40px);
-                  "
-                >
-                  <div class="flex justify-between items-center mb-4">
-                    <h2
-                      style="
-                        color: var(--black-100, #010101);
-                        font-size: var(--font-Size-Title-3, 20px);
                         font-style: normal;
-                        font-weight: 500;
-                        line-height: 24px;
-                      "
-                      class="text-sm lg:text-lg font-semibold text-gray-900"
-                    >
-                      Accounts
-                    </h2>
-                    <div
-                      class="flex items-center space-x-2 text-sm text-gray-600"
-                    >
-                      <span
-                        style="
-                          color: rgba(0, 0, 0, 0.6);
-
-                          font-style: normal;
-                          font-weight: 400;
-                          line-height: 140%;
-                        "
-                        class="text-[10px] lg:text-sm"
-                        >Sync 23 hours ago</span
-                      >
-                      <button
-                        style="
-                          border-radius: 24px;
-                          border: 1px solid rgba(255, 255, 255, 0.2);
-                          background: linear-gradient(
-                            283deg,
-                            #1bb15f 1.61%,
-                            #0b6b37 111.05%
-                          );
-                          backdrop-filter: blur(40px);
-                        "
-                        class="bg-primary text-white px-3 h-[44px] rounded text-xs lg:text-sm"
-                      >
-                        Sync now
-                      </button>
+                        font-weight: 400;
+                        line-height: 140%;
+                      " class="text-[10px] lg:text-xs">Sync 23 hours ago</span>
+                    <button style="
+                        border-radius: 24px;
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        background: linear-gradient(
+                          283deg,
+                          #1bb15f 1.61%,
+                          #0b6b37 111.05%
+                        );
+                        backdrop-filter: blur(40px);
+                      " class="bg-primary text-white px-6 h-11 rounded text-xs lg:text-sm cursor-pointer">
+                      Sync now
+                    </button>
+                  </div>
+                </div>
+                <div class="flex overflow-x-auto gap-2 shrink-0"
+                  style="overflow:auto; scrollbar-width:none; -ms-overflow-style:none;">
+                  <!-- Card 1 -->
+                  <div  class="p-3 pt-4 cursor-pointer" style="
+                      min-width: fit-content;
+                      background: linear-gradient(
+                        190deg,
+                        #68A77B 0%,
+                        #6AA866 100%
+                      );
+                      border-radius: min(16px, 4vw);
+                      color: white;
+                      width: 100%;
+                      position: relative;
+                      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                    " >
+                    <div class="mb-2.5 flex items-center justify-between gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24" fill="none">
+                        <foreignObject x="-14.4841" y="-14.4841" width="62.5679" height="52.9683">
+                          <div xmlns="http://www.w3.org/1999/xhtml" style="
+                              backdrop-filter: blur(7.24px);
+                              clip-path: url(#bgblur_0_733_6496_clip_path);
+                              height: 100%;
+                              width: 100%;
+                            ">
+                          </div>
+                        </foreignObject>
+                        <g data-figma-bg-blur-radius="14.4841">
+                          <path
+                            d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
+                            fill="#FAFAFA" fill-opacity="0.3" />
+                          <path
+                            d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
+                            stroke="#FAFAFA" stroke-opacity="0.3" stroke-width="1.15873" />
+                        </g>
+                        <path
+                          d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path
+                          d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z" fill="#0D0D0D"
+                          fill-opacity="0.2" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <defs>
+                          <clipPath id="bgblur_0_733_6496_clip_path" transform="translate(14.4841 14.4841)">
+                            <path
+                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      <div style="font-size: min(20px, 5vw); opacity: 0.9">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                          <g clip-path="url(#clip0_733_6487)">
+                            <path
+                              d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
+                              stroke="white" stroke-width="1.98954" stroke-linecap="round" />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_733_6487">
+                              <rect width="16" height="19" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="
+                        font-size: 12px;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                      ">
+                      1234 1234 1234 1234
+                    </div>
+                    <p style="
+                        font-size: 10px;
+                        font-weight: 600;
+                        letter-spacing: min(1px, 0.25vw);
+                        text-transform: uppercase;
+                      ">
+                      OLIVIA RHYE
+                    </p>
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        margin-top: 26px;
+                      ">
+                      <div class="text-sm font-bold">
+                        <span class="text-[8px] font-normal text-white">Balance Amount</span>
+                        <br />
+                        $2,00,000
+                      </div>
+                      <div style="text-align: right" class="flex items-center justify-end gap-4 pr-2">
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">Exp</p>
+                          <p class="text-[10px] font-semibold">06/24</p>
+                        </div>
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">CVV</p>
+                          <p class="text-[10px] font-semibold">123</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div
-                    class="flex overflow-x-auto gap-2 flex-shrink-0"
-                    style="
-                      overflow: auto;
-                      scrollbar-width: none;
-                      -ms-overflow-style: none;
-                    "
-                  >
-                    <!-- Card 1 -->
-                    <div
-                      style="
-                        max-height: 200px;
-                        min-width: fit-content;
-                        background: linear-gradient(
-                          135deg,
-                          #4a7c59 0%,
-                          #7fb069 100%
-                        );
-                        border-radius: min(16px, 4vw);
-                        padding: min(24px, 6vw);
-                        color: white;
-                        width: 100%;
-                        position: relative;
-                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                      "
-                    >
-                      <div
-                        class="mb-2.5 flex items-center justify-between gap-2"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="34"
-                          height="24"
-                          viewBox="0 0 34 24"
-                          fill="none"
-                        >
-                          <foreignObject
-                            x="-14.4841"
-                            y="-14.4841"
-                            width="62.5679"
-                            height="52.9683"
-                          >
-                            <div
-                              xmlns="http://www.w3.org/1999/xhtml"
-                              style="
-                                backdrop-filter: blur(7.24px);
-                                clip-path: url(#bgblur_0_733_6496_clip_path);
-                                height: 100%;
-                                width: 100%;
-                              "
-                            ></div>
-                          </foreignObject>
-                          <g data-figma-bg-blur-radius="14.4841">
+                  <!-- Card 2 -->
+                  <div class="p-3 pt-4 cursor-pointer"  style="
+                      min-width: fit-content;
+                      background: linear-gradient(
+                        135deg,
+                        #434B4C 0%,
+                        #41494A 100%
+                      );
+                      width: 100%;
+                      border-radius: min(16px, 4vw);
+                      color: white;
+                      position: relative;
+                      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                    ">
+                    <div class="mb-2.5 flex items-center justify-between gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24" fill="none">
+                        <foreignObject x="-14.4841" y="-14.4841" width="62.5679" height="52.9683">
+                          <div xmlns="http://www.w3.org/1999/xhtml" style="
+                              backdrop-filter: blur(7.24px);
+                              clip-path: url(#bgblur_0_733_6496_clip_path);
+                              height: 100%;
+                              width: 100%;
+                            "></div>
+                        </foreignObject>
+                        <g data-figma-bg-blur-radius="14.4841">
+                          <path
+                            d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
+                            fill="#FAFAFA" fill-opacity="0.3" />
+                          <path
+                            d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
+                            stroke="#FAFAFA" stroke-opacity="0.3" stroke-width="1.15873" />
+                        </g>
+                        <path
+                          d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path
+                          d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z" fill="#0D0D0D"
+                          fill-opacity="0.2" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <defs>
+                          <clipPath id="bgblur_0_733_6496_clip_path" transform="translate(14.4841 14.4841)">
                             <path
-                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              fill="#FAFAFA"
-                              fill-opacity="0.3"
-                            />
+                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      <div style="font-size: min(20px, 5vw); opacity: 0.9">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                          <g clip-path="url(#clip0_733_6487)">
                             <path
-                              d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
-                              stroke="#FAFAFA"
-                              stroke-opacity="0.3"
-                              stroke-width="1.15873"
-                            />
+                              d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
+                              stroke="white" stroke-width="1.98954" stroke-linecap="round" />
                           </g>
-                          <path
-                            d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
                           <defs>
-                            <clipPath
-                              id="bgblur_0_733_6496_clip_path"
-                              transform="translate(14.4841 14.4841)"
-                            >
-                              <path
-                                d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              />
+                            <clipPath id="clip0_733_6487">
+                              <rect width="16" height="19" fill="white" />
                             </clipPath>
                           </defs>
                         </svg>
-                        <div style="font-size: min(20px, 5vw); opacity: 0.9">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="19"
-                            viewBox="0 0 16 19"
-                            fill="none"
-                          >
-                            <g clip-path="url(#clip0_733_6487)">
-                              <path
-                                d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
-                                stroke="white"
-                                stroke-width="1.98954"
-                                stroke-linecap="round"
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_733_6487">
-                                <rect width="16" height="19" fill="white" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </div>
                       </div>
-                      <div
-                        style="
-                          font-size: 12;
-                          font-weight: 500;
-                          letter-spacing: 2px;
-                        "
-                      >
-                        1234 1234 1234 1234
+                    </div>
+                    <div style="
+                        font-size: 12px;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                      ">
+                      1234 1234 1234 1234
+                    </div>
+                    <p style="
+                        font-size: 10px;
+                        font-weight: 600;
+                        letter-spacing: min(1px, 0.25vw);
+                        text-transform: uppercase;
+                      ">
+                      OLIVIA RHYE
+                    </p>
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        margin-top: 26px;
+                      ">
+                      <div class="text-sm font-bold">
+                        <span class="text-[8px] font-normal text-white">Balance Amount</span>
+                        <br />
+                        $2,00,000
                       </div>
-                      <p
-                        style="
-                          font-size: min(14px, 3.5vw);
-                          font-weight: 600;
-                          letter-spacing: min(1px, 0.25vw);
-                          opacity: 0.95;
-                        "
-                      >
-                        OLIVIA RHYE
-                      </p>
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: flex-end;
-                          margin-top: 20px;
-                        "
-                      >
-                        <div style="font-weight: 600" class="text-sm">
-                          <span class="text-xs font-normal text-white"
-                            >Balance</span
-                          >
-                          <br />
-                          $2,00,000
+                      <div style="text-align: right" class="flex items-center justify-end gap-4 pr-2">
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">Exp</p>
+                          <p class="text-[10px] font-semibold">06/24</p>
                         </div>
-                        <div
-                          style="text-align: right"
-                          class="flex items-center justify-end gap-4"
-                        >
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">Exp</p>
-                            <p class="text-xs">06/24</p>
-                          </div>
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">CVV</p>
-                            <p class="text-xs">123</p>
-                          </div>
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">CVV</p>
+                          <p class="text-[10px] font-semibold">123</p>
                         </div>
                       </div>
                     </div>
-                    <!-- Card 2 -->
-                    <div
-                      style="
-                        max-height: 200px;
-                        min-width: fit-content;
-                        background: linear-gradient(
-                          135deg,
-                          #576265a6 0%,
-                          #576265 100%
-                        );
-                        width: 100%;
-                        border-radius: min(16px, 4vw);
-                        padding: min(24px, 6vw);
-                        color: white;
-                        position: relative;
-                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                      "
-                    >
-                      <div
-                        class="mb-2.5 flex items-center justify-between gap-2"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="34"
-                          height="24"
-                          viewBox="0 0 34 24"
-                          fill="none"
-                        >
-                          <foreignObject
-                            x="-14.4841"
-                            y="-14.4841"
-                            width="62.5679"
-                            height="52.9683"
-                          >
-                            <div
-                              xmlns="http://www.w3.org/1999/xhtml"
-                              style="
-                                backdrop-filter: blur(7.24px);
-                                clip-path: url(#bgblur_0_733_6496_clip_path);
-                                height: 100%;
-                                width: 100%;
-                              "
-                            ></div>
-                          </foreignObject>
-                          <g data-figma-bg-blur-radius="14.4841">
+                  </div>
+                  <!-- Card 3 -->
+                  <div class="p-3 pt-4 cursor-pointer"  style="
+                      min-width: fit-content;
+                      background: linear-gradient(
+                        135deg,
+                        #F3B739 0%,
+                        #F5B939 100%
+                      );
+                      width: 100%;
+                      border-radius: min(16px, 4vw);
+                      color: white;
+                      position: relative;
+                      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                    ">
+                    <div class="mb-2.5 flex items-center justify-between gap-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="24" viewBox="0 0 34 24" fill="none">
+                        <foreignObject x="-14.4841" y="-14.4841" width="62.5679" height="52.9683">
+                          <div xmlns="http://www.w3.org/1999/xhtml" style="
+                              backdrop-filter: blur(7.24px);
+                              clip-path: url(#bgblur_0_733_6496_clip_path);
+                              height: 100%;
+                              width: 100%;
+                            ">
+                          </div>
+                        </foreignObject>
+                        <g data-figma-bg-blur-radius="14.4841">
+                          <path
+                            d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
+                            fill="#FAFAFA" fill-opacity="0.3" />
+                          <path
+                            d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
+                            stroke="#FAFAFA" stroke-opacity="0.3" stroke-width="1.15873" />
+                        </g>
+                        <path
+                          d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path
+                          d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <path d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z" fill="#0D0D0D"
+                          fill-opacity="0.2" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
+                          fill="#0D0D0D" fill-opacity="0.2" />
+                        <defs>
+                          <clipPath id="bgblur_0_733_6496_clip_path" transform="translate(14.4841 14.4841)">
                             <path
-                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              fill="#FAFAFA"
-                              fill-opacity="0.3"
-                            />
+                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      <div style="font-size: min(20px, 5vw); opacity: 0.9">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                          <g clip-path="url(#clip0_733_6487)">
                             <path
-                              d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
-                              stroke="#FAFAFA"
-                              stroke-opacity="0.3"
-                              stroke-width="1.15873"
-                            />
+                              d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
+                              stroke="white" stroke-width="1.98954" stroke-linecap="round" />
                           </g>
-                          <path
-                            d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
                           <defs>
-                            <clipPath
-                              id="bgblur_0_733_6496_clip_path"
-                              transform="translate(14.4841 14.4841)"
-                            >
-                              <path
-                                d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              />
+                            <clipPath id="clip0_733_6487">
+                              <rect width="16" height="19" fill="white" />
                             </clipPath>
                           </defs>
                         </svg>
-                        <div style="font-size: min(20px, 5vw); opacity: 0.9">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="19"
-                            viewBox="0 0 16 19"
-                            fill="none"
-                          >
-                            <g clip-path="url(#clip0_733_6487)">
-                              <path
-                                d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
-                                stroke="white"
-                                stroke-width="1.98954"
-                                stroke-linecap="round"
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_733_6487">
-                                <rect width="16" height="19" fill="white" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </div>
                       </div>
-                      <div
-                        style="
-                          font-size: 12;
-                          font-weight: 500;
-                          letter-spacing: 2px;
-                        "
-                      >
-                        1234 1234 1234 1234
+                    </div>
+                    <div style="
+                        font-size: 12px;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                      ">
+                      1234 1234 1234 1234
+                    </div>
+                    <p style="
+                        font-size: 10px;
+                        font-weight: 600;
+                        letter-spacing: min(1px, 0.25vw);
+                        text-transform: uppercase;
+                      ">
+                      OLIVIA RHYE
+                    </p>
+                    <div style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        margin-top: 26px;
+                      ">
+                      <div class="text-sm font-bold">
+                        <span class="text-[8px] font-normal text-white">Balance Amount</span>
+                        <br />
+                        $2,00,000
                       </div>
-                      <p
-                        style="
-                          font-size: min(14px, 3.5vw);
-                          font-weight: 600;
-                          letter-spacing: min(1px, 0.25vw);
-                          opacity: 0.95;
-                        "
-                      >
-                        OLIVIA RHYE
-                      </p>
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: flex-end;
-                          margin-top: 20px;
-                        "
-                      >
-                        <div style="font-weight: 600" class="text-sm">
-                          <span class="text-xs font-normal text-white"
-                            >Balance</span
-                          >
-                          <br />
-                          $2,00,000
+                      <div style="text-align: right" class="flex items-center justify-end gap-4 pr-2">
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">Exp</p>
+                          <p class="text-[10px] font-semibold">06/24</p>
                         </div>
-                        <div
-                          style="text-align: right"
-                          class="flex items-center justify-end gap-4"
-                        >
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">Exp</p>
-                            <p class="text-xs">06/24</p>
-                          </div>
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">CVV</p>
-                            <p class="text-xs">123</p>
-                          </div>
+                        <div class="flex flex-col items-start justify-end">
+                          <p class="text-left text-[8px]">CVV</p>
+                          <p class="text-[10px] font-semibold">123</p>
                         </div>
                       </div>
                     </div>
-                    <!-- Card 3 -->
-                    <div
-                      style="
-                        min-width: fit-content;
-                        max-height: 200px;
-                        background: linear-gradient(
-                          135deg,
-                          #f59c00a6 0%,
-                          #f59c00 100%
-                        );
-                        width: 100%;
-                        border-radius: min(16px, 4vw);
-                        padding: min(24px, 6vw);
-                        color: white;
-                        position: relative;
-                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                      "
-                    >
-                      <div
-                        class="mb-2.5 flex items-center justify-between gap-2"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="34"
-                          height="24"
-                          viewBox="0 0 34 24"
-                          fill="none"
-                        >
-                          <foreignObject
-                            x="-14.4841"
-                            y="-14.4841"
-                            width="62.5679"
-                            height="52.9683"
-                          >
-                            <div
-                              xmlns="http://www.w3.org/1999/xhtml"
-                              style="
-                                backdrop-filter: blur(7.24px);
-                                clip-path: url(#bgblur_0_733_6496_clip_path);
-                                height: 100%;
-                                width: 100%;
-                              "
-                            ></div>
-                          </foreignObject>
-                          <g data-figma-bg-blur-radius="14.4841">
-                            <path
-                              d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              fill="#FAFAFA"
-                              fill-opacity="0.3"
-                            />
-                            <path
-                              d="M4.7998 0.579102H28.7998C31.1307 0.579102 33.0204 2.4689 33.0205 4.7998V19.2002C33.0204 21.5311 31.1307 23.4209 28.7998 23.4209H4.7998C2.46897 23.4208 0.579209 21.531 0.579102 19.2002V4.7998C0.579207 2.46897 2.46897 0.579207 4.7998 0.579102Z"
-                              stroke="#FAFAFA"
-                              stroke-opacity="0.3"
-                              stroke-width="1.15873"
-                            />
-                          </g>
-                          <path
-                            d="M8.09961 0.599976H8.69961V23.4H8.09961V16.2H0.599609V15.6H8.09961V8.39997H0.599609V7.79997H8.09961V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 15.6H32.9996V16.2H25.1996V23.4H24.5996V11.4C24.5996 9.41175 26.2114 7.79997 28.1996 7.79997H32.9996V8.39997H28.1996C26.5428 8.39997 25.1996 9.74312 25.1996 11.4V15.6Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            d="M25.1996 0.599976H24.5996V5.39997H25.1996V0.599976Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M20.9996 12C20.9996 14.3196 19.1192 16.2 16.7996 16.2C14.48 16.2 12.5996 14.3196 12.5996 12C12.5996 9.68038 14.48 7.79997 16.7996 7.79997C19.1192 7.79997 20.9996 9.68038 20.9996 12ZM20.3996 12C20.3996 13.9882 18.7878 15.6 16.7996 15.6C14.8114 15.6 13.1996 13.9882 13.1996 12C13.1996 10.0117 14.8114 8.39997 16.7996 8.39997C18.7878 8.39997 20.3996 10.0117 20.3996 12Z"
-                            fill="#0D0D0D"
-                            fill-opacity="0.2"
-                          />
-                          <defs>
-                            <clipPath
-                              id="bgblur_0_733_6496_clip_path"
-                              transform="translate(14.4841 14.4841)"
-                            >
-                              <path
-                                d="M0 4.8C0 2.14903 2.14903 0 4.8 0L28.8 0C31.451 0 33.6 2.14903 33.6 4.8V19.2C33.6 21.851 31.451 24 28.8 24H4.8C2.14903 24 0 21.851 0 19.2L0 4.8Z"
-                              />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <div style="font-size: min(20px, 5vw); opacity: 0.9">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="19"
-                            viewBox="0 0 16 19"
-                            fill="none"
-                          >
-                            <g clip-path="url(#clip0_733_6487)">
-                              <path
-                                d="M12.114 1.01782C13.6186 3.59672 14.4107 6.52211 14.4107 9.49996C14.4107 12.4778 13.6186 15.4032 12.114 17.9821M8.34258 2.88389C9.51617 4.89543 10.134 7.17724 10.134 9.49996C10.134 11.8227 9.51617 14.1045 8.34258 16.116M4.74258 4.59729C5.59117 6.06726 6.03792 7.73473 6.03792 9.43211C6.03792 11.1295 5.59117 12.797 4.74258 14.2669M1.14258 6.44639C1.75415 7.36233 2.07838 8.42031 2.07838 9.49996C2.07838 10.5796 1.75415 11.6376 1.14258 12.5535"
-                                stroke="white"
-                                stroke-width="1.98954"
-                                stroke-linecap="round"
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_733_6487">
-                                <rect width="16" height="19" fill="white" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </div>
-                      </div>
-                      <div
-                        style="
-                          font-size: 12;
-                          font-weight: 500;
-                          letter-spacing: 2px;
-                        "
-                      >
-                        1234 1234 1234 1234
-                      </div>
-                      <p
-                        style="
-                          font-size: min(14px, 3.5vw);
-                          font-weight: 600;
-                          letter-spacing: min(1px, 0.25vw);
-                          opacity: 0.95;
-                        "
-                      >
-                        OLIVIA RHYE
-                      </p>
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: flex-end;
-                          margin-top: 20px;
-                        "
-                      >
-                        <div style="font-weight: 600" class="text-sm">
-                          <span class="text-xs font-normal text-white"
-                            >Balance</span
-                          >
-                          <br />
-                          $2,00,000
-                        </div>
-                        <div
-                          style="text-align: right"
-                          class="flex items-center justify-end gap-4"
-                        >
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">Exp</p>
-                            <p class="text-xs">06/24</p>
-                          </div>
-                          <div class="flex flex-col items-start justify-end">
-                            <p class="text-left text-[10px]">CVV</p>
-                            <p class="text-xs">123</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style="width: 100%"
-                      class="w-28 max-w-28 min-w-28 rounded-xl cursor-pointer hover:bg-green-200 transition-all flex items-center bg-green-100 justify-center"
-                    >
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                        >
-                          <path
-                            d="M10.833 2.91671C10.833 2.45647 10.4599 2.08337 9.99967 2.08337C9.53944 2.08337 9.16634 2.45647 9.16634 2.91671V9.16671H2.91634C2.4561 9.16671 2.08301 9.5398 2.08301 10C2.08301 10.4603 2.4561 10.8334 2.91634 10.8334H9.16634V17.0834C9.16634 17.5436 9.53944 17.9167 9.99967 17.9167C10.4599 17.9167 10.833 17.5436 10.833 17.0834V10.8334H17.083C17.5432 10.8334 17.9163 10.4603 17.9163 10C17.9163 9.5398 17.5432 9.16671 17.083 9.16671H10.833V2.91671Z"
-                            fill="#1BB15F"
-                          />
-                        </svg>
-                      </div>
+                  </div>
+                  <div style="width: 100%"
+                    class="w-29 max-w-29 shrink-0 rounded-2xl cursor-pointer hover:bg-green-50 transition-all flex items-center bg-[#1BB15F0D] border border-[#1BB15F1A]! justify-center">
+                    <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path
+                          d="M10.833 2.91671C10.833 2.45647 10.4599 2.08337 9.99967 2.08337C9.53944 2.08337 9.16634 2.45647 9.16634 2.91671V9.16671H2.91634C2.4561 9.16671 2.08301 9.5398 2.08301 10C2.08301 10.4603 2.4561 10.8334 2.91634 10.8334H9.16634V17.0834C9.16634 17.5436 9.53944 17.9167 9.99967 17.9167C10.4599 17.9167 10.833 17.5436 10.833 17.0834V10.8334H17.083C17.5432 10.8334 17.9163 10.4603 17.9163 10C17.9163 9.5398 17.5432 9.16671 17.083 9.16671H10.833V2.91671Z"
+                          fill="#1BB15F" />
+                      </svg>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-span-1 lg:block hidden">
-                <!-- Total Balance -->
-                <div
-                  style="
+            <div class="col-span-1 lg:block hidden">
+              <!-- Total Balance -->
+              <div style="
+                  border-radius: 24px;
+                  border: 1px solid rgba(0, 0, 0, 0.05);
+                  background: linear-gradient(
+                    283deg,
+                    #1bb15f 1.61%,
+                    #0b6b37 111.05%
+                  );
+                  backdrop-filter: blur(40px);
+                " class="rounded-xl lg:p-3 p-3 text-white flex flex-col h-full justify-between">
+                <div class="flex justify-between items-center p-3">
+                  <div>
+                    <h2 style="
+                        color: #fff;
+
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 32px; /* 133.333% */
+                      " class="text-lg lg:text-2xl">
+                      Total Balance
+                    </h2>
+                    <p style="
+                        color: #fff;
+
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 16px; /* 133.333% */
+                      " class="text-xs mt-1">
+                      Available for use
+                    </p>
+                  </div>
+                  <button style="
+                      color: #1bb15f;
+                      font-family: Inter;
+                      font-size: 12px;
+                      font-style: normal;
+                      font-weight: 400;
+                      line-height: normal;
+                      letter-spacing: -0.6px;
+                    " class="bg-white flex items-center gap-1 p-2 pr-3 rounded-full hover:text-white cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 13.3333V2.66663M8 2.66663L4 6.66663M8 2.66663L12 6.66663" stroke="#1BB15F"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    +11%
+                  </button>
+                </div>
+                <div style="
                     border-radius: 24px;
-                    border: 1px solid rgba(0, 0, 0, 0.05);
-                    background: linear-gradient(
-                      283deg,
-                      #1bb15f 1.61%,
-                      #0b6b37 111.05%
-                    );
-                    backdrop-filter: blur(40px);
-                  "
-                  class="rounded-xl lg:p-3 p-3 text-white block"
-                >
-                  <div class="flex justify-between items-start mb-2 md:mb-4">
-                    <div>
-                      <h2
-                        style="
-                          color: #fff;
-
-                          font-style: normal;
-                          font-weight: 500;
-                          line-height: 32px; /* 133.333% */
-                        "
-                        class="text-lg lg:text-2xl"
-                      >
-                        Total Balance
-                      </h2>
-                      <p
-                        style="
-                          color: #fff;
-
-                          font-style: normal;
-                          font-weight: 400;
-                          line-height: 16px; /* 133.333% */
-                        "
-                        class="text-xs"
-                      >
-                        Available for use
-                      </p>
-                    </div>
-                    <button
-                      style="
-                        color: #1bb15f;
-                        font-family: Inter;
+                    background: rgba(255, 255, 255, 0.32);
+                    backdrop-filter: blur(10px);
+                  " class="flex flex-col h-full p-4 cursor-pointer">
+                  <div>
+                    <div style="
+                        color: #fff;
                         font-size: 12px;
                         font-style: normal;
                         font-weight: 400;
-                        line-height: normal;
-                        letter-spacing: -0.6px;
-                      "
-                      class="bg-white flex items-center gap-1 py-1 px-2 rounded-xl hover:text-white"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M8 13.3333V2.66663M8 2.66663L4 6.66663M8 2.66663L12 6.66663"
-                          stroke="#1BB15F"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      +11%
-                    </button>
+                        line-height: 16px; /* 133.333% */
+                      ">
+                      Available Funds
+                    </div>
+                    <div style="
+                        color: #fff;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px; /* 120% */
+                      ">
+                      $2,00,000 USD
+                    </div>
                   </div>
-                  <div
-                    style="
-                      border-radius: 24px;
-                      background: rgba(255, 255, 255, 0.32);
-                      backdrop-filter: blur(10px);
-                    "
-                    class="flex flex-col h-full p-5 mt-7 lg:mt-12"
-                  >
-                    <div>
-                      <div
-                        style="
+                  <div class="flex items-center mt-7 justify-between">
+                    <div class="text-left">
+                      <div style="
                           color: #fff;
                           font-size: 12px;
                           font-style: normal;
-                          font-weight: 400;
+                          font-weight: 500;
                           line-height: 16px; /* 133.333% */
-                        "
-                      >
-                        Available Funds
+                        " class="text-sm flex items-center mb-1 gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8 2.66675V13.3334M8 13.3334L12 9.33341M8 13.3334L4 9.33341" stroke="white"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>Income
                       </div>
-                      <div
-                        style="
+                      <div style="
                           color: #fff;
-                          font-size: 20px;
+                          font-size: 16px;
                           font-style: normal;
-                          font-weight: 700;
-                          line-height: 24px; /* 120% */
-                        "
-                      >
-                        $2,00,000 USD
+                          font-weight: 600;
+                          line-height: 20px; /* 125% */
+                          letter-spacing: 0.8px;
+                        ">
+                        $1,00,000 USD
                       </div>
                     </div>
-                    <div class="flex items-center mt-7 justify-between">
-                      <div class="text-left">
-                        <div
-                          style="
-                            color: #fff;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: 16px; /* 133.333% */
-                          "
-                          class="text-sm flex items-center mb-1 gap-1"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                          >
-                            <path
-                              d="M8 2.66675V13.3334M8 13.3334L12 9.33341M8 13.3334L4 9.33341"
-                              stroke="white"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                          Income
-                        </div>
-                        <div
-                          style="
-                            color: #fff;
-                            font-size: 16px;
-                            font-style: normal;
-                            font-weight: 600;
-                            line-height: 20px; /* 125% */
-                            letter-spacing: 0.8px;
-                          "
-                        >
-                          $1,00,000 USD
-                        </div>
+                    <div class="text-left">
+                      <div style="
+                          color: #fff;
+                          font-size: 12px;
+                          font-style: normal;
+                          font-weight: 500;
+                          line-height: 16px; /* 133.333% */
+                        " class="text-sm flex mb-1 items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M8 13.3334V2.66675M8 2.66675L4 6.66675M8 2.66675L12 6.66675" stroke="white"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Expenses
                       </div>
-                      <div class="text-left">
-                        <div
-                          style="
-                            color: #fff;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: 16px; /* 133.333% */
-                          "
-                          class="text-sm flex mb-1 items-center gap-1"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                          >
-                            <path
-                              d="M8 13.3334V2.66675M8 2.66675L4 6.66675M8 2.66675L12 6.66675"
-                              stroke="white"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                          Outcome
-                        </div>
-                        <div
-                          style="
-                            color: #fff;
-                            font-size: 16px;
-                            font-style: normal;
-                            font-weight: 600;
-                            line-height: 20px; /* 125% */
-                            letter-spacing: 0.8px;
-                          "
-                        >
-                          $1,00,000 USD
-                        </div>
+                      <div style="
+                          color: #fff;
+                          font-size: 16px;
+                          font-style: normal;
+                          font-weight: 600;
+                          line-height: 20px; /* 125% */
+                          letter-spacing: 0.8px;
+                        ">
+                        $1,00,000 USD
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
             </div>
 
             <div

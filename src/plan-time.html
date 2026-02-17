@@ -176,11 +176,10 @@
       grid-template-columns: 120px repeat(9, 1fr);
       gap: 2px;
       background-color: #e5e7eb;
-      min-width: 800px;
-      /* Ensure minimum width for small devices */
+      min-width: 920px;      /* Ensure minimum width for small devices */
     }
 
-    .timeline-cell {
+    .timeline-cell min-w-22 {
       background-color: white;
       min-height: 60px;
     }
@@ -819,11 +818,7 @@
             <!-- Card Views -->
             <div>
               <!-- Table part -->
-              <div class="w-full mx-auto bg-white overflow-x-auto lg:p-0 p-3" style="
-                  border-radius: 24px;
-                  border: 1px solid rgba(0, 0, 0, 0.05);
-                  backdrop-filter: blur(40px);
-                ">
+              <div class="w-full mx-auto bg-white overflow-hidden overflow-x-auto lg:p-0 p-3 rounded-3xl">
                 <!-- Header with Year Navigation -->
                 <div class="flex hiddenitems-center justify-between mb-6">
                   <h1 class="text-2xl hidden font-bold text-gray-800">Financial Planning Timeline</h1>
@@ -845,48 +840,49 @@
                   </div>
                 </div>
 
-                <div class="flex justify-between items-center pl-40 pr-10">
+                <div class="flex justify-between gap-2 items-center pl-24 lg:pl-40 lg:pr-10">
 
-                  <div class="timeline-cell p-4 md:py-8 lg:block hidden font-semibold text-center text-gray-700"><i
-                      class="fas fa-chevron-left"></i> 2022</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2023</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2024</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2025</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2026</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2027</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2028</div>
-                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2029</div>
-                  <div class="timeline-cell p-4 md:py-8 lg:block hidden font-semibold text-center text-gray-700">2030 <i
-                      class="fas fa-chevron-right"></i></div>
+                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer"><i
+                      class="fas fa-chevron-left cursor-pointer mr-3"></i> 2022</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2023</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2024</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2025</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2026</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2027</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2028</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2029</div>
+                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer">2030 <i
+                      class="fas fa-chevron-right cursor-pointer ml-3"></i></div>
 
                 </div>
 
                 <!-- Timeline Grid -->
-                <div class="timeline-grid rounded-lg overflow-hidden border-t border-gray-200">
+                <div class="timeline-grid rounded-lg border-t border-gray-300">
                   <!-- Header Row -->
 
 
                   <!-- Units Row -->
-                  <div class="timeline-cell p-4 md:py-8 font-medium text-center text-gray-700">Units</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-gray-700 cursor-pointer font-medium">Units</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
 
                   <!-- Net Worth Row -->
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9] text-center font-medium text-gray-700">Net Worth</div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 h-[100px] relative bg-[#f3fff9]">
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! text-center font-medium text-gray-700 cursor-pointer">Net Worth</div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 relative bg-[#f3fff9]!">
                     <div class="dotted-line"></div>
-                    <div class="relative z-10  flex justify-center ">
-                      <svg class="absolute" width="276" height="44" viewBox="0 0 276 44" fill="none"
+                    <div class="relative z-10  flex justify-center cursor-pointer">
+                      <button onclick="togglePopup(event, 'netWorth')" class="-ml-18 relative">
+                        <svg class="absolute cursor-pointer" width="276" height="44" viewBox="0 0 276 44" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <foreignObject x="-12" y="-12" width="300" height="68">
                           <div xmlns="http://www.w3.org/1999/xhtml"
@@ -941,25 +937,28 @@
                           </linearGradient>
                         </defs>
                       </svg>
+                      </button>
+                      
                     </div>
                   </div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
 
                   <!-- Income Row -->
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] text-center font-medium text-gray-700">Income</div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] relative">
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! text-center font-medium text-gray-700 cursor-pointer">Income</div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! relative">
                     <div class="dotted-line"></div>
-                    <div class="relative z-10 space-y-2 h-[100px]">
-                      <div class="flex justify-center">
-                        <svg class="absolute" width="272" height="44" viewBox="0 0 272 44" fill="none"
-                          xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative z-10 space-y-2 h-[100px] ">
+                      <div class="flex justify-center" >
+
+                        <button onclick="togglePopup(event, 'income')" class="relative -ml-20"> <svg class="absolute cursor-pointer" width="272" height="44" viewBox="0 0 272 44" fill="none"
+                          xmlns="http://www.w3.org/2000/svg" >
                           <foreignObject x="-12" y="-12" width="296" height="68">
                             <div xmlns="http://www.w3.org/1999/xhtml"
                               style="backdrop-filter:blur(6px);clip-path:url(#bgblur_0_341_5062_clip_path);height:100%;width:100%">
@@ -1019,9 +1018,10 @@
                               <stop offset="1" stop-color="#BDE956" />
                             </linearGradient>
                           </defs>
-                        </svg>
+                        </svg></button>
 
-                        <svg class="absolute top-12" width="219" height="39" viewBox="0 0 219 39" fill="none"
+
+                        <button onclick="togglePopup(event, 'income')"class="relative ml-8" ><svg class="absolute top-12 cursor-pointer" width="219" height="39" viewBox="0 0 219 39" fill="none"
                           xmlns="http://www.w3.org/2000/svg">
                           <foreignObject x="-12" y="-12" width="243" height="61">
                             <div xmlns="http://www.w3.org/1999/xhtml"
@@ -1077,27 +1077,28 @@
                             </linearGradient>
                           </defs>
                         </svg>
-
+                        </button>
+                        
 
                       </div>
 
                     </div>
                   </div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
 
                   <!-- Expenses Row -->
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] font-medium text-center text-gray-700">Expenses</div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] relative">
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! font-medium text-center text-gray-700 cursor-pointer">Expenses</div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! relative">
                     <div class="dotted-line"></div>
-                    <div class="relative z-10 h-[100px] flex justify-center">
-                      <svg class="absolute" width="276" height="44" viewBox="0 0 276 44" fill="none"
+                    <button class="relative z-10 h-[100px] flex justify-center" onclick="togglePopup(event, 'expenses')">
+                      <svg class="absolute cursor-pointer" width="276" height="44" viewBox="0 0 276 44" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <foreignObject x="-12" y="-12" width="300" height="68">
                           <div xmlns="http://www.w3.org/1999/xhtml"
@@ -1153,17 +1154,17 @@
                         </defs>
                       </svg>
 
-                    </div>
+                    </button>
                   </div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
                 </div>
 
                 <!-- Legend -->
-                <div class="mt-6 flex justify-center space-x-6">
+                <div class="mt-6 flex flex-col sm:flex-row justify-center space-x-6">
                   <div class="flex items-center space-x-2">
                     <div class="w-4 h-4 bg-green-500 rounded"></div>
                     <span class="text-sm text-gray-600">Net Worth</span>
@@ -1178,13 +1179,37 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
           <!-- Getting Started -->
       </main>
     </div>
   </div>
+   <!-- Floating Popup -->
+               <div id="popup"
+                    class="absolute hidden w-96 bg-[#EFEFEF] rounded-3xl p-4 shadow-2xl 
+                            transition-all duration-200 scale-95 opacity-0 z-50">
+
+                  <div class="bg-white rounded-3xl p-4">
+                    <!-- Header -->
+                  <div class="flex justify-between items-center mb-6">
+                    <h2 id="popupTitle" class="text-sm text-black *:font-semibold"></h2>
+                    <span id="popupPercent"
+                          class="bg-[#EFEFEF] text-xs text-black px-3 py-1 rounded-full"></span>
+                  </div>
+
+                  <!-- Content -->
+                  <div id="popupContent" class="space-y-4 text-black text-xs"></div>
+
+                  <div class="text-center mt-6">
+                    <button class="text-[#1BB15F] font-sm font-medium hover:underline">
+                      View more
+                    </button>
+                  </div>
+                  </div>
+                  
+              </div> 
+
 
     <!-- notification popup -->
     <div class="w-full popup max-w-md mx-auto">
@@ -2451,80 +2476,6 @@
       });
     </script>
 
-
-
-  <!-- Line Chart -->
-  <script>
-    // Initialize year tabs
-    const years = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
-    const yearTabsContainer = document.getElementById('yearTabs');
-
-    years.forEach(year => {
-      const tab = document.createElement('button');
-      tab.className = `px-3 py-1 rounded text-sm font-medium transition-colors ${year === 2025
-        ? 'bg-blue-500 text-white'
-        : 'bg-white text-gray-600 hover:bg-gray-100'
-        }`;
-      tab.textContent = year;
-      tab.addEventListener('click', () => selectYear(year));
-      yearTabsContainer.appendChild(tab);
-    });
-
-    function selectYear(selectedYear) {
-      // Update tab styles
-      const tabs = yearTabsContainer.children;
-      Array.from(tabs).forEach(tab => {
-        if (parseInt(tab.textContent) === selectedYear) {
-          tab.className = 'px-3 py-1 rounded text-sm font-medium bg-blue-500 text-white transition-colors';
-        } else {
-          tab.className = 'px-3 py-1 rounded text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 transition-colors';
-        }
-      });
-    }
-
-    // Navigation buttons
-    document.getElementById('prevYear').addEventListener('click', () => {
-      console.log('Previous year clicked');
-    });
-
-    document.getElementById('nextYear').addEventListener('click', () => {
-      console.log('Next year clicked');
-    });
-
-    // Add click handlers for interactive elements
-    document.querySelectorAll('.hover-scale').forEach(element => {
-      element.addEventListener('click', function () {
-        const text = this.textContent.trim();
-        alert(`Clicked: ${text}`);
-      });
-    });
-
-    // Add some animation on load
-    window.addEventListener('load', () => {
-      const elements = document.querySelectorAll('.hover-scale');
-      elements.forEach((el, index) => {
-        setTimeout(() => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(10px)';
-          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-
-          setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-          }, 100);
-        }, index * 200);
-      });
-    });
-  </script>
-
-  <script src="./assets/js/dashboard.js"></script>
-  <script src="./assets/js/popup.js"></script>
-  <script src="./assets/js/search-popup.js"></script>
-  <script src="./assets/js/notification.js"></script>
-  <script src="./assets/js/budget-table.js"></script>
-  <script src="./assets/js/menu.js"></script>
-  <script src="./index.js"></script>
-
   <script>
     // Expand functionality - only on large screens
     function initializeExpandFunctionality() {
@@ -2701,6 +2652,186 @@
     setActive(yearToggle, monthToggle, "year");
   });
 </script>
+
+
+  <!-- Line Chart -->
+  <script>
+    // Initialize year tabs
+    const years = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
+    const yearTabsContainer = document.getElementById('yearTabs');
+
+    years.forEach(year => {
+      const tab = document.createElement('button');
+      tab.className = `px-3 py-1 rounded text-sm font-medium transition-colors ${year === 2025
+        ? 'bg-blue-500 text-white'
+        : 'bg-white text-gray-600 hover:bg-gray-100'
+        }`;
+      tab.textContent = year;
+      tab.addEventListener('click', () => selectYear(year));
+      yearTabsContainer.appendChild(tab);
+    });
+
+    function selectYear(selectedYear) {
+      // Update tab styles
+      const tabs = yearTabsContainer.children;
+      Array.from(tabs).forEach(tab => {
+        if (parseInt(tab.textContent) === selectedYear) {
+          tab.className = 'px-3 py-1 rounded text-sm font-medium bg-blue-500 text-white transition-colors';
+        } else {
+          tab.className = 'px-3 py-1 rounded text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 transition-colors';
+        }
+      });
+    }
+
+    // Navigation buttons
+    document.getElementById('prevYear').addEventListener('click', () => {
+      console.log('Previous year clicked');
+    });
+
+    document.getElementById('nextYear').addEventListener('click', () => {
+      console.log('Next year clicked');
+    });
+
+    // Add click handlers for interactive elements
+    document.querySelectorAll('.hover-scale').forEach(element => {
+      element.addEventListener('click', function () {
+        const text = this.textContent.trim();
+        alert(`Clicked: ${text}`);
+      });
+    });
+
+    // Add some animation on load
+    window.addEventListener('load', () => {
+      const elements = document.querySelectorAll('.hover-scale');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
+          setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, 100);
+        }, index * 200);
+      });
+    });
+  </script>
+
+<script>
+  const popup = document.getElementById("popup");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupPercent = document.getElementById("popupPercent");
+  const popupContent = document.getElementById("popupContent");
+
+  let activeButton = null;
+
+  const data = {
+    netWorth: {
+      title: "Net Worth",
+      percent: "42%",
+      items: [
+        { date: "1 Jul, 2025", amount: "$300" },
+        { date: "1 Jun, 2025", amount: "$250" },
+        { date: "1 May, 2025", amount: "$200" },
+      ],
+    },
+    expenses: {
+      title: "Expenses",
+      percent: "58%",
+      items: [
+        { date: "5 Jul, 2025", amount: "$200" },
+        { date: "5 Jun, 2025", amount: "$150" },
+        { date: "5 May, 2025", amount: "$100" },
+      ],
+    },
+    income: {
+      title: "Income",
+      percent: "42%",
+      items: [
+        { date: "3 Jul, 2025", amount: "$100" },
+        { date: "3 Jun, 2025", amount: "$50" },
+        { date: "3 Apr, 2025", amount: "$50" },
+      ],
+    },
+    rent: {
+      title: "Rent",
+      percent: "14%",
+      items: [
+        { date: "1 Jul, 2025", amount: "$500" },
+        { date: "1 Jun, 2025", amount: "$500" },
+        { date: "1 May, 2025", amount: "$500" },
+      ],
+    },
+  };
+
+  function togglePopup(event, type) {
+    event.stopPropagation();
+
+    if (activeButton === event.currentTarget) {
+      closePopup();
+      return;
+    }
+
+    activeButton = event.currentTarget;
+    const content = data[type];
+
+    popupTitle.textContent = content.title;
+    popupPercent.textContent = content.percent;
+
+    popupContent.innerHTML = content.items.map(item => `
+      <div class="flex justify-between border-b pb-3">
+        <span>${item.date}</span>
+        <span class="font-medium">${item.amount}</span>
+      </div>
+    `).join("");
+
+    const rect = activeButton.getBoundingClientRect();
+    const popupWidth = 384; // Tailwind w-96
+    const offset = 12;
+
+    let left = rect.right + offset;
+
+    // If popup would overflow right side → show on left
+    if (left + popupWidth > window.innerWidth) {
+      left = rect.left - popupWidth - offset;
+    }
+
+    popup.style.left = left + "px";
+    popup.style.top = rect.top + "px";
+
+    popup.classList.remove("hidden");
+
+    setTimeout(() => {
+      popup.classList.remove("scale-95", "opacity-0");
+      popup.classList.add("scale-100", "opacity-100");
+    }, 10);
+  }
+
+  function closePopup() {
+    popup.classList.add("scale-95", "opacity-0");
+    popup.classList.remove("scale-100", "opacity-100");
+
+    setTimeout(() => {
+      popup.classList.add("hidden");
+      activeButton = null;
+    }, 200);
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!popup.contains(e.target)) {
+      closePopup();
+    }
+  });
+</script>
+
+  <script src="./assets/js/dashboard.js"></script>
+  <script src="./assets/js/popup.js"></script>
+  <script src="./assets/js/search-popup.js"></script>
+  <script src="./assets/js/notification.js"></script>
+  <script src="./assets/js/budget-table.js"></script>
+  <script src="./assets/js/menu.js"></script>
+  <script src="./index.js"></script>
 
 </body>
 
