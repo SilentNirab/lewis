@@ -798,7 +798,7 @@
                         <input
                           type="text"
                           id="your-name"
-                          class="w-full text-black px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0"
+                          class="w-full text-black px-4 py-3 border border-gray-300 text-sm rounded-full focus:outline-none focus:ring focus:ring-green-100 mt-3 md:mt-0"
                         />
                       </div>
                     </div>
@@ -842,7 +842,7 @@
                             type="text"
                             id="username"
                             value="olivia"
-                            class="w-full text-black px-4 py-3 border border-gray-300 rounded-r-full focus:outline-none focus:ring focus:ring-green-100"
+                            class="w-full text-black px-4 py-3 border border-gray-300 text-sm rounded-r-full focus:outline-none focus:ring focus:ring-green-100"
                           />
                         </div>
                       </div>
@@ -1806,7 +1806,7 @@
                           type="password"
                           id="current-password"
                           placeholder="••••••••"
-                          class="w-full px-4 py-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-green-100"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-100"
                         />
                       </div>
                     </div>
@@ -1825,7 +1825,7 @@
                             type="password"
                             id="new-password"
                             placeholder="••••••••"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-green-100"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-100"
                           />
                           <span class="text-xs text-[#00000099]"
                             >Your new password must be more than 8
@@ -1848,7 +1848,7 @@
                           type="password"
                           id="confirm-password"
                           placeholder="••••••••"
-                          class="w-full px-4 py-3 border border-gray-300 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-green-100"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-100"
                         />
                       </div>
                     </div>
@@ -1905,15 +1905,15 @@
                           class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
                         >
                           <div>
-                            <p class="text-sm font-semibold">
+                            <p class="text-sm font-medium">
                               Authentication App
                             </p>
                             <p class="text-black/60 text-xs mb-2">
                               Google Auth app
                             </p>
-                            <p class="text-xs text-black/40">
+                            <p class="text-sm font-semibold text-black/40">
                               Set as default
-                              <a href="#" class="text-green-500">Edit</a>
+                              <a href="#" class="edit-link text-black/40 transition-colors duration-300 pl-2">Edit</a>
                             </p>
                           </div>
 
@@ -1932,13 +1932,13 @@
                           class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
                         >
                           <div>
-                            <p class="text-sm font-semibold">Primary Email</p>
+                            <p class="text-sm font-medium">Primary Email</p>
                             <p class="text-black/60 text-xs mb-2">
                               E-mail used to send notifications
                             </p>
-                            <p class="text-xs text-black/40">
+                            <p class="text-sm font-semibold text-black/40">
                               Set as default
-                              <a href="#" class="text-green-500">Edit</a>
+                              <a href="#" class="edit-link text-black/40 transition-colors duration-300 pl-2">Edit</a>
                             </p>
                           </div>
 
@@ -1957,13 +1957,13 @@
                           class="card-inner border border-gray-300 rounded-xl p-4 flex justify-between items-start transition-all duration-300"
                         >
                           <div>
-                            <p class="text-sm font-semibold">SMS Recovery</p>
+                            <p class="text-sm font-medium">SMS Recovery</p>
                             <p class="text-black/60 text-xs mb-2">
                               Your phone number or something
                             </p>
-                            <p class="text-xs text-black/40">
+                            <p class="text-sm font-semibold text-black/40">
                               Set as default
-                              <a href="#" class="text-green-500">Edit</a>
+                              <a href="#" class="edit-link text-black/40 transition-colors duration-300 pl-2">Edit</a>
                             </p>
                           </div>
 
@@ -2417,7 +2417,7 @@
           <div class="">
             <!-- Highlighted Suggestion Item (Transaction) -->
             <div
-              class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+              class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,#0D743B_-32.88%,#FCE166_151.27%)] hover:text-white cursor-pointer"
             >
               <div
                 class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
@@ -3143,10 +3143,19 @@
             cards.forEach((c) => {
               const inner = c.querySelector(".card-inner");
               const icon = c.querySelector(".check-icon-active");
+              const editLink = c.querySelector(".edit-link");
 
               c.style.background = "";
+              c.style.padding = "";
+
               inner.classList.remove("bg-white");
               inner.classList.add("border", "border-gray-300");
+
+              // Reset edit color to gray
+              if (editLink) {
+                editLink.classList.remove("text-green-500");
+                editLink.classList.add("text-black/40");
+              }
 
               if (icon) {
                 icon.classList.add("hidden");
@@ -3157,12 +3166,19 @@
             // Activate selected card
             const inner = card.querySelector(".card-inner");
             const icon = card.querySelector(".check-icon-active");
+            const editLink = card.querySelector(".edit-link");
 
             card.style.padding = "1.5px";
             card.style.background = `linear-gradient(${card.dataset.gradient})`;
 
             inner.classList.remove("border", "border-gray-300");
             inner.classList.add("bg-white", "rounded-xl");
+
+            // Make Edit text green
+            if (editLink) {
+              editLink.classList.remove("text-gray-400");
+              editLink.classList.add("text-green-500");
+            }
 
             if (icon) {
               icon.classList.remove("hidden");

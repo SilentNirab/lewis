@@ -319,7 +319,7 @@
   </style>
 </head>
 
-<body class="bg-[#F5F5F5] pt-16">
+<body class="bg-[#F5F5F5]">
   <!-- Header -->
   <div class="main-container">
       <!-- Header -->
@@ -755,69 +755,67 @@
 
 
         <div class="flex items-start gap-7 w-full">
-          <div class="bg-[#f7f7f7] w-full shadow-sm p-3 lg:mt-0 mt-5" style="
+          <div class="bg-[#f7f7f7] w-full p-3 border lg:mt-0 mt-5" style="
                   border-radius: 24px;
                   
                   backdrop-filter: blur(40px);
                 ">
             <!-- Header -->
-            <div class="flex justify-between items-center pb-4">
-              <!-- Left part -->
-              <div class="border-gray-200 block lg:flex gap-5 items-center">
-                <h1 class="lg:text-xl font-semibold text-gray-900">
-                  Forecast Plan Vs Actual
-                </h1>
-                <div class="bg-gray-200 mt-2 lg:mt-0 rounded-full p-1 w-fit flex">
-                  <div onclick="window.location.href='./plan.html'"
-                    class=" cursor-pointer rounded-full p-2 h-full w-fit text-xs text-gray-600 px-4">
-                    <p>Grid</p>
-                  </div>
-                  <div onclick="window.location.href='./plan-chart.html'"
-                    class=" rounded-full cursor-pointer p-2 h-full w-fit text-xs text-gray-600 px-4">
-                    <p>Chart</p>
-                  </div>
-                  <div onclick="window.location.href='./plan-time.html'"
-                    class="rounded-full bg-green-500 cursor-pointer p-2 h-full w-fit text-xs text-white px-4">
-                    <p>Timeline</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Right part -->
-              <div class="block lg:flex gap-2">
-                <div class="relative">
-                  <div class="custom-dropdown">
-                    <button class="dropdown-trigger" data-dropdown="dropdown1">
-                      <span class="dropdown-value">2025</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5" stroke="#667085" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu" id="dropdown1">
-                      <div class="dropdown-item" data-value="2025">2025</div>
-                      <div class="dropdown-item" data-value="2024">2024</div>
-                      <div class="dropdown-item" data-value="2023">2023</div>
+              <div class="flex flex-col md:flex-row justify-between md:items-center mb-5 md:mb-8 ">
+                <!-- Left part -->
+                <div
+                  class="w-full border-gray-200 block lg:flex gap-5 items-center"
+                >
+                  <h1 class="text-xl font-medium text-black md:mt-0">
+                    Forecast Plan Vs Actual
+                  </h1>
+                  <div
+                    class="bg-[rgba(235,234,234,0.64)] mt-4 lg:mt-0 rounded-full p-1 w-full md:w-fit flex"
+                  >
+                    <div
+                      class="text-center cursor-pointer rounded-full p-2 h-full w-full md:w-fit text-xs text-black/70 px-4"
+                      onclick="window.location.href = './plan.html'"
+                    >
+                      <p>Grid</p>
+                    </div>
+                    <div
+                      onclick="window.location.href = './plan-chart.html'"
+                      class="rounded-full text-center cursor-pointer p-2 h-full w-full md:w-fit text-xs text-black/70 px-4"
+                    >
+                      <p>Chart</p>
+                    </div>
+                    <div
+                      onclick="window.location.href = './plan-time.html'"
+                      class="bg-[#1BB15F] rounded-full text-center cursor-pointer p-2 h-full w-full md:w-fit text-xs text-white px-4"
+                    >
+                      <p>Timeline</p>
                     </div>
                   </div>
                 </div>
-                <div class="relative">
-                  <div class="custom-dropdown lg:block hidden">
-                    <button class="dropdown-trigger" data-dropdown="dropdown1">
-                      <span class="dropdown-value">Monthly</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5" stroke="#667085" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu" id="dropdown1">
-                      <div class="dropdown-item" data-value="Monthly">Monthly</div>
-                      <div class="dropdown-item" data-value="Yearly">Yearly</div>
-                      <div class="dropdown-item" data-value="Weekly">Weekly</div>
-                    </div>
+                <!-- Right part -->
+                <div class="block w-fit lg:flex gap-2 space-y-1 lg:space-y-0">
+                  <div class="relative">
+                      <div class="flex items-center lg:gap-2 gap-1">
+                        <div
+                          class="bg-[rgba(235,234,234,0.64)] mt-6 md:mt-4 lg:mt-0 rounded-full p-1 w-full md:w-fit flex"
+                        >
+                          <button
+                            id="month-toggle"
+                            class="rounded-full text-center cursor-pointer p-2 px-4 h-full w-full md:w-fit text-xs text-black/70 bg-transparent"
+                          >
+                            Month
+                          </button>
+                          <button
+                            id="year-toggle"
+                            class="rounded-full text-center cursor-pointer p-2 px-4 h-full w-full md:w-fit text-xs text-white"
+                          >
+                            Yearly
+                          </button>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
-            </div>
             <!-- Card Views -->
             <div>
               <!-- Table part -->
@@ -847,18 +845,18 @@
                   </div>
                 </div>
 
-                <div class="flex justify-between items-center pl-[160px] pr-10">
+                <div class="flex justify-between items-center pl-40 pr-10">
 
-                  <div class="timeline-cell p-4 lg:block hidden font-semibold text-center text-gray-700"><i
+                  <div class="timeline-cell p-4 md:py-8 lg:block hidden font-semibold text-center text-gray-700"><i
                       class="fas fa-chevron-left"></i> 2022</div>
-                  <div class="timeline-cell p-4  font-semibold text-center text-gray-700">2023</div>
-                  <div class="timeline-cell p-4 0 font-semibold text-center text-gray-700">2024</div>
-                  <div class="timeline-cell p-4  font-semibold text-center text-gray-700">2025</div>
-                  <div class="timeline-cell p-4  font-semibold text-center text-gray-700">2026</div>
-                  <div class="timeline-cell p-4  font-semibold text-center text-gray-700">2027</div>
-                  <div class="timeline-cell p-4  font-semibold text-center text-gray-700">2028</div>
-                  <div class="timeline-cell p-4 0 font-semibold text-center text-gray-700">2029</div>
-                  <div class="timeline-cell p-4 lg:block hidden font-semibold text-center text-gray-700">2030 <i
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2023</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2024</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2025</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2026</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2027</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2028</div>
+                  <div class="timeline-cell p-4 md:py-8  font-semibold text-center text-gray-700">2029</div>
+                  <div class="timeline-cell p-4 md:py-8 lg:block hidden font-semibold text-center text-gray-700">2030 <i
                       class="fas fa-chevron-right"></i></div>
 
                 </div>
@@ -869,23 +867,23 @@
 
 
                   <!-- Units Row -->
-                  <div class="timeline-cell  p-4  font-mediumv text-center text-gray-700">Units</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
-                  <div class="timeline-cell p-4 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 font-medium text-center text-gray-700">Units</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
+                  <div class="timeline-cell p-4 md:py-8 text-center text-sm text-gray-600">$1,000,000</div>
 
                   <!-- Net Worth Row -->
-                  <div class="timeline-cell p-4 bg-[#f3fff9] text-center font-medium text-gray-700">Net Worth</div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 h-[100px] relative bg-[#f3fff9]">
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9] text-center font-medium text-gray-700">Net Worth</div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 h-[100px] relative bg-[#f3fff9]">
                     <div class="dotted-line"></div>
                     <div class="relative z-10  flex justify-center ">
                       <svg class="absolute" width="276" height="44" viewBox="0 0 276 44" fill="none"
@@ -945,18 +943,18 @@
                       </svg>
                     </div>
                   </div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
-                  <div class="timeline-cell p-4 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f3fff9]"></div>
 
                   <!-- Income Row -->
-                  <div class="timeline-cell p-4 bg-[#f8fdec] text-center font-medium text-gray-700">Income</div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec] relative">
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] text-center font-medium text-gray-700">Income</div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] relative">
                     <div class="dotted-line"></div>
                     <div class="relative z-10 space-y-2 h-[100px]">
                       <div class="flex justify-center">
@@ -1085,18 +1083,18 @@
 
                     </div>
                   </div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
 
                   <!-- Expenses Row -->
-                  <div class="timeline-cell p-4 bg-[#f8fdec] font-medium text-center text-gray-700">Expenses</div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec] relative">
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] font-medium text-center text-gray-700">Expenses</div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec] relative">
                     <div class="dotted-line"></div>
                     <div class="relative z-10 h-[100px] flex justify-center">
                       <svg class="absolute" width="276" height="44" viewBox="0 0 276 44" fill="none"
@@ -1157,11 +1155,11 @@
 
                     </div>
                   </div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
-                  <div class="timeline-cell p-4 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
+                  <div class="timeline-cell p-4 md:py-8 bg-[#f8fdec]"></div>
                 </div>
 
                 <!-- Legend -->
@@ -2664,6 +2662,46 @@
       });
     });
   </script>
+  <script>
+  const monthToggle = document.getElementById("month-toggle");
+  const yearToggle = document.getElementById("year-toggle");
+
+  function setActive(activeBtn, inactiveBtn, mode) {
+    // Active button style
+    activeBtn.classList.add("bg-[#1BB15F]", "text-white");
+    activeBtn.classList.remove("text-black/70", "bg-transparent");
+    activeBtn.style.background = "#1BB15F";
+
+    // Inactive button style
+    inactiveBtn.classList.remove("bg-[#1BB15F]", "text-white");
+    inactiveBtn.classList.add("text-black/70", "bg-transparent");
+    inactiveBtn.style.background = "";
+
+    // Update values
+    document
+      .querySelectorAll("[data-month], [data-year]")
+      .forEach((el) => {
+        const value = el.getAttribute(`data-${mode}`);
+        if (value) el.textContent = value;
+      });
+  }
+
+  // Default: Month active
+  document.addEventListener("DOMContentLoaded", () => {
+    setActive(monthToggle, yearToggle, "month");
+  });
+
+  // Month click
+  monthToggle.addEventListener("click", () => {
+    setActive(monthToggle, yearToggle, "month");
+  });
+
+  // Year click
+  yearToggle.addEventListener("click", () => {
+    setActive(yearToggle, monthToggle, "year");
+  });
+</script>
+
 </body>
 
 </html>
