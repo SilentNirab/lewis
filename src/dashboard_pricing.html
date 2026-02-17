@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Dashboard</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#22c55e",
+              "primary-dark": "#16a34a",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+
+      .check-icon {
+        width: 16px;
+        height: 16px;
+        background-color: #1bb15f;
+        /* Green background */
+        border-radius: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
+
+      .check-icon::after {
+        content: "✓";
+        color: white;
+        /* White checkmark */
+        font-size: 10px;
+        font-weight: bold;
+      }
+    </style>
+    <style>
+      /* Enhanced CSS for sidebar expand/collapse with proper layout management */
+      #sidebar {
+        width: 80px;
+        transition: width 0.3s ease;
+        position: fixed;
+        left: 0;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        z-index: 40;
+      }
+
+      @media (min-width: 1024px) {
+        #sidebar {
+          top: 5rem;
+          height: calc(100vh - 5rem);
+        }
+      }
+
+      #sidebar.expanded {
+        width: 250px;
+      }
+
+      /* Main content adjusts width and margin based on sidebar state */
+      main {
+        transition: width 0.3s ease, margin-left 0.3s ease;
+        overflow-x: hidden;
+      }
+
+      /* Large screens - sidebar layout */
+      @media (min-width: 1024px) {
+        main {
+          width: calc(100vw - 80px);
+          max-width: calc(100vw - 80px);
+        }
+
+        main.sidebar-expanded {
+          width: calc(100vw - 250px);
+          margin-left: 200px;
+          max-width: calc(100vw - 250px);
+        }
+      }
+
+      /* Small screens - full width */
+      @media (max-width: 1023px) {
+        main {
+          width: 100vw !important;
+          max-width: 100vw !important;
+          margin-left: 0 !important;
+        }
+      }
+
+      /* Hide labels by default, show when sidebar is expanded */
+      .sidebar-label {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        margin-left: 12px;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      #sidebar.expanded .sidebar-label {
+        display: inline;
+        opacity: 1;
+      }
+
+      /* Adjust sidebar items layout when expanded */
+      .sidebar-item {
+        transition: all 0.3s ease;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      #sidebar.expanded .sidebar-item {
+        justify-content: flex-start;
+        padding: 12px 16px;
+        width: 100%;
+      }
+
+      /* Rotate expand icon when sidebar is expanded */
+      #sidebar.expanded .expand-icon {
+        transform: rotate(180deg);
+      }
+
+      /* Background colors for sidebar items */
+      #sidebar .sidebar-item {
+        background: #f1f0f1;
+        /* bg-gray-100 for inactive items */
+      }
+
+      #sidebar .sidebar-item.active {
+        background: white;
+        /* bg-white for active item */
+      }
+
+      #sidebar.expanded .sidebar-item {
+        background: transparent;
+      }
+
+      #sidebar.expanded .sidebar-item.active {
+        background: white;
+      }
+
+      /* Smooth transitions for all elements */
+      * {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#F5F5F5]">
+    <div class="main-container">
+      <!-- Header -->
+      <header class="fixed inset-0 bg-[#F5F5F5] z-40 h-16 lg:h-20">
+        <div class="py-2 hidden lg:flex mx-auto px-4 lg:pl-4 sm:px-6 lg:px-8">
+          <div class="flex w-full justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <a href="http://gharmish.com/" class="cursor-pointer">
+                  <a href="gharmish://" class="cursor-pointer">
+                    <img
+                      src="./assets/images/logo_full-removebg-preview.png"
+                      class="h-12 w-auto"
+                    />
+                  </a>
+                </a>
+              </div>
+            </div>
+            <!-- Navigation -->
+            <nav
+              class="hidden md:flex md:flex-row border border-[rgba(201, 197, 197, 0.68)] p-1 rounded-3xl items-center b space-x-2"
+            >
+              <a
+                href="./dashboard.html"
+                class="px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Features</a
+              >
+              <a
+                href="./dashboard_pricing.html"
+                class="text-white bg-[#0D6B37] px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Plan & Pricing</a
+              >
+              <a
+                href="./download.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Download</a
+              >
+              <a
+                href="./contact.html"
+                class="text-black hover:bg-white px-6 xl:px-12 py-2.5 rounded-full text-sm font-medium"
+                >Contact</a
+              >
+            </nav>
+            <!-- Right side -->
+            <div class="flex items-center space-x-1">
+              <button
+                class="bg-white hover:bg-gray-50 search_btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none">
+                  <path
+                    d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path
+                    d="M17.5 17.5L13.875 13.875"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button
+                class="bg-white hover:bg-gray-50 notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.0002 2.25C8.32001 2.25 5.25022 5.06847 5.25022 8.64153V9.69723C5.25022 10.7247 4.9461 11.7291 4.37618 12.584C4.36613 12.599 4.35663 12.6145 4.3477 12.6302L3.96906 13.2984C3.47894 14.1633 3.31926 15.1751 3.51495 16.1479C3.52959 16.2207 3.55335 16.3222 3.59151 16.4448C4.05486 17.9332 5.50116 18.6986 6.69011 19.0567C7.04543 19.1637 7.42267 19.2581 7.81665 19.3398L7.86793 19.4217C8.96229 21.1684 10.4349 22.2 12.0508 22.2C13.6667 22.2 15.1393 21.1684 16.2336 19.4217L16.3004 19.3152C16.6543 19.2388 16.9941 19.1521 17.3159 19.055C18.5204 18.6916 19.9095 17.9122 20.3923 16.4556C20.4104 16.4008 20.4255 16.3522 20.437 16.315C20.45 16.2731 20.4556 16.2551 20.4596 16.2436C20.4702 16.2126 20.4788 16.1809 20.4853 16.1488C20.6824 15.175 20.5212 14.1628 20.0314 13.2984L19.6527 12.6302C19.6438 12.6145 19.6343 12.599 19.6243 12.584C19.0543 11.7291 18.7502 10.7247 18.7502 9.69723V8.64153C18.7502 5.06847 15.6804 2.25 12.0002 2.25ZM14.1888 19.6352C12.7973 19.7681 11.3186 19.7715 9.92262 19.6455C10.638 20.3892 11.3824 20.7 12.0508 20.7C12.7223 20.7 13.4704 20.3863 14.1888 19.6352ZM6.75022 8.64153C6.75022 5.98312 9.0595 3.75 12.0002 3.75C14.9409 3.75 17.2502 5.98312 17.2502 8.64153V9.69723C17.2502 11.0115 17.6365 12.2965 18.3607 13.3927L18.7263 14.0379C19.0312 14.576 19.136 15.204 19.0229 15.8111L19.0067 15.863L19.0041 15.8714C18.9928 15.9079 18.9815 15.9442 18.9684 15.9836C18.7159 16.7455 17.9157 17.3073 16.8826 17.6189C14.1506 18.4432 9.85676 18.4437 7.12262 17.6204C6.06682 17.3024 5.2572 16.749 5.02372 15.9989C5.00291 15.9321 4.99137 15.8813 4.98549 15.8521C4.8606 15.2313 4.9628 14.5873 5.2741 14.0379L5.63973 13.3927C6.36395 12.2965 6.75022 11.0115 6.75022 9.69723V8.64153Z"
+                    fill="black" />
+                  <path
+                    d="M20.3876 8.2512C20.8012 8.27461 21.1174 8.62884 21.094 9.04239C21.06 9.64315 21.0781 10.0599 21.1743 10.4179C21.2661 10.7597 21.4425 11.0956 21.8042 11.4999C22.0804 11.8086 22.054 12.2827 21.7453 12.5589C21.4366 12.8351 20.9625 12.8088 20.6863 12.5001C20.198 11.9544 19.889 11.4154 19.7256 10.8071C19.5666 10.2151 19.5597 9.60685 19.5964 8.95761C19.6198 8.54406 19.9741 8.22779 20.3876 8.2512Z"
+                    fill="black" />
+                  <path
+                    d="M4.40272 8.95761C4.37931 8.54406 4.02508 8.22779 3.61153 8.2512C3.19798 8.27461 2.88171 8.62884 2.90512 9.04239C2.93912 9.64315 2.92105 10.0599 2.82488 10.4179C2.73308 10.7597 2.5567 11.0956 2.19498 11.4999C1.91879 11.8086 1.94513 12.2827 2.25382 12.5589C2.56251 12.8351 3.03665 12.8088 3.31284 12.5001C3.80113 11.9544 4.11012 11.4154 4.27352 10.8071C4.43255 10.2151 4.43947 9.60685 4.40272 8.95761Z"
+                    fill="black" />
+                </svg>
+              </button>
+              <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+                <img
+                  src="./assets/images/userr.png"
+                  alt="User"
+                  class="w-full h-full object-cover" />
+              </div>
+              <!-- Mobile menu button -->
+              <button
+                class="md:hidden text-gray-600"
+                onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="py-1 pt-2 lg:hidden flex items-center justify-between px-4">
+          <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
+            <img
+              src="./assets/images/userr.png"
+              alt="User"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex items-center gap-1">
+            <button
+              class="bg-white notification-btn-sm size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+            >
+              <img src="./assets/images/notification.svg" />
+            </button>
+            <button
+              id="menuToggle"
+              class="bg-white notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+            >
+              <img src="./assets/images/menu.svg" />
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- sidebar menu toggle  -->
+      <div
+        id="menuOverlay"
+        class="fixed inset-0 lg:hidden menu-overlay sidebar-hidden transition-all duration-300 ease-in-out z-[500]"
+      >
+        <div class="flex justify-end h-full">
+          <div class="w-72 h-full bg-white shadow-2xl flex flex-col">
+            <div class="flex justify-start pl-7 pt-7 pb-7">
+              <button
+                id="closeBtn"
+                class="w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <nav class="flex-1 px-6">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="./dashboard.html"
+                    style="
+                      border-radius: 60px;
+                      background: linear-gradient(
+                        178deg,
+                        #0d743b -32.88%,
+                        #fce166 151.27%
+                      );
+                    "
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M13.4792 12.3566C13.6301 12.0462 13.5008 11.6722 13.1903 11.5213C12.8799 11.3704 12.5059 11.4997 12.355 11.8101C12.3046 11.9137 12.0517 12.256 11.6056 12.575C11.1747 12.883 10.6242 13.125 10.0004 13.125C8.69022 13.125 7.99143 12.3347 7.6082 11.7434C7.42046 11.4538 7.03345 11.3712 6.7438 11.5589C6.45414 11.7466 6.37152 12.1337 6.55926 12.4233C7.04023 13.1654 8.06984 14.375 10.0004 14.375C10.9536 14.375 11.7534 14.0059 12.3326 13.5918C12.8966 13.1885 13.3135 12.6975 13.4792 12.3566Z"
+                        fill="black"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.2561 2.15038L11.985 2.62786L18.6743 6.97591C18.9638 7.16403 19.0459 7.55115 18.8578 7.84056C18.6696 8.12997 18.2825 8.21209 17.9931 8.02397L17.2608 7.54796C17.2815 7.70262 17.2921 7.85957 17.2921 8.01795V15.0001C17.2921 16.9561 15.7064 18.5417 13.7504 18.5417H6.2504C4.29439 18.5417 2.70873 16.9561 2.70873 15.0001V8.01795C2.70873 7.85957 2.71932 7.70262 2.74001 7.54796L2.00768 8.02397C1.71827 8.21209 1.33116 8.12997 1.14304 7.84056C0.95492 7.55115 1.03704 7.16403 1.32645 6.97591L8.01575 2.62787L8.74474 2.15038C9.50733 1.65088 10.4935 1.65088 11.2561 2.15038ZM10.5681 3.19771L11.3019 3.67469L15.0061 6.10091C15.6525 6.52435 16.0421 7.24512 16.0421 8.01795V15.0001C16.0421 16.2657 15.0161 17.2917 13.7504 17.2917H6.2504C4.98475 17.2917 3.95873 16.2657 3.95873 15.0001V8.01795C3.95873 7.24512 4.34825 6.52435 4.99474 6.10091L8.69886 3.6747L9.4327 3.19771C9.77791 2.97332 10.2229 2.97332 10.5681 3.19771Z"
+                        fill="black"
+                      />
+                    </svg>
+                    <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./finance-account.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/finance.svg" />
+                    <span>Financial Accounts</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="./transactions.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Transactions</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./budget.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span>Budgets</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./plan.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/planIcon.svg" />
+                    <span>Plan</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./report.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span>Reports</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_booking.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/billIcon.svg" />
+                    <span>Bills</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_category.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span>Other</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./dashboard_setting.html"
+                    style="border-radius: 60px"
+                    class="text-black rounded-full px-4 py-2.5 flex items-center space-x-4 text-base font-medium transition-all hover:shadow-lg"
+                    data-page="home"
+                  >
+                    <img src="./assets/images/setting.svg" />
+                    <span>Settings</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex">
+        <!-- Sidebar -->
+        <div
+          class="lg:w-12 hidden lg:flex"
+          style="
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          "
+        >
+          <aside
+            style="
+              overflow: auto;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            "
+            class="overflow-y-auto w-[80px] h-screen fixed inset-0 transition-all duration-300"
+            id="sidebar"
+          >
+            <div class="p-4">
+              <nav class="flex flex-col items-stretch h-full">
+                <div class="space-y-2">
+                  <a
+                    href="./dashboard.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full bg-white! text-black hover:bg-white!"
+                  >
+                    <span class="dcenter block">
+                      <i class="fa-solid fa-house block"></i>
+                    </span>
+                    <span class="sidebar-label">Home</span>
+                  </a>
+
+                  <a
+                    href="./finance-account.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/finance.svg" />
+                    <span class="sidebar-label">Financial Accounts</span>
+                  </a>
+
+                  <a
+                    href="./transactions.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/transactions.svg" />
+                    <span class="sidebar-label">Transactions</span>
+                  </a>
+
+                  <a
+                    href="./budget.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/budgetIcon.svg" />
+                    <span class="sidebar-label">Budget</span>
+                  </a>
+
+                  <a
+                    href="./plan.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/planIcon.svg" />
+                    <span class="sidebar-label">Plan</span>
+                  </a>
+
+                  <a
+                    href="./report.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/reportIcon.svg" />
+                    <span class="sidebar-label">Reports</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_booking.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/billIcon.svg" />
+                    <span class="sidebar-label">Bills</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_category.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/OtherIcon.svg" />
+                    <span class="sidebar-label">Other</span>
+                  </a>
+
+                  <a
+                    href="./dashboard_setting.html"
+                    class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                  >
+                    <img src="./assets/images/setting.svg" />
+                    <span class="sidebar-label">Settings</span>
+                  </a>
+                  <div class="">
+                    <button
+                      id="expandBtn"
+                      style="
+                        background: linear-gradient(
+                          0deg,
+                          rgba(255, 255, 255, 0.36) 0%,
+                          rgba(252, 253, 254, 0.36) 100%
+                        );
+                        backdrop-filter: blur(40px);
+                      "
+                      class="sidebar-item size-[48px] rounded-full dcenter text-primary bg-[#FCFDFE] hover:bg-white! border-0 cursor-pointer transition-all"
+                    >
+                      <svg
+                        class="expand-icon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M5.41667 1.875C3.46066 1.875 1.875 3.46066 1.875 5.41667V14.5833C1.875 16.5393 3.46066 18.125 5.41667 18.125H14.5833C16.5393 18.125 18.125 16.5393 18.125 14.5833V5.41667C18.125 3.46066 16.5393 1.875 14.5833 1.875H5.41667ZM3.125 5.41667C3.125 4.15101 4.15101 3.125 5.41667 3.125H6.875L6.875 16.875H5.41667C4.15101 16.875 3.125 15.849 3.125 14.5833V5.41667ZM8.125 16.875H14.5833C15.849 16.875 16.875 15.849 16.875 14.5833V5.41667C16.875 4.15101 15.849 3.125 14.5833 3.125H8.125L8.125 16.875Z"
+                          fill="black"
+                        />
+                      </svg>
+                      <span class="sidebar-label text-black">Expand</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="absolute bottom-10">
+                  <a
+                    href="#"
+                    class="sidebar-item size-[48px] rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black"
+                  >
+                    <img src="./assets/images/call.svg" />
+                    <span class="sidebar-label">Support</span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 lg:p-10 lg:pt-8 lg:pr-4 w-full lg:w-11/12">
+          <!-- Dashboard Header -->
+          <div
+            class="flex flex-col pt-14 sm:flex-row justify-between items-start sm:items-center mb-7"
+          >
+            <div class="lg:mt-0 mt-4">
+              <h1 class="lg:text-4xl text-2xl font-medium text-[#010101]">
+                Plan & Pricing
+              </h1>
+              <p
+                style="color: rgba(0, 0, 0, 0.6)"
+                class="text-sm font-normal mt-1"
+              >
+                Flexible plans with clear pricing. No hidden fees.
+              </p>
+            </div>
+          </div>
+          <!-- Pricing Section -->
+          <section
+            class="p-3 md:p-5 rounded-xl border border-[#FFFFFF33] bg-[#FFFFFFB2]"
+            id="pricing"
+            style="border-radius: 24px; backdrop-filter: blur(10px)"
+          >
+            <div class="">
+              <!-- Monthly/Yearly Toggle -->
+
+              <div class="flex justify-start w-full mb-4 2xl:w-fit">
+                <div
+                  class="inline-flex gap-3 bg-[#EBEAEAAD] w-full sm:w-fit border border-gray-200 rounded-full p-1.5"
+                >
+                  <button
+                    id="monthly-toggle"
+                    class="px-7 py-3 w-full rounded-full text-sm bg-[#1BB15F] text-white transition-colors cursor-pointer"
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    id="yearly-toggle"
+                    class="px-7 py-3 w-full  rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                  >
+                    Yearly
+                  </button>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <!-- Standard Plan -->
+                  <style>
+                    .planCard {
+                      background: #fff;
+                      transition: ease 1s;
+                    }
+
+                    .planCard:hover {
+                      background: linear-gradient(
+                        158deg,
+                        #0d743b -32.88%,
+                        #fce166 101.27%
+                      );
+                    }
+
+                    .planCard:hover .features i {
+                      color: #1bb15f;
+                    }
+
+                    .planCard:hover button {
+                      background: linear-gradient(
+                        135deg,
+                        #0b6b37 0%,
+                        #1bb15f 100%
+                      );
+                      color: #fff;
+                    }
+                  </style>
+                  <div class="rounded-2xl p-[2px] planCard">
+                    <div
+                      class="bg-white border border-[#0000001A] rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow h-full"
+                    >
+                      <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                          <span class="text-lg font-medium text-black/80"
+                            >Standard plan</span
+                          >
+                          <span
+                            class="bg-green-100 text-green-600 text-xs font-medium px-3 py-1 rounded-full"
+                            >Popular</span
+                          >
+                        </div>
+                        <div
+                          id="standard-price"
+                          class="text-5xl md:text-6xl font-semibold text-black mb-4"
+                        >
+                          $49
+                        </div>
+                        <div class="text-black/80 mb-8 text-sm leading-relaxed">
+                          Ideal for individual users and small businesses.<br />
+                          Use the theme on a single website.
+                        </div>
+                        <button
+                          class="bg-white border border-gray-300 text-gray-600 px-6 py-3 rounded-full font-medium mb-8 hover:bg-gray-50 transition-colors w-full cursor-pointer"
+                        >
+                          Start Building
+                        </button>
+                      </div>
+                      <hr class="text-black/10" />
+                      <div class="flex-1 p-8">
+                        <div
+                          class="font-semibold mb-5 text-gray-800 text-sm tracking-wide"
+                        >
+                          FEATURES
+                          <p class="font-normal mt-1">
+                            Everything in
+                            <span class="font-semibold">Starter</span> plus....
+                          </p>
+                        </div>
+                        <div class="text-gray-600 features text-sm space-y-3">
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Use on a single site</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>All theme features</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Get regular updates</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Multisite Plan -->
+                  <div
+                    class="rounded-2xl p-[2px]"
+                    style="
+                      background: linear-gradient(
+                        158deg,
+                        #0d743b -32.88%,
+                        #fce166 101.27%
+                      );
+                    "
+                  >
+                    <div
+                      class="bg-white rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow h-full"
+                    >
+                      <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                          <span class="text-lg font-medium text-black/80"
+                            >Multisite plan</span
+                          >
+                        </div>
+                        <div
+                          id="multisite-price"
+                          class="text-5xl md:text-6xl font-semibold text-black mb-4"
+                        >
+                          $139
+                        </div>
+                        <div class="text-black/80 mb-8 text-sm leading-relaxed">
+                          Utilize the theme across multiple websites within<br />
+                          your organization or client projects.
+                        </div>
+                        <button
+                          class="gradient-green text-white px-6 py-3 rounded-full font-medium mb-8 hover:opacity-90 transition-opacity w-full cursor-pointer"
+                        >
+                          Start Building
+                        </button>
+                      </div>
+                      <hr class="text-black/10" />
+                      <div class="flex-1 p-8">
+                        <div
+                          class="font-semibold mb-5 text-gray-800 text-sm tracking-wide"
+                        >
+                          FEATURES
+                          <p class="font-normal mt-1">
+                            Everything in
+                            <span class="font-semibold">Standard</span> plus....
+                          </p>
+                        </div>
+                        <div class="text-gray-600 text-sm space-y-3">
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-green-500"
+                            ></i>
+                            <span>Use on unlimited sites</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-green-500"
+                            ></i>
+                            <span>All theme features</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-green-500"
+                            ></i>
+                            <span>Get regular updates</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-green-500"
+                            ></i>
+                            <span>Priority email support</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Extended Plan -->
+                  <div class="rounded-2xl p-[2px] planCard">
+                    <div
+                      class="bg-white border border-[#0000001A] rounded-2xl flex flex-col shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                          <span class="text-lg font-medium text-black/80"
+                            >Extended plan</span
+                          >
+                        </div>
+                        <div
+                          id="extended-price"
+                          class="text-5xl md:text-6xl font-semibold text-black mb-4"
+                        >
+                          $529
+                        </div>
+                        <div class="text-black/80 mb-8 text-sm leading-relaxed">
+                          Use the theme in commercial projects and even<br />
+                          integrate it into products for resale.
+                        </div>
+                        <button
+                          class="bg-white border border-gray-300 text-gray-600 px-6 py-3 rounded-full font-medium mb-8 hover:bg-gray-50 transition-colors w-full cursor-pointer"
+                        >
+                          Start Building
+                        </button>
+                      </div>
+                      <hr class="text-black/10" />
+                      <div class="flex-1 p-8 pt-5">
+                        <div
+                          class="font-semibold mb-5 text-gray-800 text-sm tracking-wide"
+                        >
+                          FEATURES
+                          <p class="font-normal mt-1">
+                            Everything in
+                            <span class="font-semibold">Multisite</span>
+                            plus....
+                          </p>
+                        </div>
+
+                        <div class="text-gray-600 text-sm space-y-3 features">
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Use on unlimited sites</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>All theme features</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Get regular updates</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Priority email support</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Commercial use and resale</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <i
+                              class="fa-regular fa-circle-check text-gray-500"
+                            ></i>
+                            <span>Developer-friendly license</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- notification popup -->
+    <div class="w-full popup max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close-pup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Notification Panel -->
+      <div class="bg-white rounded-3xl p-4 shadow-lg overflow-hidden">
+        <!-- Header -->
+        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+          <h2 class="text-xl font-semibold text-gray-900">Notifications</h2>
+          <a href="#" class="text-sm text-green-600 hover:underline">
+            Mark all as read
+          </a>
+        </div>
+
+        <!-- Notification List -->
+        <div id="notification-list" class="divide-y h-[454px] px-3 overflow-y-auto divide-gray-100">
+          <!-- Notification Item 1 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- search popup -->
+    <div class="search_popup w-full max-w-md mx-auto">
+      <!-- Close Button -->
+      <div class="flex items-center justify-end">
+        <button
+          class="flex items-center close_search_popup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
+          aria-label="Close notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-x">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Search Panel -->
+      <div class="bg-white rounded-[26px] shadow-lg overflow-hidden">
+        <!-- Search Input -->
+        <div class=" -space-y-[7px] z-10 rounded-[26px] p-px " style="
+  background: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);">
+          <label for="search-input" class="sr-only">Search for accounts, transactions, holdings, categories</label>
+          <div class="relative flex items-center  px-4 py-2 bg-white rounded-[26px]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-search text-gray-500 mr-2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input id="search-input" type="text" placeholder="Search for accounts, transactions, holdings, categories"
+              class="flex-1 py-1.5 outline-none placeholder:text-xs text-gray-900 placeholder-gray-500 bg-transparent" />
+          </div>
+        </div>
+
+        <!-- Suggestions Heading -->
+        <h3 class="text-base font-normal text-gray-900 px-4 py-2">
+          Suggestions
+        </h3>
+
+        <!-- Suggestion List -->
+        <div class="">
+          <!-- Highlighted Suggestion Item (Transaction) -->
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Transaction</div>          
+          </div>
+          <!-- Other Suggestion Items (Account/Category) -->
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Account</div>     
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+         <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+          <div class="group flex items-center gap-4 py-3 px-5 w-full 
+         text-black transition-colors duration-200
+         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
+         hover:text-white cursor-pointer">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-gas-pump">
+                <path d="M6 3v14" />
+                <path d="M18 22V8L6 17" />
+                <path d="M2 8h20" />
+                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path d="M7 22h10" />
+                <path d="M12 14v4" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-normal text-sm group-hover:text-white">
+                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+              </div>
+            </div>
+            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      // Toggle mobile menu
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      // Pricing data
+      const pricingData = {
+        monthly: {
+          standard: { price: "$44", period: "/per month" },
+          multisite: { price: "$128", period: "/per month" },
+          extended: { price: "$520", period: "/per month" },
+        },
+        yearly: {
+          standard: { price: "$480", period: "/per year" },
+          multisite: { price: "$1380", period: "/per year" },
+          extended: { price: "$5600", period: "/per year" },
+        },
+      };
+
+      // Update Prices
+      function updatePrices(period) {
+        const data = pricingData[period];
+
+        const standard = document.getElementById("standard-price");
+        const multisite = document.getElementById("multisite-price");
+        const extended = document.getElementById("extended-price");
+
+        // If missing ID → stop safely
+        if (!standard || !multisite || !extended) {
+          console.error("Missing price elements in HTML.");
+          return;
+        }
+
+        standard.innerHTML = `${data.standard.price}<span class="text-base font-normal text-gray-500">${data.standard.period}</span>`;
+        multisite.innerHTML = `${data.multisite.price}<span class="text-base font-normal text-gray-500">${data.multisite.period}</span>`;
+        extended.innerHTML = `${data.extended.price}<span class="text-base font-normal text-gray-500">${data.extended.period}</span>`;
+      }
+
+      // Run when everything is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        const monthlyToggle = document.getElementById("monthly-toggle");
+        const yearlyToggle = document.getElementById("yearly-toggle");
+
+        // Safety: check buttons exist
+        if (!monthlyToggle || !yearlyToggle) {
+          console.error("Toggle buttons missing in HTML.");
+          return;
+        }
+
+        // Monthly active by default
+        monthlyToggle.classList.add("bg-[#1BB15F]", "text-white");
+        monthlyToggle.classList.remove("text-gray-600", "hover:bg-gray-100");
+
+        yearlyToggle.classList.remove("bg-[#1BB15F]", "text-white");
+        yearlyToggle.classList.add("text-gray-600", "hover:bg-gray-100");
+
+        // Set initial prices
+        updatePrices("monthly");
+
+        // Monthly click
+        monthlyToggle.addEventListener("click", function () {
+          monthlyToggle.classList.add("bg-[#1BB15F]", "text-white");
+          monthlyToggle.classList.remove("text-gray-600", "hover:bg-gray-100");
+
+          yearlyToggle.classList.remove("bg-[#1BB15F]", "text-white");
+          yearlyToggle.classList.add("text-gray-600", "hover:bg-gray-100");
+
+          updatePrices("monthly");
+        });
+
+        // Yearly click
+        yearlyToggle.addEventListener("click", function () {
+          yearlyToggle.classList.add("bg-[#1BB15F]", "text-white");
+          yearlyToggle.classList.remove("text-gray-600", "hover:bg-gray-100");
+
+          monthlyToggle.classList.remove("bg-[#1BB15F]", "text-white");
+          monthlyToggle.classList.add("text-gray-600", "hover:bg-gray-100");
+
+          updatePrices("yearly");
+        });
+      });
+    </script>
+
+    <script>
+      const modalOverlay = document.getElementById("modalOverlay");
+      const openModalBtn = document.getElementById("openModal");
+      const closeModalBtn = document.getElementById("closeModal");
+
+      function openModal() {
+        modalOverlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modalOverlay.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      openModalBtn.addEventListener("click", openModal);
+      closeModalBtn.addEventListener("click", closeModal);
+
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modalOverlay.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    </script>
+
+    <script>
+      // Expand functionality - only on large screens
+      function initializeExpandFunctionality() {
+        const expandBtn = document.getElementById("expandBtn");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+
+        if (!expandBtn || !sidebar || !mainContent) {
+          console.log("Expand elements not found");
+          return;
+        }
+
+        let isExpanded = false;
+
+        expandBtn.addEventListener("click", () => {
+          // Only work on large screens (>= 1024px)
+          if (window.innerWidth >= 1024) {
+            isExpanded = !isExpanded;
+
+            if (isExpanded) {
+              sidebar.classList.add("expanded");
+              mainContent.classList.add("sidebar-expanded");
+              console.log("[v0] Sidebar expanded");
+            } else {
+              sidebar.classList.remove("expanded");
+              mainContent.classList.remove("sidebar-expanded");
+              console.log("[v0] Sidebar collapsed");
+            }
+          }
+        });
+      }
+
+      // Initialize expand functionality when DOM is loaded
+      document.addEventListener(
+        "DOMContentLoaded",
+        initializeExpandFunctionality
+      );
+    </script>
+
+    <script src="./assets/js/menu.js"></script>
+    <script src="./assets/js/dashboard.js"></script>
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/search-popup.js"></script>
+    <script src="./assets/js/notification.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
+    <script src="./assets/js/dashboard2.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

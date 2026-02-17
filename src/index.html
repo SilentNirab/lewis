@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyClean - Financial Management</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body class="bg-white">
+  <!-- Hero Section -->
+  <section
+    class="relative h-[530px] sm:h-[650px] md:h-[750px] lg:h-[1024px]  overflow-hidden bg-[url('../images/home.png')] bg-contain bg-no-repeat bg-center pt-4 lg:pt-10"
+    style="background-size: 100% 100%">
+    <!-- Navbar -->
+    <img data-aos="fade-up" data-aos-duration="1200" src="./assets/images/dash.png" alt="MoneyClean Logo"
+      class="absolute bottom-0 left-0 right-0 mx-auto w-[90%] lg:w-auto" />
+    <img src="./assets/images/greenshade.png" alt="MoneyClean Logo" class="absolute bottom-0 left-0 right-0 w-full " />
+
+    <nav class="flex justify-between container mx-auto items-center p-4 sm:py-6 gap-5  z-[99999999]">
+      <div>
+        <a href="./index.html" class="cursor-pointer Shrink">
+          <img class="min-w-[100px]" src="./assets/images/logo.svg" alt="MoneyClean Logo" />
+        </a>
+      </div>
+      <!-- Rounded Navigation Container -->
+      <div class="hidden md:flex bg-[#496a518a] rounded-full py-3 px-1 relative max-lg:min-w-[430px]">
+        <ul class="flex list-none m-0">
+          <li>
+            <a href="./index.html"
+              class="text-white font-medium text-sm xl:text-base border border-white/20! rounded-full px-8 bg-[#ffffff0f] py-2 transition shadow-sm relative z-10">
+              Home
+            </a>
+          </li>
+          <li class="ml-6 xl:ml-8">
+            <a href="./about.html" class="text-white font-medium text-sm xl:text-base hover:text-lime-200 transition">
+              Plans & Pricing
+            </a>
+          </li>
+          <li class="ml-6 xl:ml-8">
+            <a href="./download.html"
+              class="text-white font-medium text-sm xl:text-base hover:text-lime-200 transition">
+              Download
+            </a>
+          </li>
+          <li class="ml-6 xl:ml-8">
+            <a href="./contact.html"
+              class="text-white pr-5 font-medium text-sm xl:text-base hover:text-lime-200 transition">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden md:flex gap-3">
+          <a href="./login.html" class="button-gradient-border font-medium text-sm xl:text-base transition text-white px-6 xl:px-9 py-2.5 xl:py-3 hover:-translate-y-0.5">Login</a>
+          <a href="./signup.html" class="signup-btn text-white px-5 xl:px-8 py-2.5 xl:py-3 text-sm xl:text-base">SignUp</a>
+      </div>
+      <button
+        class="menu-toggle flex md:hidden items-center justify-center bg-white/40 rounded-full w-10 h-10 sm:w-12 sm:h-12 border-none cursor-pointer z-20"
+        aria-label="Open menu">
+        <img src="./assets/images/merged.png" alt="Menu Icon" class="h-3 sm:h-7" />
+      </button>
+      <div
+        class="mobile-menu flex-col absolute top-20 bg-[#23573186] bg-opacity-95 rounded-xl shadow-lg p-2 gap-6 z-[9999] hidden md:hidden w-[95%] left-0 right-0 mx-auto">
+        <div class="flex flex-col gap-2 sm:gap-6 bg-[#1c4426] p-6 rounded-xl">
+          <a href="./index.html" class="text-white text-lg font-medium">Home</a>
+          <a href="./about.html" class="text-white text-lg font-medium">Plans & Pricing</a>
+          <a href="./download.html" class="text-white text-lg font-medium">Download</a>
+          <a href="./contact.html" class="text-white text-lg font-medium">Contact</a>
+          <div class="flex justify-between">
+            <a href="./login.html" class="button-gradient-border font-medium text-sm xl:text-base transition text-white px-6 xl:px-9 py-1.5 xl:py-3 hover:-translate-y-0.5">Login</a>
+          <a href="./signup.html" class="signup-btn text-white px-5 xl:px-8 py-1.5 xl:py-3 text-sm xl:text-base">SignUp</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-[20px] lg:mt-[50px] px-2 lg:px-6">
+      <!-- Hero Content -->
+      <div class="text-center pt-8 sm:pt-12 lg:pt-16 px-4 sm:px-8 text-white relative z-10">
+        <h1 data-aos="zoom-in" data-aos-duration="1000"
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-[60px] font-medium text-white mb-4 sm:mb-6 leading-[110%] tracking-tight">
+          Smarter Money Management,<br />All in One Dashboard
+        </h1>
+        <p data-aos="zoom-in" data-aos-duration="1000" class="text-[12px] lg:text-xl mb-8 sm:mb-10 opacity-90 max-w-2xl mx-auto leading-relaxed font-normal">
+          Track, optimize, and grow your finances with real-time insights,
+          AI-driven budgeting, and secure multi-account access—all from one
+          place.
+        </p>
+        <div data-aos="fade-up" data-aos-duration="1000" class="flex flex-row justify-center gap-2 mb-12 sm:mb-16">
+            <a href="./dashboard.html" style="background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);"
+            class="button-gradient-border text-white px-4 lg:px-8 py-3 font-medium text-xs lg:text-lg shadow-lg transition hover:-translate-y-1 inline-flex items-center gap-2 justify-center">Start
+            for Free <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M12.2477 2.81522L1.71002 13.3529C1.41712 13.6458 0.942251 13.6458 0.649357 13.3529C0.356464 13.06 0.356464 12.5851 0.649357 12.2922L11.1868 1.75476L5.48756 2.25581C5.07494 2.29208 4.71103 1.98699 4.67476 1.57437C4.63848 1.16175 4.94357 0.797846 5.35619 0.76157L11.0672 0.259489C11.8175 0.193449 12.5133 0.4768 13.0085 0.963667C13.0136 0.968531 13.0187 0.973482 13.0237 0.97852C13.0287 0.983533 13.0337 0.9886 13.0385 0.993719C13.5255 1.48893 13.809 2.18476 13.7429 2.93521L13.2401 8.64555C13.2037 9.05817 12.8398 9.3632 12.4271 9.32687C12.0145 9.29053 11.7095 8.92658 11.7458 8.51396L12.2477 2.81522Z"
+                fill="white" />
+            </svg></a>
+            <a href="./dashboard.html"
+            class="signup-btn text-white px-6 sm:px-8 py-3 font-semibold text-xs lg:text-lg transition hover:-translate-y-1 inline-flex items-center gap-2 justify-center">Explore
+            Dashboard</a>
+        </div>
+        <!-- <div class="max-w-7xl mx-auto relative">
+          <img src="./assets/images/hero.svg" alt="MoneySeen Dashboard Preview"
+            class="w-full h-auto rounded-xl sm:rounded-2xl translate-y-2 shadow-2xl border border-white/20" />
+        </div> -->
+      </div>
+    </div>
+    <!-- end .container -->
+  </section>
+  <!-- Payment Methods Section -->
+  <section class="bg-white my-12  text-center py-16 pb-8 lg:pb-16">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-[#1BB15F] mb-6 text-lg sm:text-xl font-semibold">
+        Secure.Reliable.Integrated
+      </h3>
+      <div class="flex justify-center items-center gap-4 sm:gap-6 lg:gap-8 flex-wrap">
+        <img src="./assets/images/GooglePay.svg" alt="Google Pay" class="h-8 sm:h-10" />
+        <img src="./assets/images/AmericanExpress.svg" alt="American Express" class="h-8 sm:h-10" />
+        <img src="./assets/images/ApplePay.svg" alt="Apple Pay" class="h-8 sm:h-10" />
+        <img src="./assets/images/Mastercard.svg" alt="Mastercard" class="h-8 sm:h-10" />
+        <img src="./assets/images/Stripe.svg" alt="Stripe" class="h-8 sm:h-10" />
+        <img src="./assets/images/Payoneer.svg" alt="Payoneer" class="h-8 sm:h-10" />
+        <img src="./assets/images/Visa.svg" alt="Visa" class="h-8 sm:h-10" />
+      </div>
+    </div>
+  </section>
+  <!-- One Dashboard Section -->
+  <section class="bg-white px-4 lg:px-7 text-center">
+    <div class="text-start mb-4 mx-auto w-fit">
+      <span style="
+              background: linear-gradient(
+                178deg,
+                #0d743b -32.88%,
+                #fce166 151.27%
+              );
+            " class="inline-block text-white text-xs font-medium px-3 py-1 rounded-full">
+        Overview
+      </span>
+    </div>
+    <div class="mx-auto relative">
+      <h2 data-aos="fade-up" data-aos-duration="1000" class="text-[28px] sm:text-4xl lg:text-5xl xl:text-[56px] font-medium text-black my-2 text-center">
+        One Dashboard. Every Account.
+      </h2>
+      <p data-aos="fade-up" data-aos-duration="1200" class="text-base lg:text-[20px] text-gray-700 max-w-4xl mx-auto mb-8 sm:mb-12 mt-5">
+        Consolidate all your accounts in one place. Track debt, credit,
+        savings, and investments. Monitor balances, track transactions, and
+        see your financial picture at a glance.
+      </p>
+      <img src="./assets/images/elips.png" alt="Complete Dashboard View" class="absolute -bottom-[50px] -left-8 " />
+      <div class="relative w-full flex justify-center">
+
+        <img data-aos="fade-up" data-aos-duration="1400" src="./assets/images/dashboard.png" alt="Complete Dashboard View" class="" />
+      </div>
+    </div>
+  </section>
+  <!-- Smart Budgets Section -->
+  <section class="bg-white py-12 sm:py-20">
+    <div class="container mx-auto ">
+      <div class="flex items-center flex-col-reverse  lg:flex-row gap-8 sm:gap-16 overflow-x-hidden">
+        <div data-aos="fade-right" data-aos-duration="1400" class="flex justify-center mb-8 md:mb-0">
+          <img src="./assets/images/budget.svg" alt="Smart Budget Interface" class="w-full h-auto" />
+        </div>
+        <div data-aos="fade-left" data-aos-duration="1400" class="md:w-full lg:w-[512px]">
+          <div class="text-start mb-4">
+            <span class="button-gradient-border inline-block text-white text-xs font-medium px-3 py-1 rounded-full">
+              Budgeting
+            </span>
+          </div>
+          <h3 class="text-[32px] sm:text-4xl lg:text-5xl font-medium text-black mb-4 sm:mb-6">
+            Smart Budgets That Keep You on Track
+          </h3>
+          <p class="paragraph mt-3 text-base sm:text-lg text-gray-700 leading-relaxed">
+            Whether it's monthly expenses or long-term goals, MoneyClean helps
+            you break down your expenses and stay within your limits.
+          </p>
+          <a href="./dashboard.html"
+            class="button-gradient-border my-8 text-white px-4 lg:px-8 py-3 text-xs lg:text-base shadow-lg transition hover:-translate-y-1 inline-flex items-center gap-2 justify-center">See
+            How its Works <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+              fill="none">
+              <path
+                d="M12.2477 2.81522L1.71002 13.3529C1.41712 13.6458 0.942251 13.6458 0.649357 13.3529C0.356464 13.06 0.356464 12.5851 0.649357 12.2922L11.1868 1.75476L5.48756 2.25581C5.07494 2.29208 4.71103 1.98699 4.67476 1.57437C4.63848 1.16175 4.94357 0.797846 5.35619 0.76157L11.0672 0.259489C11.8175 0.193449 12.5133 0.4768 13.0085 0.963667C13.0136 0.968531 13.0187 0.973482 13.0237 0.97852C13.0287 0.983533 13.0337 0.9886 13.0385 0.993719C13.5255 1.48893 13.809 2.18476 13.7429 2.93521L13.2401 8.64555C13.2037 9.05817 12.8398 9.3632 12.4271 9.32687C12.0145 9.29053 11.7095 8.92658 11.7458 8.51396L12.2477 2.81522Z"
+                fill="white" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Financial Flow Section -->
+  <section class="bg-white py-12 sm:py-20">
+    <div class="container mx-auto  grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16 items-center">
+      <div>
+        <div class="text-start mb-4">
+          <span class="button-gradient-border inline-block text-white text-xs font-medium px-3 py-1 rounded-full">
+            Money Map
+          </span>
+        </div>
+        <h2 data-aos="fade-up" data-aos-duration="1200" class="text-[32px] sm:text-4xl lg:text-5xl leading-[114%] font-medium text-black mb-4 sm:mb-6">
+          Your Financial Flow,<br> Month to Month
+        </h2>
+        <p data-aos="fade-up" data-aos-duration="1400" class="paragraph mt-3 w-full lg:w-[398px] text-base sm:text-lg text-gray-700 leading-relaxed">
+          Visualize how your income compares to your expenses with intuitive
+          charts. No surprises. <br> — <span class="font-light">Just financial clarity</span>.
+        </p>
+
+        <div class="mt-8">
+          <a href="./dashboard.html"
+            class="button-gradient-border text-white px-4 lg:px-8 py-3 rounded-full text-xs lg:text-base shadow-lg transition hover:-translate-y-1 inline-flex items-center gap-2 justify-center">Learn
+            More <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M12.2477 2.81522L1.71002 13.3529C1.41712 13.6458 0.942251 13.6458 0.649357 13.3529C0.356464 13.06 0.356464 12.5851 0.649357 12.2922L11.1868 1.75476L5.48756 2.25581C5.07494 2.29208 4.71103 1.98699 4.67476 1.57437C4.63848 1.16175 4.94357 0.797846 5.35619 0.76157L11.0672 0.259489C11.8175 0.193449 12.5133 0.4768 13.0085 0.963667C13.0136 0.968531 13.0187 0.973482 13.0237 0.97852C13.0287 0.983533 13.0337 0.9886 13.0385 0.993719C13.5255 1.48893 13.809 2.18476 13.7429 2.93521L13.2401 8.64555C13.2037 9.05817 12.8398 9.3632 12.4271 9.32687C12.0145 9.29053 11.7095 8.92658 11.7458 8.51396L12.2477 2.81522Z"
+                fill="white" />
+            </svg></a>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <img data-aos="fade-up" data-aos-duration="1200" src="./assets/images/digit code.svg" alt="Financial Flow Chart" class="w-full h-auto" />
+      </div>
+    </div>
+  </section>
+  <!-- Payment Section -->
+  <section class="bg-white py-12 sm:py-20">
+    <div class="container mx-auto grid grid-cols-12  gap-4 sm:gap-5">
+      <!-- Left Side - Payment Cards (4 columns) -->
+      <div class="col-span-12 md:col-span-4 flex flex-col justify-between border-[#F2F2F2] rounded-2xl shadow shadow-stone-100">
+          <img src="./assets/images/stocks-container.avif" alt="Transaction Dashboard" class="w-full" />
+        <div class="p-6">
+          <h3 class="text-[18px] sm:text-xl text-left leading-[114%] font-semibold text-[#010101] mb-1.5">
+            Never Miss a Payment Again
+          </h3>
+          <p class="text-gray-600 text-sm max-w-[368px]">
+            Stay on top of bills with a clear, date- and category-based view. MoneySeen keeps you ready.
+          </p>
+        </div> 
+      </div>
+      <!-- Right Side - Transaction Dashboard (8 columns) -->
+      <div class="col-span-12 md:col-span-8 flex flex-col justify-between border-[#F2F2F2] rounded-2xl shadow shadow-stone-100">
+        <img src="./assets/images/transactions-container.avif" alt="Transaction Dashboard" class="w-full" />
+        <div class="p-6">
+          <h3 class="text-[18px] sm:text-xl text-left font-semibold text-[#010101] mb-1.5">
+            Track, Review, Repeat.
+          </h3>
+          <p class="text-gray-600 text-sm max-w-[458px]">
+            MoneySeen isn't just a snapshot — it's a daily companion. From your morning coffee to monthly rent, track every transaction with ease.
+          </p>
+        </div> 
+      </div>
+       
+    </div>
+  </section>
+  <!-- Testimonials Section -->
+  <section class="bg-white py-20 overflow-hidden">
+    <style>
+      .planCard {
+        background: #fff;
+        transition: ease 1s;
+      }
+
+      .planCard:hover {
+        background: linear-gradient(158deg,
+            #0d743b -32.88%,
+            #fce166 101.27%);
+      }
+
+      .planCard:hover .features i {
+        color: #1BB15F;
+      }
+
+      .planCard:hover button {
+        background: linear-gradient(135deg, #0b6b37 0%, #1bb15f 100%);
+        color: #fff;
+      }
+    </style>
+    <div class="container mx-auto">
+      <div class="text-center mb-4">
+        <span class="button-gradient-border inline-block text-white text-xs font-medium px-3 py-1 rounded-full">
+          Testimonials
+        </span>
+      </div>
+      <h2 class="text-[28px] lg:text-[52px] font-medium text-center mb-12 text-gray-800">
+        Hear from Our Satisfied Clients
+      </h2>
+      <div class="marquee-container">
+        <!-- Column 1 -->
+        <div class="marquee-column ml-4 lg:ml-0">
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green ">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Column 2 -->
+        <div class="marquee-column ml-4 lg:ml-0">
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green ">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] " style="background: linear-gradient(158deg,
+                #0d743b -32.88%,
+                #fce166 101.27%);">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Column 3 -->
+        <div class="marquee-column ml-4 lg:ml-0">
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green ">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                MoneyClean helps me stay organized without overwhelming me with
+                features.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>Laura Davis</h4>
+                  <p>Freelance Graphic Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                The clean dashboard is exactly what I needed for my monthly
+                banking.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>David Lopez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[20px] p-[1px] planCard">
+            <div class="testimonial-card gradient-green">
+              <p class="testimonial-text pt-7 ">
+                Simple, clear, and genuinely helpful. I check it every morning
+                to stay on track.
+              </p>
+              <div class="testimonial-author">
+                <img src="./assets/images/user.svg" alt="User Avatar" class="author-avatar" />
+                <div class="author-info">
+                  <h4>James Brown</h4>
+                  <p>Retail Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Banner Section -->
+  <!-- <section class="banner-section">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>Your Finances, Finally in Focus</h1>
+            <p>Start tracking smarter today — it only takes a minute to get set up.</p>
+            <a href="#" class="cta-button">
+                Get Started — It's Free
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </section> -->
+  <!-- FAQ Section -->
+  <section class="bg-white py-12 sm:py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-24 items-start">
+        <div class="pr-4 sm:pr-8 md:sticky md:top-10">
+          <div class="text-start mb-4">
+            <span class="button-gradient-border inline-block text-white text-xs font-medium px-3 py-1 rounded-full">
+              FAQ
+            </span>
+          </div>
+          <h2 class="text-4xl lg:text-[56px] font-medium  text-gray-800 mb-4 sm:mb-6 leading-12 lg:leading-18">
+            Your Financial Flow, Month to Month
+          </h2>
+          <p class="text-gray-600 text-sm sm:text-base w-full lg:w-[398px]">
+            Visualize how your income compares to your expenses with intuitive
+            charts. No surprises <br>
+            <span class="font-light">— just financial clarity.</span>
+          </p>
+        </div>
+        <div>
+          <div class="flex flex-col gap-4 lg:p-0 divide-gray-200">
+            <!-- FAQ Item -->
+            <div class="faq-item py-4 px-4 border rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1000">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                onclick="toggleFaq(this)">
+                How often is my financial data updated?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  Your financial data is updated in real-time as transactions
+                  occur. Most bank connections sync automatically multiple
+                  times per day, ensuring you always have the most current
+                  view of your finances.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item py-4 px-4 border rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1100">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                onclick="toggleFaq(this)">
+                Does MoneySeen support international currencies?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  Yes! MoneySeen supports over 150 international currencies
+                  with real-time exchange rates. You can track accounts in
+                  multiple currencies and view consolidated reports in your
+                  preferred base currency.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item py-4 px-4 border rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1200">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                onclick="toggleFaq(this)">
+                Can I get bill reminders and alerts?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  Set up custom alerts for upcoming bills, low balances,
+                  unusual spending, and budget limits. You'll receive
+                  notifications via email, SMS, or push notifications on your
+                  mobile device.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item py-4 px-4 border rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1300">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                onclick="toggleFaq(this)">
+                Is there a mobile app available?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  Yes, MoneySeen is available on both iOS and Android devices.
+                  The mobile app includes all the features of the web version,
+                  optimized for on-the-go financial management.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item py-4 px-4 border rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1400">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none cursor-pointer"
+                onclick="toggleFaq(this)">
+                Can I share my account with a partner or advisor?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  Yes, you can securely share access with trusted partners,
+                  family members, or financial advisors. You control what
+                  information they can see and what actions they can perform
+                  on your account.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item py-4 px-4 border border-[#00000019] rounded-2xl sm:py-6" data-aos="fade-up" data-aos-duration="1500">
+              <button
+                class="w-full text-left text-base sm:text-lg font-medium flex justify-between items-center focus:outline-none"
+                onclick="toggleFaq(this)">
+                What happens if I miss a payment or bill?
+                <svg class="faq-icon w-8 h-8 ml-4 text-gray-400 transition-transform duration-300" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 text-sm sm:text-base">
+                <p>
+                  MoneySeen will send you immediate alerts if a scheduled
+                  payment fails or if you miss a bill deadline. We also
+                  provide suggestions for next steps and can help you set up
+                  automatic payments to prevent future missed payments.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Finance Section -->
+  <section
+    class="relative container mx-auto overflow-hidden  bg-[url('../images/finances.png')] bg-cover bg-center rounded-[40px] mt-10 text-center h-[440px] w-[96%] lg:w-full flex justify-center items-center">
+    <div data-aos="zoom-in" data-aos-duration="1400" class="max-w-[320px] sm:max-w-full">
+        <!-- Heading -->
+        <h2 class="text-[28px] md:text-[42px] lg:text-[56px] leading-normal md:leading-[112%] text-white w-[256px] sm:w-full mx-auto">
+          Your Finances, Finally in Focus
+        </h2>
+
+      <!-- Subtext -->
+      <p class="mt-4 text-base md:text-xl font-normal text-white/80">
+        Start tracking smarter today — it only takes a minute to get set up.
+      </p>
+
+      <!-- Button -->
+      <div class="mt-6 flex text-center items-center justify-center">
+        <a href="/" class="px-6 py-3 flex items-center gap-2 rounded-full text-white font-medium button-gradient-border">
+          Get Started - It's Free
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M12.2477 2.81522L1.71002 13.3529C1.41712 13.6458 0.942251 13.6458 0.649357 13.3529C0.356464 13.06 0.356464 12.5851 0.649357 12.2922L11.1868 1.75476L5.48756 2.25581C5.07494 2.29208 4.71103 1.98699 4.67476 1.57437C4.63848 1.16175 4.94357 0.797846 5.35619 0.76157L11.0672 0.259489C11.8175 0.193449 12.5133 0.4768 13.0085 0.963667C13.0136 0.968531 13.0187 0.973482 13.0237 0.97852C13.0287 0.983533 13.0337 0.9886 13.0385 0.993719C13.5255 1.48893 13.809 2.18476 13.7429 2.93521L13.2401 8.64555C13.2037 9.05817 12.8398 9.3632 12.4271 9.32687C12.0145 9.29053 11.7095 8.92658 11.7458 8.51396L12.2477 2.81522Z"
+              fill="white" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <br><br>
+
+  <!-- Footer Section -->
+  <section class="relative bg-cover bg-center bg-no-repeat pt-12 pb-8 sm:pt-16 "
+    style="background-image: url('./assets/images/footer.png')">
+    <div class="relative z-10 container mx-auto text-gray-300">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 mb-12 items-start">
+        <!-- Company Info -->
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2 mb-4">
+            <img src="./assets/images/logo.svg" alt="MoneySeen Logo" />
+          </div>
+          <p class="text-sm opacity-80 mb-5">
+            Manage smarter. Spend better. Stay in the loop.
+          </p>
+          <div class="flex gap-3 flex-wrap">
+            <img src="./assets/images/apple.svg" alt="Apple Store" class="h-8" />
+            <img src="./assets/images/google.svg" alt="Google Play" class="h-8" />
+          </div>
+        </div>
+
+        <div class="col-span-3 grid grid-cols-3 gap-8">
+          <!-- Product Links -->
+          <div class="flex flex-col items-start">
+            <h3 class="text-base font-semibold text-white mb-4">Product</h3>
+            <ul class="list-none space-y-2">
+              <li>
+                <a href="./index.html" class="text-gray-300 hover:text-white text-sm">Home</a>
+              </li>
+              <li>
+                <a href="./about.html" class="text-gray-300 hover:text-white text-sm">Plan & Pricing</a>
+              </li>
+              <li>
+                <a href="./download.html" class="text-gray-300 hover:text-white text-sm">Download</a>
+              </li>
+              <li>
+                <a href="./contact.html" class="text-gray-300 hover:text-white text-sm">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Resources Links -->
+          <div class="flex flex-col items-start">
+            <h3 class="text-base font-semibold text-white mb-4">Resources</h3>
+            <ul class="list-none space-y-2">
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">Downloads</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">Documentation</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social Media Links -->
+          <div class="flex flex-col items-start">
+            <h3 class="text-base font-semibold text-white mb-4">
+              Social Media
+            </h3>
+            <ul class="list-none space-y-2">
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">Facebook</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">Twitter</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">LinkedIn</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white text-sm">YouTube</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <!-- Newsletter Signup -->
+      <div
+        class="border-t border-[#ffffff23] pt-8 mt-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-left w-full">
+          <h3 class="text-lg font-semibold text-white mb-2">
+            Newsletter Signup
+          </h3>
+          <p class="text-sm opacity-80">
+            Stay updated with smart finance tips.
+          </p>
+        </div>
+        <div
+          class="flex relative flex-col sm:flex-row w-full md:w-auto sm:rounded-full sm:overflow-hidden gap-2 sm:gap-0">
+          <input type="email" placeholder="Enter your email"
+            class="flex-grow w-full md:w-[450px] px-3 py-3 bg-white/10 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 border-none rounded-full sm:rounded-none" />
+          <button style="
+                background: linear-gradient(
+                  178deg,
+                  #0d743b -32.88%,
+                  #fce166 151.27%
+                );
+              " class="px-6 py-2 absolute right-1 text-white font-semibold whitespace-nowrap rounded-full  top-[4px]">
+            Subscribe
+          </button>
+        </div>
+      </div>
+
+      <!-- Copyright and Policy Links -->
+      <div class="flex flex-row-reverse justify-between pt-7 border-t border-[#ffffff23] ">
+        <a href="./terms-condition.html" class="text-white text-[12px] lg:text-[16px] hover:text-white">Terms & Conditions</a>
+
+        <div class="flex gap-4 sm:gap-6">
+          <div class="text-[12px] lg:text-[16px] text-white">© Copyright 2025</div>
+          <a href="#" class="text-white text-[12px] lg:text-[16px] hover:text-white">Privacy Policy</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./assets/js/faq.js"></script>
+  <script src="./assets/js/mobile-menu.js"></script>
+  <script src="./index.js"></script>
+  <script src="./assets/js/testimonial.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* FAQ Accordion Open State */
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Base CSS Classes */
+
+.paragraph {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  /* 140% */
+}
+
+.heading_1 {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 64px;
+  /* 114.286% */
+}
+
+/* Hide scrollbars cross-browser */
+.no-scrollbar {
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE 10+ / Edge (legacy) */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card styling class */
+.card_style {
+  border-radius: 24px;
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  backdrop-filter: blur(40px);
+}
+
+/* Button for all page Starts */
+
+.button-gradient-border {
+  position: relative;
+  border-radius: 99px;
+  background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.button-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #ffffff33, #ffffff33);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* ======= */
+
+.signup-btn {
+  border: 2px solid #ffffff3f;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.2),
+    inset 1px 1px 10px 5px rgba(255, 255, 255, 0.187);
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (min-width: 1280px) {
+  .signup-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+/* Button for all page Ends */
+
+.dropdown-item {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background: #f3f4f6;
+}
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  border-radius: 999px;
+  font-size: 13px;
+}
+.tag button {
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+.dcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chart css code Starts */
+#chart1 {
+  max-width: 300px;
+  margin: 0 auto;
+}
+/* Chart css code Ends */

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Smarter Money Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+    </style>
+  </head>
+  <body class="bg-white font-sans">
+    <div class="flex min-h-screen overflow-hidden">
+      <!-- Left Side - Signup Form -->
+      <div class="flex-1 flex items-center justify-center bg-white p-8 md:p-16">
+        <div class="w-full max-w-md">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img
+              src="./assets/images/logo_full-removebg-preview.svg"
+              class="h-12 w-auto" />
+          </div>
+          <!-- Welcome -->
+          <h1 class="text-3xl font-semibold text-black mb-8">Create Account</h1>
+          <!-- Signup Form -->
+          <form class="flex flex-col gap-6">
+            <div>
+              <label class="block text-base font-medium text-black mb-3"
+                >Email</label
+              >
+              <input
+                type="email"
+                placeholder="Type Your Email"
+                class="w-full px-4 py-3 border border-gray-200 rounded-full text-sm font-medium text-black/70 placeholder:text-black/70 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-base font-medium text-black mb-3"
+                >Password</label
+              >
+              <div class="relative flex items-center">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Type Your Password"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-full text-sm font-medium text-black/70 placeholder:text-black/70 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition" />
+                <button
+                  type="button"
+                  id="togglePassword"
+                  class="absolute right-4 -translate-y-1/2 top-1/2 cursor-pointer flex items-center justify-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                  tabindex="-1"
+                  style="height: 24px; width: 24px">
+                  <i class="fa-regular fa-eye" id="eye-icon-password"></i>
+                </button>
+              </div>
+              <!-- Password Requirements -->
+              <div class="mt-3 p-3 bg-gray-50 rounded-lg">
+                <p class="text-sm font-medium text-gray-700 mb-2">
+                  Password must contains:
+                </p>
+                <div class="space-y-2">
+                  <div class="flex items-center gap-2">
+                    <span id="lengthCheck" class="text-gray-400">○</span>
+                    <span class="text-sm text-gray-600"
+                      >Minimum 8 character</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span id="alphanumericCheck" class="text-gray-400">○</span>
+                    <span class="text-sm text-gray-600"
+                      >Must have alphabetic & numeric character</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-base font-medium text-black mb-3"
+                >Confirm Password</label
+              >
+              <div class="relative flex items-center">
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Type Your Password"
+                  class="w-full px-4 py-3 border border-gray-200 rounded-full text-sm font-medium text-black/70 placeholder:text-black/700 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition" />
+                <button
+                  type="button"
+                  id="toggleConfirmPassword"
+                  class="absolute right-4 -translate-y-1/2 top-1/2 cursor-pointer flex items-center justify-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                  tabindex="-1"
+                  style="height: 24px; width: 24px">
+                  <i class="fa-regular fa-eye" id="eye-icon-confirm"></i>
+                </button>
+              </div>
+              <div id="passwordMatchMessage" class="mt-2 text-sm hidden"></div>
+            </div>
+            <button
+              type="submit"
+              class="w-full gradient-green text-white py-3 rounded-full font-medium text-base hover:opacity-90 transition">
+              Create account
+            </button>
+          </form>
+          <!-- Social Login -->
+          <div class="mt-8">
+            <div class="flex items-center mb-8">
+              <div class="flex-1 h-px bg-gray-200"></div>
+              <p class="mx-4 text-sm text-gray-500">or sign in with</p>
+              <div class="flex-1 h-px bg-gray-200"></div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <button
+                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-full bg-white font-medium hover:bg-gray-50 transition">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z"
+                    fill="#FFC107" />
+                  <path
+                    d="M3.15234 7.3455L6.43784 9.755C7.32684 7.554 9.47984 6 11.9993 6C13.5288 6 14.9203 6.577 15.9798 7.5195L18.8083 4.691C17.0223 3.0265 14.6333 2 11.9993 2C8.15834 2 4.82734 4.1685 3.15234 7.3455Z"
+                    fill="#FF3D00" />
+                  <path
+                    d="M12.0002 22.0001C14.5832 22.0001 16.9302 21.0116 18.7047 19.4041L15.6097 16.7851C14.5719 17.5743 13.3039 18.0011 12.0002 18.0001C9.39916 18.0001 7.19066 16.3416 6.35866 14.0271L3.09766 16.5396C4.75266 19.7781 8.11366 22.0001 12.0002 22.0001Z"
+                    fill="#4CAF50" />
+                  <path
+                    d="M21.8055 10.0415H21V10H12V14H17.6515C17.2571 15.1082 16.5467 16.0766 15.608 16.7855L15.6095 16.7845L18.7045 19.4035C18.4855 19.6025 22 17 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z"
+                    fill="#1976D2" />
+                </svg>
+                <span>Continue with Google</span>
+              </button>
+              <button
+                class="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-full bg-white font-medium hover:bg-gray-50 transition">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M16 2C16.3632 4.17921 14.0879 5.83084 12.8158 6.57142C12.4406 6.78988 12.0172 6.5117 12.0819 6.08234C12.2993 4.63878 13.0941 2.00008 16 2Z"
+                    fill="black" />
+                  <path
+                    d="M9 6.5C9.89676 6.5 10.6905 6.69941 11.2945 6.92013C12.0563 7.19855 12.9437 7.19854 13.7055 6.92012C14.3094 6.6994 15.1032 6.5 15.9999 6.5C17.0852 6.5 18.4649 7.08889 19.4999 8.26666C16 11 17 15.5 20.269 16.6916C19.2253 19.5592 17.2413 21.5 15.4999 21.5C13.9999 21.5 14 20.8 12.5 20.8C11 20.8 11 21.5 9.5 21.5C7 21.5 4 17.5 4 12.5C4 8.5 7 6.5 9 6.5Z"
+                    fill="black" />
+                </svg>
+                <span>Continue with Apple ID</span>
+              </button>
+            </div>
+          </div>
+          <!-- Login Link -->
+          <div class="text-center mt-8">
+            <span class="text-gray-800">Already have account? </span>
+            <a
+              href="login.html"
+              class="text-black font-medium hover:text-green-600 transition"
+              >Login</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Right Side - Dashboard Preview -->
+      <div
+        class="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-transparent via-transparent to-green-100">
+        <img src="./assets/images/login.svg" class="w-full h-full" />
+      </div>
+    </div>
+
+    <script>
+      // Password validation logic
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirmPassword");
+      const lengthCheck = document.getElementById("lengthCheck");
+      const alphanumericCheck = document.getElementById("alphanumericCheck");
+      const togglePassword = document.getElementById("togglePassword");
+      const toggleConfirmPassword = document.getElementById(
+        "toggleConfirmPassword"
+      );
+      const passwordMatchMessage = document.getElementById(
+        "passwordMatchMessage"
+      );
+      const eyeIconPassword = document.getElementById("eye-icon-password");
+      const eyeIconConfirm = document.getElementById("eye-icon-confirm");
+
+      // Password validation function
+      function validatePassword(password) {
+        const hasMinLength = password.length >= 8;
+        const hasAlphanumeric = /^(?=.*[A-Za-z])(?=.*\d)/.test(password);
+
+        // Update checkmarks
+        if (hasMinLength) {
+          lengthCheck.innerHTML = "✓";
+          lengthCheck.className = "text-green-500 font-bold";
+        } else {
+          lengthCheck.innerHTML = "○";
+          lengthCheck.className = "text-gray-400";
+        }
+
+        if (hasAlphanumeric) {
+          alphanumericCheck.innerHTML = "✓";
+          alphanumericCheck.className = "text-green-500 font-bold";
+        } else {
+          alphanumericCheck.innerHTML = "○";
+          alphanumericCheck.className = "text-gray-400";
+        }
+
+        return hasMinLength && hasAlphanumeric;
+      }
+
+      // Password visibility toggle
+      function togglePasswordVisibility(inputField, icon) {
+        if (inputField.type === "password") {
+          inputField.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          inputField.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      }
+
+      // Event listeners
+      passwordInput.addEventListener("input", function () {
+        validatePassword(this.value);
+        checkPasswordMatch();
+      });
+
+      confirmPasswordInput.addEventListener("input", function () {
+        checkPasswordMatch();
+      });
+
+      function checkPasswordMatch() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (confirmPassword.length > 0) {
+          if (password !== confirmPassword) {
+            passwordMatchMessage.textContent = "Passwords do not match.";
+            passwordMatchMessage.className = "mt-2 text-sm text-red-500";
+            passwordMatchMessage.classList.remove("hidden");
+          } else {
+            passwordMatchMessage.textContent = "Passwords match!";
+            passwordMatchMessage.className = "mt-2 text-sm text-green-500";
+            passwordMatchMessage.classList.remove("hidden");
+          }
+        } else {
+          passwordMatchMessage.textContent = "";
+          passwordMatchMessage.className = "mt-2 text-sm hidden";
+        }
+      }
+
+      togglePassword.addEventListener("click", function () {
+        togglePasswordVisibility(passwordInput, eyeIconPassword);
+      });
+
+      toggleConfirmPassword.addEventListener("click", function () {
+        togglePasswordVisibility(confirmPasswordInput, eyeIconConfirm);
+      });
+
+      // Form submission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        // if (!validatePassword(password)) {
+        //   alert('Please ensure your password meets all requirements.');
+        //   return;
+        // }
+
+        if (password !== confirmPassword) {
+          passwordMatchMessage.textContent = "Passwords do not match.";
+          passwordMatchMessage.className = "mt-2 text-sm text-red-500";
+          passwordMatchMessage.classList.remove("hidden");
+          return;
+        }
+
+        // If validation passes, you can submit the form
+        // alert('Account created successfully!');
+      });
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>

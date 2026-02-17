@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneySeen - Verification Code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+      
+    <style>
+      .gradient-green {
+        background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
+      }
+      .otp-input {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        border: 2px solid #d1d5db;
+        border-radius: 12px;
+        background: transparent;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      .otp-input:focus {
+        border-color: #10b981;
+        border-style: solid;
+        background: #f0fdf4;
+      }
+      .otp-input.filled {
+        border-color: #10b981;
+        border-style: solid;
+        background: #f0fdf4;
+      }
+    </style>
+  </head>
+  <body class="bg-white font-sans">
+    <div class="flex min-h-screen overflow-hidden">
+      <!-- Left Side - OTP Verification Form -->
+      <div class="flex-1 flex items-center justify-center bg-white p-8 md:p-16">
+        <div class="w-full max-w-md">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img
+              src="./assets/images/logo_full-removebg-preview.svg"
+              class="h-12 w-auto" />
+          </div>
+          <!-- Title -->
+          <h1 class="text-3xl font-semibold text-black mb-8">
+            Forgot Password
+          </h1>
+
+          <!-- Instructions -->
+          <p class="text-black text-sm font-inter mb-8">
+            We've sent your verification code to robert.devry@gmail.com, please
+            check the email.
+          </p>
+
+          <!-- OTP Verification Form -->
+          <form class="flex flex-col gap-6">
+            <!-- OTP Input Fields -->
+            <div class="flex justify-center gap-4 mb-6">
+              <input
+                placeholder="-"
+                type="text"
+                maxlength="1"
+                class="otp-input"
+                data-index="0" />
+              <input
+                placeholder="-"
+                type="text"
+                maxlength="1"
+                class="otp-input"
+                data-index="1" />
+              <input
+                placeholder="-"
+                type="text"
+                maxlength="1"
+                class="otp-input"
+                data-index="2" />
+              <input
+                placeholder="-"
+                type="text"
+                maxlength="1"
+                class="otp-input"
+                data-index="3" />
+            </div>
+
+            <!-- Timer and Resend -->
+            <div class="text-center mb-6">
+              <span id="timer" class="text-sm text-gray-900">02:20</span>
+              <p class="text-sm text-gray-400 text-center">Resend Code</p>
+              <button
+                type="button"
+                id="resendBtn"
+                class="ml-2 text-sm text-green-600 hover:text-green-700 font-medium hidden">
+                Resend Code
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-white text-sm text-black py-3 rounded-full font-medium border border-gray-200 text-base hover:bg-gray-100 transition">
+              Confirm
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Side - Dashboard Preview -->
+      <div
+        class="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-transparent via-transparent to-green-100">
+        <img src="./assets/images/login.svg" class="w-full h-full" />
+      </div>
+    </div>
+
+    <script>
+      // OTP Input handling
+      const otpInputs = document.querySelectorAll(".otp-input");
+      const timerElement = document.getElementById("timer");
+      const resendBtn = document.getElementById("resendBtn");
+
+      let timeLeft = 140; // 2 minutes 20 seconds in seconds
+      let timerInterval;
+
+      // Auto-focus next input
+      otpInputs.forEach((input, index) => {
+        input.addEventListener("input", function (e) {
+          const value = e.target.value;
+
+          // Only allow numbers
+          if (!/^\d*$/.test(value)) {
+            e.target.value = "";
+            return;
+          }
+
+          if (value.length === 1) {
+            e.target.classList.add("filled");
+
+            // Move to next input
+            if (index < otpInputs.length - 1) {
+              otpInputs[index + 1].focus();
+            }
+          } else {
+            e.target.classList.remove("filled");
+          }
+        });
+
+        // Handle backspace
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Backspace" && e.target.value === "") {
+            if (index > 0) {
+              otpInputs[index - 1].focus();
+              otpInputs[index - 1].classList.remove("filled");
+            }
+          }
+        });
+
+        // Handle paste
+        input.addEventListener("paste", function (e) {
+          e.preventDefault();
+          const pastedData = e.clipboardData.getData("text").slice(0, 4);
+
+          if (/^\d{4}$/.test(pastedData)) {
+            otpInputs.forEach((input, i) => {
+              input.value = pastedData[i] || "";
+              input.classList.toggle("filled", pastedData[i] !== "");
+            });
+          }
+        });
+      });
+
+      // Timer functionality
+      function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerElement.classList.add("hidden");
+          resendBtn.classList.remove("hidden");
+        }
+
+        timeLeft--;
+      }
+
+      // Start timer
+      timerInterval = setInterval(updateTimer, 1000);
+
+      // Resend functionality
+      resendBtn.addEventListener("click", function () {
+        timeLeft = 140;
+        timerElement.classList.remove("hidden");
+        resendBtn.classList.add("hidden");
+        timerInterval = setInterval(updateTimer, 1000);
+
+        // Clear OTP inputs
+        otpInputs.forEach((input) => {
+          input.value = "";
+          input.classList.remove("filled");
+        });
+        otpInputs[0].focus();
+
+        alert("New verification code sent!");
+      });
+
+      // Form submission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const otpCode = Array.from(otpInputs)
+          .map((input) => input.value)
+          .join("");
+
+        if (otpCode.length !== 4) {
+          alert("Please enter the complete 4-digit verification code.");
+          return;
+        }
+
+        // Navigate to create new password page
+        window.location.href = "create-new-password.html";
+      });
+    </script>
+  </body>
+</html>
