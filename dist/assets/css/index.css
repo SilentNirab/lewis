@@ -778,9 +778,12 @@
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
+<<<<<<< HEAD
   .h-40 {
     height: calc(var(--spacing) * 40);
   }
+=======
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .h-75 {
     height: calc(var(--spacing) * 75);
   }
@@ -799,6 +802,12 @@
   .h-\[40px\] {
     height: 40px;
   }
+<<<<<<< HEAD
+=======
+  .h-\[44px\] {
+    height: 44px;
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .h-\[46px\] {
     height: 46px;
   }
@@ -937,15 +946,24 @@
   .w-24 {
     width: calc(var(--spacing) * 24);
   }
+<<<<<<< HEAD
+=======
+  .w-28 {
+    width: calc(var(--spacing) * 28);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .w-29 {
     width: calc(var(--spacing) * 29);
   }
   .w-36 {
     width: calc(var(--spacing) * 36);
   }
+<<<<<<< HEAD
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
+=======
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .w-48 {
     width: calc(var(--spacing) * 48);
   }
@@ -1052,6 +1070,12 @@
   .max-w-22\.5 {
     max-width: calc(var(--spacing) * 22.5);
   }
+<<<<<<< HEAD
+=======
+  .max-w-28 {
+    max-width: calc(var(--spacing) * 28);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .max-w-29 {
     max-width: calc(var(--spacing) * 29);
   }
@@ -1109,6 +1133,12 @@
   .min-w-22\! {
     min-width: calc(var(--spacing) * 22) !important;
   }
+<<<<<<< HEAD
+=======
+  .min-w-28 {
+    min-width: calc(var(--spacing) * 28);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .min-w-40 {
     min-width: calc(var(--spacing) * 40);
   }
@@ -1594,10 +1624,13 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
+<<<<<<< HEAD
   .border-\[16px\] {
     border-style: var(--tw-border-style);
     border-width: 16px;
   }
+=======
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .border-x {
     border-inline-style: var(--tw-border-style);
     border-inline-width: 1px;
@@ -1702,9 +1735,12 @@
   .border-red-600 {
     border-color: var(--color-red-600);
   }
+<<<<<<< HEAD
   .border-transparent {
     border-color: transparent;
   }
+=======
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .border-white {
     border-color: var(--color-white);
   }
@@ -1735,12 +1771,15 @@
       border-color: color-mix(in oklab, var(--color-white) 30%, transparent);
     }
   }
+<<<<<<< HEAD
   .border-t-red-500 {
     border-top-color: var(--color-red-500);
   }
   .border-r-red-500 {
     border-right-color: var(--color-red-500);
   }
+=======
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .bg-\[\#0B6B37\] {
     background-color: #0B6B37;
   }
@@ -1861,12 +1900,24 @@
   .bg-\[\#ededed86\] {
     background-color: #ededed86;
   }
+<<<<<<< HEAD
+=======
+  .bg-\[\#f3fff9\] {
+    background-color: #f3fff9;
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .bg-\[\#f3fff9\]\! {
     background-color: #f3fff9 !important;
   }
   .bg-\[\#f7f7f7\] {
     background-color: #f7f7f7;
   }
+<<<<<<< HEAD
+=======
+  .bg-\[\#f8fdec\] {
+    background-color: #f8fdec;
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .bg-\[\#f8fdec\]\! {
     background-color: #f8fdec !important;
   }
@@ -2374,6 +2425,12 @@
   .pr-5 {
     padding-right: calc(var(--spacing) * 5);
   }
+<<<<<<< HEAD
+=======
+  .pr-10 {
+    padding-right: calc(var(--spacing) * 10);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .pb-0 {
     padding-bottom: calc(var(--spacing) * 0);
   }
@@ -2389,6 +2446,12 @@
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
+<<<<<<< HEAD
+=======
+  .pb-4\.5 {
+    padding-bottom: calc(var(--spacing) * 4.5);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .pb-4\.75 {
     padding-bottom: calc(var(--spacing) * 4.75);
   }
@@ -2449,6 +2512,12 @@
   .pl-24 {
     padding-left: calc(var(--spacing) * 24);
   }
+<<<<<<< HEAD
+=======
+  .pl-40 {
+    padding-left: calc(var(--spacing) * 40);
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .text-center {
     text-align: center;
   }
@@ -4039,6 +4108,14 @@
       margin-bottom: calc(var(--spacing) * 0);
     }
   }
+<<<<<<< HEAD
+=======
+  .md\:mb-4 {
+    @media (width >= 48rem) {
+      margin-bottom: calc(var(--spacing) * 4);
+    }
+  }
+>>>>>>> 4a2486264695ca911b69042c5508b2bd40e683d4
   .md\:mb-8 {
     @media (width >= 48rem) {
       margin-bottom: calc(var(--spacing) * 8);
