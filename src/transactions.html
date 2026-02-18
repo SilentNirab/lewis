@@ -201,6 +201,11 @@
     * {
       transition: all 0.3s ease;
     }
+
+    /* Gradient background class */
+    .gradient-bg {
+      background: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);
+    }
   </style>
   <link href="assets/css/index.css" rel="stylesheet">
 </head>
@@ -1513,14 +1518,12 @@
         <!-- Modal content -->
         <div class="p-3 bg-[#E6E6E6] rounded-b-lg max-h-175 overflow-y-auto"
           style="scrollbar-width: none; -ms-overflow-style: none">
-          <div
-            class="bg-white/70 p-2 border text-xs flex justify-between items-center border-gray-100 text-center rounded-full mb-4">
-            <div id="ctd"
-              class="w-1/2 px-1 py-3 cursor-pointer bg-[linear-gradient(178deg,#0D743B_-32.88%,#FCE166_151.27%)] flex justify-center items-center rounded-full text-white">
-              <p class="my-auto text-[12px]">Current transaction details</p>
+          <!-- Toggle Buttons -->
+          <div class="bg-white/70 p-2 border text-xs flex justify-between items-center border-gray-100 text-center rounded-full mb-4">
+            <div id="ctd" class="w-1/2 px-1 py-3 cursor-pointer flex justify-center items-center rounded-full text-white gradient-bg">
+              <p class="my-auto text-[12px]">Current Transaction Details</p>
             </div>
-            <div id="otd"
-              class="w-1/2 px-1 py-3 flex cursor-pointer justify-center items-center h-full rounded-full text-black">
+            <div id="otd" class="w-1/2 px-1 py-3 flex cursor-pointer justify-center items-center h-full rounded-full text-black">
               <p class="my-auto text-[12px]">Original Transaction Details</p>
             </div>
           </div>
@@ -1701,31 +1704,27 @@
       const otd = document.getElementById("otd");
       const ctddata = document.querySelector(".ctddata");
       const otddata = document.querySelector(".otddata");
+
       ctd.addEventListener("click", () => {
-        ctd.classList.add(
-          "bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]",
-          "text-white",
-        );
-        otd.classList.remove(
-          "bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]",
-          "text-white",
-        );
+        ctd.classList.add("gradient-bg", "text-white");
+        ctd.classList.remove("text-black");
+
+        otd.classList.remove("gradient-bg", "text-white");
         otd.classList.add("text-black");
-        otddata.classList.add("hidden");
+
         ctddata.classList.remove("hidden");
+        otddata.classList.add("hidden");
       });
+
       otd.addEventListener("click", () => {
-        otd.classList.add(
-          "bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]",
-          "text-white",
-        );
-        ctd.classList.remove(
-          "bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]",
-          "text-white",
-        );
+        otd.classList.add("gradient-bg", "text-white");
+        otd.classList.remove("text-black");
+
+        ctd.classList.remove("gradient-bg", "text-white");
         ctd.classList.add("text-black");
-        ctddata.classList.add("hidden");
+
         otddata.classList.remove("hidden");
+        ctddata.classList.add("hidden");
       });
     </script>
 

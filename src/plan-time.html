@@ -796,7 +796,7 @@
                   <div class="relative">
                       <div class="flex items-center lg:gap-2 gap-1">
                         <div
-                          class="bg-[rgba(235,234,234,0.64)] mt-6 md:mt-4 lg:mt-0 rounded-full p-1 w-full md:w-fit flex"
+                          class="bg-[rgba(235,234,234,0.64)] mt-6 md:mt-4 lg:mt-0 rounded-full p-1 w-full space-x-1 md:w-fit flex"
                         >
                           <button
                             id="month-toggle"
@@ -840,8 +840,8 @@
                   </div>
                 </div>
 
-                <div class="flex justify-between gap-2 items-center pl-24 lg:pl-40 lg:pr-10">
-
+                <div class="timeline-grid bg-white! rounded-lg mb-1 md:mb-0">
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer"></div>
                   <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer"><i
                       class="fas fa-chevron-left cursor-pointer mr-3"></i> 2022</div>
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2023</div>
@@ -886,7 +886,7 @@
                         xmlns="http://www.w3.org/2000/svg">
                         <foreignObject x="-12" y="-12" width="300" height="68">
                           <div xmlns="http://www.w3.org/1999/xhtml"
-                            style="backdrop-filter:blur(6px);clip-path:url(#bgblur_0_341_5103_clip_path);height:100%;width:100%">
+                            style="clip-path:url(#bgblur_0_341_5103_clip_path);height:100%;width:100%">
                           </div>
                         </foreignObject>
                         <rect data-figma-bg-blur-radius="12" width="276" height="44" rx="22" fill="#0ACF83"
@@ -960,8 +960,7 @@
                         <button onclick="togglePopup(event, 'income')" class="relative -ml-20"> <svg class="absolute cursor-pointer" width="272" height="44" viewBox="0 0 272 44" fill="none"
                           xmlns="http://www.w3.org/2000/svg" >
                           <foreignObject x="-12" y="-12" width="296" height="68">
-                            <div xmlns="http://www.w3.org/1999/xhtml"
-                              style="backdrop-filter:blur(6px);clip-path:url(#bgblur_0_341_5062_clip_path);height:100%;width:100%">
+                            <div xmlns="http://www.w3.org/1999/xhtml" style="clip-path:url(#bgblur_0_341_5062_clip_path);height:100%;width:100%" >
                             </div>
                           </foreignObject>
                           <rect data-figma-bg-blur-radius="12" width="272" height="44" rx="22" fill="#BDE956"
@@ -1025,7 +1024,7 @@
                           xmlns="http://www.w3.org/2000/svg">
                           <foreignObject x="-12" y="-12" width="243" height="61">
                             <div xmlns="http://www.w3.org/1999/xhtml"
-                              style="backdrop-filter:blur(6px);clip-path:url(#bgblur_0_341_5073_clip_path);height:100%;width:100%">
+                              style="clip-path:url(#bgblur_0_341_5073_clip_path);height:100%;width:100%">
                             </div>
                           </foreignObject>
                           <rect data-figma-bg-blur-radius="12" width="219" height="37" rx="18.5" fill="black"
@@ -1097,12 +1096,12 @@
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! relative">
                     <div class="dotted-line"></div>
-                    <button class="relative z-10 h-[100px] flex justify-center" onclick="togglePopup(event, 'expenses')">
+                    <button class="relative z-10 h-12 md:h-25 flex justify-center" onclick="togglePopup(event, 'expenses')">
                       <svg class="absolute cursor-pointer" width="276" height="44" viewBox="0 0 276 44" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <foreignObject x="-12" y="-12" width="300" height="68">
                           <div xmlns="http://www.w3.org/1999/xhtml"
-                            style="backdrop-filter:blur(6px);clip-path:url(#bgblur_0_341_5115_clip_path);height:100%;width:100%">
+                            style="clip-path:url(#bgblur_0_341_5115_clip_path);height:100%;width:100%">
                           </div>
                         </foreignObject>
                         <rect data-figma-bg-blur-radius="12" width="276" height="44" rx="22" fill="#FEC700"
@@ -1187,22 +1186,22 @@
   </div>
    <!-- Floating Popup -->
                <div id="popup"
-                    class="absolute hidden w-96 bg-[#EFEFEF] rounded-3xl p-4 shadow-2xl 
-                            transition-all duration-200 scale-95 opacity-0 z-50">
+                    class="absolute hidden w-68 lg:w-96 bg-[#EFEFEF] rounded-3xl p-3 lg:p-4 shadow-2xl 
+                            transition-all duration-200 scale-95 opacity-0 z-99999">
 
                   <div class="bg-white rounded-3xl p-4">
                     <!-- Header -->
                   <div class="flex justify-between items-center mb-6">
-                    <h2 id="popupTitle" class="text-sm text-black *:font-semibold"></h2>
+                    <h2 id="popupTitle" class="text-sm text-black font-semibold!"></h2>
                     <span id="popupPercent"
-                          class="bg-[#EFEFEF] text-xs text-black px-3 py-1 rounded-full"></span>
+                          class="bg-[#EFEFEF] text-xs font-medium! text-black px-3 py-2 rounded-full"></span>
                   </div>
 
                   <!-- Content -->
-                  <div id="popupContent" class="space-y-4 text-black text-xs"></div>
+                  <div id="popupContent" class="space-y-4 text-black! text-xs"></div>
 
                   <div class="text-center mt-6">
-                    <button class="text-[#1BB15F] font-sm font-medium hover:underline">
+                    <button class="text-[#1BB15F] font-sm font-medium cursor-pointer">
                       View more
                     </button>
                   </div>
@@ -2765,48 +2764,64 @@
     },
   };
 
-  function togglePopup(event, type) {
-    event.stopPropagation();
+function togglePopup(event, type) {
+  event.stopPropagation();
 
-    if (activeButton === event.currentTarget) {
-      closePopup();
-      return;
+  if (activeButton === event.currentTarget) {
+    closePopup();
+    return;
+  }
+
+  activeButton = event.currentTarget;
+  const content = data[type];
+
+  popupTitle.textContent = content.title;
+  popupPercent.textContent = content.percent;
+
+  popupContent.innerHTML = content.items.map(item => `
+    <div class="flex justify-between border-b border-black/10 pb-3">
+      <span>${item.date}</span>
+      <span class="font-medium">${item.amount}</span>
+    </div>
+  `).join("");
+
+  const rect = activeButton.getBoundingClientRect();
+  const popupWidth = 384; // Tailwind w-96
+  const offset = 12;
+
+  let left, top;
+
+  if (window.innerWidth <= 640) {
+    // Mobile: horizontally center
+    left = (window.innerWidth - popupWidth) / 2;
+    // Keep it slightly below the button
+    top = rect.bottom + offset;
+
+    // Optional: prevent popup from going off the bottom of screen
+    if (top + popup.offsetHeight > window.innerHeight) {
+      top = window.innerHeight - popup.offsetHeight - offset;
     }
-
-    activeButton = event.currentTarget;
-    const content = data[type];
-
-    popupTitle.textContent = content.title;
-    popupPercent.textContent = content.percent;
-
-    popupContent.innerHTML = content.items.map(item => `
-      <div class="flex justify-between border-b pb-3">
-        <span>${item.date}</span>
-        <span class="font-medium">${item.amount}</span>
-      </div>
-    `).join("");
-
-    const rect = activeButton.getBoundingClientRect();
-    const popupWidth = 384; // Tailwind w-96
-    const offset = 12;
-
-    let left = rect.right + offset;
+  } else {
+    // Desktop: right side of button
+    left = rect.right + offset;
+    top = rect.top;
 
     // If popup would overflow right side → show on left
     if (left + popupWidth > window.innerWidth) {
       left = rect.left - popupWidth - offset;
     }
-
-    popup.style.left = left + "px";
-    popup.style.top = rect.top + "px";
-
-    popup.classList.remove("hidden");
-
-    setTimeout(() => {
-      popup.classList.remove("scale-95", "opacity-0");
-      popup.classList.add("scale-100", "opacity-100");
-    }, 10);
   }
+
+  popup.style.left = left + "px";
+  popup.style.top = top + "px";
+
+  popup.classList.remove("hidden");
+
+  setTimeout(() => {
+    popup.classList.remove("scale-95", "opacity-0");
+    popup.classList.add("scale-100", "opacity-100");
+  }, 10);
+}
 
   function closePopup() {
     popup.classList.add("scale-95", "opacity-0");

@@ -159,8 +159,7 @@
         transform: translateX(-1px);
         z-index: 10;
       }
-    </style>
-    <style>
+
       .greenCard {
         background: linear-gradient(to right, #0d763d, #1bb05e);
       }
@@ -172,8 +171,6 @@
       .yelloCard {
         background: linear-gradient(to right, #fcda32, #fec700b9);
       }
-    </style>
-    <style>
       .timeline-grid {
         display: grid;
         grid-template-columns: 120px repeat(9, 1fr);
@@ -208,8 +205,6 @@
       .hover-scale:hover {
         transform: scale(1.05);
       }
-    </style>
-    <style>
       /* Enhanced CSS for sidebar expand/collapse with proper layout management */
       #sidebar {
         width: 80px;
@@ -221,6 +216,35 @@
         z-index: 40;
       }
 
+      /* Active button style */
+      .plan-active-toggle {
+        border: 1.5px solid transparent !important;
+        background:
+          linear-gradient(white, white) padding-box,
+          linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%) border-box !important;
+      }
+
+      /* Icon wrapper style */
+      .plan-icon-wrapper {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white; /* default background */
+        transition: background 0.3s;
+      }
+
+      /* Active icon background */
+      .plan-icon-wrapper.plan-active {
+        background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);
+      }
+      /* Invert the SVG inside active wrapper */
+      .plan-icon-wrapper.plan-active svg {
+        filter: invert(1);
+        transition: filter 0.3s;
+      }
       @media (min-width: 1024px) {
         #sidebar {
           top: 5rem;
@@ -935,7 +959,9 @@
               <!-- Income Starts here -->
               <div class="toggle-box2 mt-3">
                 <!-- HEADER -->
-                <div class="headerplan2 hidden bg-[#e7e7e7] p-3 rounded-3xl toggle-btn cursor-pointer">
+                <div
+                  class="headerplan2 hidden bg-[#e7e7e7] p-0 md:p-3 toggle-btn2 rounded-3xl cursor-pointer"
+                >
                   <div
                     class="flex justify-between bg-gradient-to-r from-[#DEEDE8] to-[#E8F3D8] rounded-2xl p-4 border border-white!"
                   >
@@ -949,7 +975,7 @@
                 <!-- Table part -->
                 <div class="contentplan2 transition-all duration-300">
                   <div
-                    class="border border-white shadow-sm p-3 md:py-5 md:px-4 bg-gray-200"
+                    class="border border-white shadow-sm p-0 md:p-3 md:py-5 md:px-4 bg-gray-200"
                     style="border-radius: 24px"
                   >
                     <!-- Income -->
@@ -985,7 +1011,7 @@
                           </button>
                         </div>
                       </div>
-                      <div class="overflow-x-auto">
+                      <div class="hidden md:block overflow-x-auto">
                         <div class="p-4 min-w-[1540px] w-full">
                           <div class="bg-white rounded-[30px] flex items-start">
                             <!-- 1st Colum Starts -->
@@ -996,13 +1022,13 @@
                                 >Description</span
                               >
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p1.png" />
                                 <p class="text-sm font-medium">Gas</p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p2.png" />
                                 <p class="text-sm font-medium">
@@ -1010,13 +1036,13 @@
                                 </p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p3.png" />
                                 <p class="text-sm font-medium">Parking Tolls</p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p4.png" />
                                 <p class="text-sm font-medium">
@@ -2521,6 +2547,230 @@
                           </div>
                         </div>
                       </div>
+                      <!-- Table for Mobile -->
+                      <div
+                        class="bg-[#F3F4F6] p-2 flex justify-center md:hidden"
+                      >
+                        <div
+                          class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
+                        >
+                          <!-- Month (Full Width) -->
+                          <div class="mb-4 relative w-full">
+                            <label
+                              class="text-sm font-medium text-gray-700 block mb-2"
+                            >
+                              Month
+                            </label>
+
+                            <!-- Trigger -->
+                            <div
+                              id="monthSelect"
+                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                            >
+                              <span id="selectedMonth" class="text-xs"
+                                >August</span
+                              >
+                              <svg
+                                class="w-4 h-4 text-gray-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+
+                            <!-- Absolute Dropdown -->
+                            <div
+                              id="monthOptions"
+                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                            >
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                January
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                February
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                March
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                April
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                May
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                June
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                July
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                August
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                September
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                October
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                November
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                December
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Table -->
+                          <div
+                            class="border border-gray-200 rounded-md overflow-hidden"
+                          >
+                            <!-- Header -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] bg-gray-100 text-sm font-medium text-gray-700"
+                            >
+                              <div class="p-4 text-xs text-black font-medium">
+                                Description
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Plan
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Actual
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Delta
+                              </div>
+                            </div>
+
+                            <!-- Row 1 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p1.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">Gas</p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p2.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Auto Maintainance
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p3.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Parking Tolls
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     <!-- Fixed chevron outside overflow container -->
@@ -2538,7 +2788,9 @@
               <!-- Expenses Starts here -->
               <div class="toggle-box mt-3">
                 <!-- HEADER -->
-                <div class="headerplan bg-[#e7e7e7] p-3 rounded-3xl toggle-btn cursor-pointer">
+                <div
+                  class="headerplan bg-[#e7e7e7] p-0 md:p-3 rounded-2xl md:rounded-3xl toggle-btn cursor-pointer"
+                >
                   <div
                     class="flex justify-between bg-gradient-to-r from-[#DEEDE8] to-[#E8F3D8] rounded-2xl p-4 border border-white!"
                   >
@@ -2552,7 +2804,7 @@
                 <!-- Table part -->
                 <div class="contentplan hidden transition-all duration-300">
                   <div
-                    class="border border-white shadow-sm p-3 md:py-5 md:px-4 bg-gray-200"
+                    class="border border-white shadow-sm p-0 md:p-3 md:py-5 md:px-4 bg-gray-200"
                     style="border-radius: 24px"
                   >
                     <!-- Income -->
@@ -2588,7 +2840,7 @@
                           </button>
                         </div>
                       </div>
-                      <div class="overflow-x-auto">
+                      <div class="hidden md:block overflow-x-auto">
                         <div class="p-4 min-w-[1540px] w-full">
                           <div class="bg-white rounded-[30px] flex items-start">
                             <!-- 1st Colum Starts -->
@@ -2600,7 +2852,7 @@
                               >
 
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p2.png" />
                                 <p class="text-sm font-medium">
@@ -2608,7 +2860,7 @@
                                 </p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p2.png" />
                                 <p class="text-sm font-medium">
@@ -2616,13 +2868,13 @@
                                 </p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p3.png" />
                                 <p class="text-sm font-medium">Parking Tolls</p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p4.png" />
                                 <p class="text-sm font-medium">
@@ -4294,6 +4546,231 @@
                         </div>
                       </div>
 
+                      <!-- Table for Mobile -->
+                      <div
+                        class="bg-[#F3F4F6] p-2 flex justify-center md:hidden"
+                      >
+                        <div
+                          class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
+                        >
+                          <!-- Month (Full Width) -->
+                          <div class="mb-4 relative w-full">
+                            <label
+                              class="text-sm font-medium text-gray-700 block mb-2"
+                            >
+                              Month
+                            </label>
+
+                            <!-- Trigger -->
+                            <div
+                              id="monthSelect"
+                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                            >
+                              <span id="selectedMonth" class="text-xs"
+                                >August</span
+                              >
+                              <svg
+                                class="w-4 h-4 text-gray-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+
+                            <!-- Absolute Dropdown -->
+                            <div
+                              id="monthOptions"
+                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                            >
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                January
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                February
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                March
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                April
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                May
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                June
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                July
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                August
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                September
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                October
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                November
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                December
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Table -->
+                          <div
+                            class="border border-gray-200 rounded-md overflow-hidden"
+                          >
+                            <!-- Header -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] bg-gray-100 text-sm font-medium text-gray-700"
+                            >
+                              <div class="p-4 text-xs text-black font-medium">
+                                Description
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Plan
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Actual
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Delta
+                              </div>
+                            </div>
+
+                            <!-- Row 1 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p1.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">Gas</p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p2.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Auto Maintainance
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p3.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Parking Tolls
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <!-- Fixed chevron outside overflow container -->
                       <div class="dcenter">
                         <button
@@ -4310,7 +4787,9 @@
               <!-- Net Income Starts here -->
               <div class="toggle-box mt-3">
                 <!-- HEADER -->
-                <div class="headerplan bg-[#e7e7e7] p-3 rounded-3xl toggle-btn cursor-pointer">
+                <div
+                  class="headerplan bg-[#e7e7e7] p-0 md:p-3 rounded-3xl toggle-btn cursor-pointer"
+                >
                   <div
                     class="flex justify-between bg-gradient-to-r from-[#DEEDE8] to-[#E8F3D8] rounded-2xl p-4 border border-white!"
                   >
@@ -4323,7 +4802,7 @@
                 <!-- Table part -->
                 <div class="contentplan hidden transition-all duration-300">
                   <div
-                    class="border border-white shadow-sm p-3 md:py-5 md:px-4 bg-gray-200"
+                    class="border border-white shadow-sm p-0 md:p-3 md:py-5 md:px-4 bg-gray-200"
                     style="border-radius: 24px"
                   >
                     <!-- Income -->
@@ -4359,7 +4838,7 @@
                           </button>
                         </div>
                       </div>
-                      <div class="overflow-x-auto">
+                      <div class="hidden md:block overflow-x-auto">
                         <div class="p-4 min-w-[1540px] w-full">
                           <div class="bg-white rounded-[30px] flex items-start">
                             <!-- 1st Colum Starts -->
@@ -4370,13 +4849,13 @@
                                 >Description</span
                               >
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p1.png" />
                                 <p class="text-sm font-medium">Gas</p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p2.png" />
                                 <p class="text-sm font-medium">
@@ -4384,13 +4863,13 @@
                                 </p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p3.png" />
                                 <p class="text-sm font-medium">Parking Tolls</p>
                               </div>
                               <div
-                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200"
+                                class="p-4 pt-4 md:pt-5 pb-3.5 md:pb-4.5 flex gap-2 items-center border-b border-gray-200 plan-list-item cursor-pointer"
                               >
                                 <img src="./assets/images/p4.png" />
                                 <p class="text-sm font-medium">
@@ -6061,6 +6540,231 @@
                         </div>
                       </div>
 
+                      <!-- Table for Mobile -->
+                      <div
+                        class="bg-[#F3F4F6] p-2 flex justify-center md:hidden"
+                      >
+                        <div
+                          class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
+                        >
+                          <!-- Month (Full Width) -->
+                          <div class="mb-4 relative w-full">
+                            <label
+                              class="text-sm font-medium text-gray-700 block mb-2"
+                            >
+                              Month
+                            </label>
+
+                            <!-- Trigger -->
+                            <div
+                              id="monthSelect"
+                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                            >
+                              <span id="selectedMonth" class="text-xs"
+                                >August</span
+                              >
+                              <svg
+                                class="w-4 h-4 text-gray-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+
+                            <!-- Absolute Dropdown -->
+                            <div
+                              id="monthOptions"
+                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                            >
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                January
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                February
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                March
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                April
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                May
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                June
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                July
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                August
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                September
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                October
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                November
+                              </div>
+                              <div
+                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                              >
+                                December
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Table -->
+                          <div
+                            class="border border-gray-200 rounded-md overflow-hidden"
+                          >
+                            <!-- Header -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] bg-gray-100 text-sm font-medium text-gray-700"
+                            >
+                              <div class="p-4 text-xs text-black font-medium">
+                                Description
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Plan
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Actual
+                              </div>
+                              <div
+                                class="p-4 text-xs text-black font-medium text-center"
+                              >
+                                Delta
+                              </div>
+                            </div>
+
+                            <!-- Row 1 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p1.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">Gas</p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p2.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Auto Maintainance
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div
+                              class="grid grid-cols-[1fr_1fr_0.75fr_0.75fr] items-center border-t border-gray-200"
+                            >
+                              <div
+                                class="flex items-center gap-1.5 p-2 plan-list-item cursor-pointer"
+                              >
+                                <img
+                                  class="w-7 h-7"
+                                  src="./assets/images/p3.png"
+                                />
+                                <p class="text-xs w-[10ch] truncate">
+                                  Parking Tolls
+                                </p>
+                              </div>
+                              <div class="p-2 text-center">
+                                <input
+                                  type="text"
+                                  class="border border-gray-300 rounded-full px-2 py-1 w-20 text-xs text-black text-center outline-none"
+                                  placeholder="0"
+                                />
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                $2,700
+                              </div>
+                              <div class="p-4 text-center text-black text-xs">
+                                0%
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <!-- Fixed chevron outside overflow container -->
                       <div class="dcenter">
                         <button
@@ -6998,10 +7702,9 @@
     </div>
 
     <!-- Modal overlay -->
-    <!-- Background Overlay -->
     <div
       id="modal-overlay"
-      class="fixed inset-0 bg-[#00000066] bg-opacity-50 flex items-center justify-center z-50 hidden"
+      class="fixed inset-0 bg-[#00000066] bg-opacity-50 flex items-center justify-center z-999 hidden"
     >
       <!-- Modal -->
       <div
@@ -7270,109 +7973,54 @@
               <label class="block text-sm font-medium text-black mb-1"
                 >Income / Expense Setup</label
               >
-              <div class="flex gap-2">
+              <div class="flex gap-3">
+                <!-- Income Button -->
                 <button
                   id="income-btn"
-                  class="flex-1 flex gap-2 items-center bg-white text-sm text-black px-3 font-medium cursor-pointer"
-                  style="
-                    border: 1.5px solid transparent;
-                    border-radius: 12px;
-                    background:
-                      linear-gradient(white, white) padding-box,
-                      linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%)
-                        border-box;
-                  "
+                  class="plan-toggle-btn plan-active-toggle flex-1 flex gap-2 items-center justify-center bg-white text-sm text-black px-3 py-3 rounded-xl font-medium cursor-pointer transition-all duration-300"
                 >
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="0.454545"
-                      y="0.45894"
-                      width="39.0909"
-                      height="39.0909"
-                      rx="19.5455"
-                      fill="url(#paint0_linear_780_10943)"
-                    />
-                    <rect
-                      x="0.454545"
-                      y="0.45894"
-                      width="39.0909"
-                      height="39.0909"
-                      rx="19.5455"
-                      stroke="url(#paint1_linear_780_10943)"
-                      stroke-width="0.909091"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M26.0362 17.0436C24.6945 15.666 23.1608 14.6863 21.741 14.2351C20.3499 13.793 18.8983 13.8167 17.9479 14.7423C17.9279 14.7618 17.9082 14.7815 17.889 14.8015L17.7577 14.8015C17.751 14.8015 17.7444 14.8016 17.7377 14.8018C15.9792 14.858 14.3786 15.1625 13.1955 15.6431C12.6058 15.8827 12.0883 16.1787 11.7081 16.5362C11.3268 16.8946 11.0391 17.3605 11.0391 17.9174C11.0391 18.4088 11.2626 18.8286 11.5778 19.1676C11.2586 19.5102 11.0391 19.927 11.0391 20.4174C11.0391 20.9088 11.2625 21.3285 11.5776 21.6674C11.2621 22.0068 11.0391 22.426 11.0391 22.9174C11.0391 23.5055 11.3591 23.9909 11.7733 24.3582C12.1883 24.726 12.753 25.0288 13.3972 25.2704C14.6903 25.7553 16.4347 26.0424 18.3307 26.0424C20.2251 26.0424 21.9702 25.7557 23.2649 25.2701C23.6235 25.4432 23.9798 25.5862 24.3291 25.6973C25.7202 26.1394 27.1718 26.1156 28.1222 25.1901C29.0726 24.2645 29.1349 22.8141 28.7298 21.4117C28.3164 19.9805 27.3778 18.4213 26.0362 17.0436ZM18.82 15.6378C19.2797 15.1901 20.146 15.0398 21.3624 15.4263C22.5501 15.8038 23.9135 16.6556 25.1406 17.9157C26.3678 19.1758 27.1831 20.5613 27.5289 21.7586C27.8831 22.9848 27.7099 23.8468 27.2501 24.2945C26.7904 24.7423 25.9241 24.8926 24.7077 24.506C23.52 24.1285 22.1566 23.2767 20.9295 22.0166C19.7024 20.7565 18.8871 19.371 18.5412 18.1737C18.187 16.9475 18.3602 16.0855 18.82 15.6378ZM21.8091 24.4083C21.3864 24.111 20.969 23.7751 20.5645 23.4039C19.8613 23.4939 19.1101 23.5424 18.3307 23.5424C16.4347 23.5424 14.6903 23.2553 13.3972 22.7704C13.1136 22.664 12.8454 22.5458 12.5986 22.4154C12.3419 22.644 12.2891 22.8157 12.2891 22.9174C12.2891 23.0196 12.3421 23.1919 12.6026 23.4228C12.8624 23.6532 13.2739 23.8891 13.8361 24.1C14.9559 24.5199 16.5449 24.7924 18.3307 24.7924C19.6302 24.7924 20.8244 24.6481 21.8091 24.4083ZM19.4562 22.2556C19.1174 21.859 18.8113 21.452 18.5404 21.0412C18.4707 21.042 18.4009 21.0424 18.3307 21.0424C16.4347 21.0424 14.6903 20.7553 13.3972 20.2704C13.1135 20.164 12.8452 20.0457 12.5983 19.9152C12.3469 20.1388 12.2891 20.3148 12.2891 20.4174C12.2891 20.5197 12.3421 20.6919 12.6026 20.9229C12.8624 21.1532 13.2739 21.3891 13.8361 21.6C14.9559 22.0199 16.5449 22.2924 18.3307 22.2924C18.7153 22.2924 19.0914 22.2798 19.4562 22.2556ZM17.8269 19.7851C17.6229 19.3579 17.4597 18.9339 17.3403 18.5206C17.0985 17.6833 17.0232 16.8289 17.2041 16.0793C15.7892 16.173 14.5578 16.4389 13.666 16.8012C13.159 17.0072 12.7932 17.2317 12.5642 17.4469C12.3363 17.6612 12.2891 17.8201 12.2891 17.9174C12.2891 18.0196 12.3421 18.1919 12.6026 18.4228C12.8624 18.6532 13.2739 18.8891 13.8361 19.0999C14.8495 19.48 16.247 19.7392 17.8269 19.7851Z"
-                      stroke="white"
-                      stroke-width="0.5"
-                      stroke-linejoin="round"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_780_10943"
-                        x1="-50.6893"
-                        y1="-11.7705"
-                        x2="-47.8905"
-                        y2="64.4891"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#0D743B" />
-                        <stop offset="1" stop-color="#FCE166" />
-                      </linearGradient>
-                      <linearGradient
-                        id="paint1_linear_780_10943"
-                        x1="-50.6893"
-                        y1="-11.7705"
-                        x2="-47.8905"
-                        y2="64.4891"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#0D743B" />
-                        <stop offset="1" stop-color="#FCE166" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-
+                  <div class="plan-icon-wrapper plan-active">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="13"
+                      viewBox="0 0 18 13"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M14.9971 3.08757C13.6555 1.7099 12.1217 0.730221 10.7019 0.279009C9.31083 -0.1631 7.85924 -0.139319 6.90884 0.786203C6.8888 0.805716 6.86916 0.825463 6.84991 0.845438L6.71863 0.845438C6.71198 0.845438 6.70533 0.845545 6.69868 0.845757C4.9401 0.901899 3.33955 1.20644 2.15645 1.6871C1.56677 1.92667 1.04926 2.22266 0.669001 2.58013C0.287737 2.93855 3.91711e-07 3.40446 3.91711e-07 3.96133C3.91711e-07 4.4528 0.223521 4.87256 0.538707 5.21156C0.21949 5.55414 3.91713e-07 5.97093 3.91713e-07 6.46135C3.91713e-07 6.95271 0.223432 7.37241 0.53852 7.71138C0.223078 8.05071 3.91713e-07 8.46999 3.91713e-07 8.96134C3.91713e-07 9.54944 0.320071 10.0349 0.734271 10.4021C1.1492 10.77 1.71395 11.0727 2.35817 11.3143C3.65122 11.7992 5.39561 12.0863 7.29167 12.0863C9.18603 12.0863 10.9312 11.7997 12.2258 11.3141C12.5844 11.4871 12.9407 11.6302 13.2901 11.7412C14.6812 12.1833 16.1328 12.1595 17.0832 11.234C18.0336 10.3085 18.0958 8.85803 17.6908 7.45569C17.2774 6.02448 16.3387 4.46525 14.9971 3.08757ZM7.78092 1.68173C8.24069 1.234 9.10695 1.08371 10.3233 1.47029C11.5111 1.84777 12.8744 2.69954 14.1016 3.95966C15.3287 5.21978 16.144 6.60523 16.4899 7.80257C16.8441 9.02879 16.6708 9.89075 16.2111 10.3385C15.7513 10.7862 14.8851 10.9365 13.6687 10.5499C12.4809 10.1724 11.1176 9.32067 9.89044 8.06055C8.66331 6.80044 7.84799 5.41498 7.50214 4.21764C7.14795 2.99143 7.32116 2.12946 7.78092 1.68173ZM10.7701 10.4522C10.3473 10.1549 9.9299 9.81905 9.52547 9.44786C8.82224 9.53787 8.07101 9.58635 7.29167 9.58635C5.39561 9.58635 3.65122 9.29922 2.35817 8.81432C2.07458 8.70797 1.80638 8.58977 1.55959 8.45938C1.30288 8.68799 1.25 8.85969 1.25 8.96134C1.25 9.06359 1.30303 9.23583 1.56353 9.46679C1.82331 9.69711 2.23486 9.93307 2.79707 10.1439C3.91689 10.5638 5.50582 10.8363 7.29167 10.8363C8.59117 10.8363 9.7853 10.6921 10.7701 10.4522ZM8.41716 8.29955C8.07838 7.90298 7.77222 7.49596 7.50131 7.08516C7.43167 7.08594 7.36179 7.08633 7.29167 7.08633C5.39561 7.08633 3.65122 6.7992 2.35817 6.3143C2.07444 6.2079 1.80612 6.08964 1.55923 5.95917C1.30779 6.18275 1.25 6.35879 1.25 6.46135C1.25 6.5636 1.30303 6.73584 1.56353 6.9668C1.8233 7.19712 2.23486 7.43308 2.79707 7.64391C3.91689 8.06384 5.50582 8.33635 7.29167 8.33635C7.67624 8.33635 8.05236 8.3237 8.41716 8.29955ZM6.78787 5.82905C6.58382 5.40183 6.42063 4.97784 6.30124 4.56452C6.05939 3.72724 5.98414 2.87281 6.16504 2.1232C4.75017 2.21694 3.51873 2.48286 2.62695 2.84517C2.11993 3.05116 1.75409 3.27568 1.52517 3.49088C1.29726 3.70514 1.25 3.86404 1.25 3.96133C1.25 4.06359 1.30303 4.23582 1.56353 4.46678C1.8233 4.6971 2.23486 4.93306 2.79707 5.14389C3.81042 5.5239 5.20792 5.78318 6.78787 5.82905Z"
+                        fill="black"
+                        fill-opacity="0.6"
+                      />
+                    </svg>
+                  </div>
                   Income
                 </button>
+
+                <!-- Expense Button -->
                 <button
                   id="expense-btn"
-                  class="flex-1 flex gap-2 items-center border border-gray-300 text-sm text-black p-3 rounded-xl font-medium cursor-pointer"
+                  class="plan-toggle-btn flex-1 flex gap-2 items-center justify-center border border-gray-300 bg-white text-sm text-black px-3 py-3 rounded-xl font-medium cursor-pointer transition-all duration-300"
                 >
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 40 40"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="0.454545"
-                      y="0.45894"
-                      width="39.0909"
-                      height="39.0909"
-                      rx="19.5455"
-                      stroke="black"
-                      stroke-opacity="0.1"
-                      stroke-width="0.909091"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M26.0362 17.0436C24.6945 15.666 23.1608 14.6863 21.741 14.2351C20.3499 13.793 18.8983 13.8167 17.9479 14.7423C17.9279 14.7618 17.9082 14.7815 17.889 14.8015L17.7577 14.8015C17.751 14.8015 17.7444 14.8016 17.7377 14.8018C15.9792 14.858 14.3786 15.1625 13.1955 15.6431C12.6058 15.8827 12.0883 16.1787 11.7081 16.5362C11.3268 16.8946 11.0391 17.3605 11.0391 17.9174C11.0391 18.4088 11.2626 18.8286 11.5778 19.1676C11.2586 19.5102 11.0391 19.927 11.0391 20.4174C11.0391 20.9088 11.2625 21.3285 11.5776 21.6674C11.2621 22.0068 11.0391 22.426 11.0391 22.9174C11.0391 23.5055 11.3591 23.9909 11.7733 24.3582C12.1883 24.726 12.753 25.0288 13.3972 25.2704C14.6903 25.7553 16.4347 26.0424 18.3307 26.0424C20.2251 26.0424 21.9702 25.7557 23.2649 25.2701C23.6235 25.4432 23.9798 25.5862 24.3291 25.6973C25.7202 26.1394 27.1718 26.1156 28.1222 25.1901C29.0726 24.2645 29.1349 22.8141 28.7298 21.4117C28.3164 19.9805 27.3778 18.4213 26.0362 17.0436ZM18.82 15.6378C19.2797 15.1901 20.146 15.0398 21.3624 15.4263C22.5501 15.8038 23.9135 16.6556 25.1406 17.9157C26.3678 19.1758 27.1831 20.5613 27.5289 21.7586C27.8831 22.9848 27.7099 23.8468 27.2501 24.2945C26.7904 24.7423 25.9241 24.8926 24.7077 24.506C23.52 24.1285 22.1566 23.2767 20.9295 22.0166C19.7024 20.7565 18.8871 19.371 18.5412 18.1737C18.187 16.9475 18.3602 16.0855 18.82 15.6378ZM21.8091 24.4083C21.3864 24.111 20.969 23.7751 20.5645 23.4039C19.8613 23.4939 19.1101 23.5424 18.3307 23.5424C16.4347 23.5424 14.6903 23.2553 13.3972 22.7704C13.1136 22.664 12.8454 22.5458 12.5986 22.4154C12.3419 22.644 12.2891 22.8157 12.2891 22.9174C12.2891 23.0196 12.3421 23.1919 12.6026 23.4228C12.8624 23.6532 13.2739 23.8891 13.8361 24.1C14.9559 24.5199 16.5449 24.7924 18.3307 24.7924C19.6302 24.7924 20.8244 24.6481 21.8091 24.4083ZM19.4562 22.2556C19.1174 21.859 18.8113 21.452 18.5404 21.0412C18.4707 21.042 18.4009 21.0424 18.3307 21.0424C16.4347 21.0424 14.6903 20.7553 13.3972 20.2704C13.1135 20.164 12.8452 20.0457 12.5983 19.9152C12.3469 20.1388 12.2891 20.3148 12.2891 20.4174C12.2891 20.5197 12.3421 20.6919 12.6026 20.9229C12.8624 21.1532 13.2739 21.3891 13.8361 21.6C14.9559 22.0199 16.5449 22.2924 18.3307 22.2924C18.7153 22.2924 19.0914 22.2798 19.4562 22.2556ZM17.8269 19.7851C17.6229 19.3579 17.4597 18.9339 17.3403 18.5206C17.0985 17.6833 17.0232 16.8289 17.2041 16.0793C15.7892 16.173 14.5578 16.4389 13.666 16.8012C13.159 17.0072 12.7932 17.2317 12.5642 17.4469C12.3363 17.6612 12.2891 17.8201 12.2891 17.9174C12.2891 18.0196 12.3421 18.1919 12.6026 18.4228C12.8624 18.6532 13.2739 18.8891 13.8361 19.0999C14.8495 19.48 16.247 19.7392 17.8269 19.7851Z"
-                      fill="black"
-                      fill-opacity="0.6"
-                    />
-                  </svg>
-
+                  <div class="plan-icon-wrapper">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16.0362 7.03875C14.6945 5.66107 13.1608 4.68139 11.741 4.23018C10.3499 3.78807 8.8983 3.81185 7.9479 4.73737C7.92786 4.75689 7.90822 4.77664 7.88897 4.79661L7.75769 4.79661C7.75104 4.79661 7.74439 4.79672 7.73775 4.79693C5.97916 4.85307 4.37861 5.15761 3.19552 5.63827C2.60583 5.87784 2.08832 6.17383 1.70806 6.5313C1.3268 6.88972 1.03906 7.35563 1.03906 7.9125C1.03906 8.40397 1.26258 8.82373 1.57777 9.16273C1.25855 9.50531 1.03906 9.92211 1.03906 10.4125C1.03906 10.9039 1.26249 11.3236 1.57758 11.6626C1.26214 12.0019 1.03906 12.4212 1.03906 12.9125C1.03906 13.5006 1.35913 13.9861 1.77333 14.3533C2.18826 14.7212 2.75301 15.0239 3.39723 15.2655C4.69028 15.7504 6.43468 16.0375 8.33073 16.0375C10.2251 16.0375 11.9702 15.7508 13.2649 15.2652C13.6235 15.4383 13.9798 15.5813 14.3291 15.6924C15.7202 16.1345 17.1718 16.1107 18.1222 15.1852C19.0726 14.2597 19.1349 12.8092 18.7298 11.4069C18.3164 9.97565 17.3778 8.41642 16.0362 7.03875ZM8.81999 5.6329C9.27975 5.18517 10.146 5.03488 11.3624 5.42147C12.5501 5.79894 13.9135 6.65071 15.1406 7.91083C16.3678 9.17095 17.1831 10.5564 17.5289 11.7537C17.8831 12.98 17.7099 13.8419 17.2501 14.2897C16.7904 14.7374 15.9241 14.8877 14.7077 14.5011C13.52 14.1236 12.1566 13.2718 10.9295 12.0117C9.70237 10.7516 8.88706 9.36615 8.54121 8.16881C8.18702 6.9426 8.36022 6.08063 8.81999 5.6329ZM11.8091 14.4034C11.3864 14.1061 10.969 13.7702 10.5645 13.399C9.8613 13.489 9.11007 13.5375 8.33073 13.5375C6.43468 13.5375 4.69028 13.2504 3.39723 12.7655C3.11364 12.6591 2.84544 12.5409 2.59865 12.4106C2.34195 12.6392 2.28906 12.8109 2.28906 12.9125C2.28906 13.0148 2.34209 13.187 2.60259 13.418C2.86237 13.6483 3.27392 13.8842 3.83614 14.0951C4.95595 14.515 6.54489 14.7875 8.33073 14.7875C9.63023 14.7875 10.8244 14.6432 11.8091 14.4034ZM9.45623 12.2507C9.11744 11.8542 8.81128 11.4471 8.54037 11.0363C8.47074 11.0371 8.40085 11.0375 8.33073 11.0375C6.43468 11.0375 4.69028 10.7504 3.39723 10.2655C3.1135 10.1591 2.84518 10.0408 2.59829 9.91035C2.34686 10.1339 2.28906 10.31 2.28906 10.4125C2.28906 10.5148 2.34209 10.687 2.60259 10.918C2.86237 11.1483 3.27392 11.3843 3.83614 11.5951C4.95595 12.015 6.54489 12.2875 8.33073 12.2875C8.71531 12.2875 9.09142 12.2749 9.45623 12.2507ZM7.82693 9.78022C7.62288 9.35301 7.45969 8.92901 7.3403 8.51569C7.09846 7.67841 7.0232 6.82398 7.2041 6.07437C5.78923 6.16812 4.55779 6.43403 3.66601 6.79634C3.159 7.00233 2.79315 7.22685 2.56424 7.44205C2.33633 7.65631 2.28906 7.81521 2.28906 7.9125C2.28906 8.01476 2.34209 8.18699 2.60259 8.41795C2.86237 8.64827 3.27392 8.88424 3.83614 9.09506C4.84948 9.47507 6.24699 9.73435 7.82693 9.78022Z"
+                        fill="black"
+                        fill-opacity="0.6"
+                      />
+                    </svg>
+                  </div>
                   Expense
                 </button>
               </div>
@@ -7389,6 +8037,384 @@
 
             <button
               id="saveBtn"
+              class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
+            >
+              Save Plan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Plan Setup -->
+    <div
+      id="modal-overlay-plan"
+      class="fixed inset-0 bg-[#00000066] bg-opacity-50 flex items-center justify-center z-999 hidden"
+    >
+      <!-- Modal -->
+      <div
+        class="bg-[#E6E6E6] rounded-xl shadow-xl w-full max-w-md mx-4 overflow-y-auto max-h-[90vh]"
+        style="overflow: auto; scrollbar-width: none; -ms-overflow-style: none"
+      >
+        <!-- Header -->
+        <div
+          class="bg-[#0B6B37] text-white px-6 py-4 flex justify-between items-center rounded-t-xl"
+        >
+          <h2 class="text-lg md:text-xl font-medium">Plan Setup</h2>
+          <button
+            id="close-modal-plan"
+            class="text-white hover:text-gray-200 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-4 rounded-xl">
+          <div class="p-3 bg-white/70 rounded-3xl space-y-2">
+            <!-- Select Plan -->
+            <div class="rounded-2xl p-4 bg-white rounded-b-xl">
+              <label class="block text-sm font-medium text-black mb-1"
+                >Accounts for Income</label
+              >
+              <div class="relative">
+                <div class="custom-dropdown w-full rounded-full! h-[46px]">
+                  <button
+                    class="dropdown-trigger w-full text-start rounded-full"
+                    data-dropdown="dropdown1"
+                  >
+                    <span class="dropdown-value text-sm! text-black"
+                      >Create New Plan</span
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                        stroke="#667085"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="dropdown-menu" id="dropdown1">
+                    <div
+                      class="dropdown-item text-sm text-black/60"
+                      data-value="Create New Plan"
+                    >
+                      Create New Plan
+                    </div>
+                    <!-- <div class="dropdown-item" data-value="Income">Income</div>
+                          <div class="dropdown-item" data-value="Expenses">Expenses</div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Estimated Income -->
+            <div class="rounded-2xl p-4 bg-white rounded-b-xl">
+              <label class="block text-sm font-medium text-black mb-1"
+                >Estimated Income</label
+              >
+              <div class="relative flex gap-2">
+                <input
+                  type="text"
+                  class="w-full border border-gray-300 rounded-full h-[46px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-black"
+                  placeholder="1000"
+                />
+                <button
+                  class="bg-[#1BB15F] w-12 h-12 px-8 rounded-4xl flex items-center justify-center text-white text-sm"
+                >
+                  AVG
+                </button>
+              </div>
+            </div>
+
+            <!-- Income Variation -->
+            <div class="rounded-2xl p-3 bg-white">
+              <div class="mb-2">
+                <p class="text-base text-black font-medium mb-3">
+                  Income Variation
+                </p>
+                <label class="block text-sm font-medium text-black mb-1"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="w-full border border-gray-300 rounded-full h-[46px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder=""
+                />
+              </div>
+              <div class="">
+                <label class="block text-sm font-medium text-black mb-3 mt-3"
+                  >Variation Effect</label
+                >
+                <div class="relative">
+                  <div class="custom-dropdown w-full rounded-full h-[46px]">
+                    <button
+                      class="dropdown-trigger w-full text-start rounded-full"
+                      data-dropdown="dropdown1"
+                    >
+                      <span class="dropdown-value text-sm! text-black"
+                        >Increase/Decrease/Flat Amount</span
+                      >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
+                        <path
+                          d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                          stroke="#667085"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown1">
+                      <div
+                        class="dropdown-item text-sm text-black/60"
+                        data-value="Increase"
+                      >
+                        Increase
+                      </div>
+                      <div
+                        class="dropdown-item text-sm text-black/60"
+                        data-value="Decrease"
+                      >
+                        Decrease
+                      </div>
+                      <div
+                        class="dropdown-item text-sm text-black/60"
+                        data-value="Flat Amount"
+                      >
+                        Flat Amount
+                      </div>
+                      <!-- <div class="dropdown-item" data-value="Income">Income</div>
+                          <div class="dropdown-item" data-value="Expenses">Expenses</div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <label class="block text-sm font-medium text-black mb-3 mt-3"
+                  >Frequency</label
+                >
+                <div class="relative">
+                  <div class="custom-dropdown w-full rounded-full h-[46px]">
+                    <button
+                      class="dropdown-trigger w-full text-start rounded-full"
+                      data-dropdown="dropdown1"
+                    >
+                      <span class="dropdown-value text-sm! text-black"
+                        >One Time</span
+                      >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
+                        <path
+                          d="M15.8332 7.5L9.99984 13.3333L4.1665 7.5"
+                          stroke="#667085"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown1">
+                      <div
+                        class="dropdown-item text-sm text-black/60"
+                        data-value="One Time"
+                      >
+                        One Time
+                      </div>
+                      <!-- <div class="dropdown-item" data-value="Income">Income</div>
+                          <div class="dropdown-item" data-value="Expenses">Expenses</div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Date Range -->
+              <div class="grid grid-cols-2 gap-2 w-80 mt-2 w-full">
+                <!-- Start Date Picker -->
+                <div class="flex-1 relative w-full">
+                  <button
+                    id="startBtn"
+                    class="w-full h-12 px-4 flex justify-between items-center border border-gray-300 rounded-full bg-white text-black text-sm cursor-pointer"
+                  >
+                    <span id="startText" class="text-sm text-black font-medium"
+                      >Date From</span
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    id="startCalendar"
+                    class="absolute mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-4 hidden z-50 w-72"
+                  >
+                    <div class="flex justify-between items-center mb-2">
+                      <button
+                        id="startPrevMonth"
+                        class="text-gray-500 hover:text-black"
+                      >
+                        &lt;
+                      </button>
+                      <span id="startMonthYear" class="font-semibold"></span>
+                      <button
+                        id="startNextMonth"
+                        class="text-gray-500 hover:text-black"
+                      >
+                        &gt;
+                      </button>
+                    </div>
+                    <div
+                      class="grid grid-cols-7 gap-1 text-center text-sm font-medium text-gray-600 mb-2"
+                    >
+                      <div>Sun</div>
+                      <div>Mon</div>
+                      <div>Tue</div>
+                      <div>Wed</div>
+                      <div>Thu</div>
+                      <div>Fri</div>
+                      <div>Sat</div>
+                    </div>
+                    <div
+                      id="startDays"
+                      class="grid grid-cols-7 gap-1 text-center text-sm"
+                    ></div>
+                  </div>
+                </div>
+
+                <!-- End Date Picker -->
+                <div class="flex-1 relative w-full">
+                  <button
+                    id="endBtn"
+                    class="w-full h-12 px-4 flex justify-between items-center border border-gray-300 rounded-full bg-white text-black text-sm cursor-pointer"
+                  >
+                    <span id="endText" class="text-sm text-black font-medium"
+                      >Date To</span
+                    >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    id="endCalendar"
+                    class="absolute mt-2 right-0 bg-white border border-gray-300 rounded-lg shadow-lg p-4 hidden z-50 w-72"
+                  >
+                    <div class="flex justify-between items-center mb-2">
+                      <button
+                        id="endPrevMonth"
+                        class="text-gray-500 hover:text-black"
+                      >
+                        &lt;
+                      </button>
+                      <span id="endMonthYear" class="font-semibold"></span>
+                      <button
+                        id="endNextMonth"
+                        class="text-gray-500 hover:text-black"
+                      >
+                        &gt;
+                      </button>
+                    </div>
+                    <div
+                      class="grid grid-cols-7 gap-1 text-center text-sm font-medium text-gray-600 mb-2"
+                    >
+                      <div>Sun</div>
+                      <div>Mon</div>
+                      <div>Tue</div>
+                      <div>Wed</div>
+                      <div>Thu</div>
+                      <div>Fri</div>
+                      <div>Sat</div>
+                    </div>
+                    <div
+                      id="endDays"
+                      class="grid grid-cols-7 gap-1 text-center text-sm"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Amount -->
+            <div class="rounded-2xl p-4 bg-white rounded-b-xl">
+              <label class="block text-sm font-medium text-black mb-1"
+                >Amount / %</label
+              >
+              <div class="relative flex gap-2">
+                <input
+                  type="text"
+                  class="w-full border border-gray-300 rounded-full h-[46px] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-black"
+                  placeholder="1000"
+                />
+                <button
+                  class="bg-[#1BB15F] w-12 h-12 px-8 rounded-4xl flex items-center justify-center text-white text-sm"
+                >
+                  AVG
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 pb-2 rounded-b-xl flex justify-end space-x-3">
+            <button
+              id="cancelBtn"
+              class="px-6 py-3 text-gray-700 font-medium bg-white border border-gray-300 rounded-full text-sm hover:bg-gray-100 cursor-pointer transition-colors"
+            >
+              Cancel
+            </button>
+
+            <button
               class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors"
             >
               Save Plan
@@ -8086,6 +9112,104 @@
           openScope(scope);
           activeScope = scope;
         });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButtons = document.querySelectorAll(".plan-toggle-btn");
+
+        toggleButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            // Reset all buttons
+            toggleButtons.forEach((b) => {
+              b.classList.remove("plan-active-toggle");
+              b.classList.add("border", "border-gray-300");
+
+              const iconWrapper = b.querySelector(".plan-icon-wrapper");
+              if (iconWrapper) {
+                iconWrapper.classList.remove("plan-active");
+              }
+            });
+
+            // Activate clicked button
+            btn.classList.add("plan-active-toggle");
+            btn.classList.remove("border", "border-gray-300");
+
+            const activeIcon = btn.querySelector(".plan-icon-wrapper");
+            if (activeIcon) {
+              activeIcon.classList.add("plan-active");
+            }
+          });
+        });
+      });
+    </script>
+
+    <script>
+      // Function to handle modal show/hide
+      function setupPlanModal(options = {}) {
+        const modal = document.getElementById("modal-overlay-plan");
+        const closeBtn = document.getElementById("close-modal-plan");
+        const cancelBtn = document.getElementById("cancelBtn");
+        const listItemsSelector =
+          options.listItemsSelector || ".plan-list-item";
+
+        if (!modal || !closeBtn || !cancelBtn) return;
+
+        // Show modal when list items are clicked
+        const listItems = document.querySelectorAll(listItemsSelector);
+        listItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+          });
+        });
+
+        // Close modal on close button click
+        closeBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+
+        // Close modal on cancel button click
+        cancelBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+
+        // Close modal when clicking outside the modal content
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.add("hidden");
+          }
+        });
+      }
+
+      // Initialize modal
+      document.addEventListener("DOMContentLoaded", () => {
+        setupPlanModal({
+          listItemsSelector: ".plan-list-item",
+        });
+      });
+    </script>
+
+    <!-- Plan table select options for mobile   -->
+    <script>
+      const monthSelect = document.getElementById("monthSelect");
+      const monthOptions = document.getElementById("monthOptions");
+      const selectedMonth = document.getElementById("selectedMonth");
+
+      monthSelect.addEventListener("click", (e) => {
+        e.stopPropagation();
+        monthOptions.classList.toggle("hidden");
+      });
+
+      monthOptions.querySelectorAll("div").forEach((option) => {
+        option.addEventListener("click", () => {
+          selectedMonth.textContent = option.textContent;
+          monthOptions.classList.add("hidden");
+        });
+      });
+
+      document.addEventListener("click", () => {
+        monthOptions.classList.add("hidden");
       });
     </script>
 
