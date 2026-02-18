@@ -2554,8 +2554,8 @@
                         <div
                           class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
                         >
-                          <!-- Month (Full Width) -->
-                          <div class="mb-4 relative w-full">
+                          <!-- Month Dropdown -->
+                          <div class="month-dropdown mb-4 relative w-full">
                             <label
                               class="text-sm font-medium text-gray-700 block mb-2"
                             >
@@ -2564,14 +2564,12 @@
 
                             <!-- Trigger -->
                             <div
-                              id="monthSelect"
-                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                              class="month-select w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
                             >
-                              <span id="selectedMonth" class="text-xs"
-                                >August</span
-                              >
+                              <span class="text-xs selected-month">August</span>
+
                               <svg
-                                class="w-4 h-4 text-gray-600"
+                                class="w-4 h-4 text-gray-600 transition-transform duration-200 dropdown-arrow"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -2587,66 +2585,65 @@
 
                             <!-- Absolute Dropdown -->
                             <div
-                              id="monthOptions"
-                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                              class="month-options absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-48 overflow-y-auto"
                             >
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 January
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 February
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 March
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 April
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 May
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 June
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 July
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 August
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 September
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 October
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 November
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 December
                               </div>
@@ -4553,8 +4550,8 @@
                         <div
                           class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
                         >
-                          <!-- Month (Full Width) -->
-                          <div class="mb-4 relative w-full">
+                          <!-- Month Dropdown -->
+                          <div class="month-dropdown mb-4 relative w-full">
                             <label
                               class="text-sm font-medium text-gray-700 block mb-2"
                             >
@@ -4563,14 +4560,12 @@
 
                             <!-- Trigger -->
                             <div
-                              id="monthSelect"
-                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                              class="month-select w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
                             >
-                              <span id="selectedMonth" class="text-xs"
-                                >August</span
-                              >
+                              <span class="text-xs selected-month">August</span>
+
                               <svg
-                                class="w-4 h-4 text-gray-600"
+                                class="w-4 h-4 text-gray-600 transition-transform duration-200 dropdown-arrow"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -4586,66 +4581,65 @@
 
                             <!-- Absolute Dropdown -->
                             <div
-                              id="monthOptions"
-                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                              class="month-options absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-48 overflow-y-auto"
                             >
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 January
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 February
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 March
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 April
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 May
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 June
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 July
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 August
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 September
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 October
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 November
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 December
                               </div>
@@ -6547,8 +6541,8 @@
                         <div
                           class="bg-white rounded-xl p-2 w-full max-w-4xl shadow-sm"
                         >
-                          <!-- Month (Full Width) -->
-                          <div class="mb-4 relative w-full">
+                          <!-- Month Dropdown -->
+                          <div class="month-dropdown mb-4 relative w-full">
                             <label
                               class="text-sm font-medium text-gray-700 block mb-2"
                             >
@@ -6557,14 +6551,12 @@
 
                             <!-- Trigger -->
                             <div
-                              id="monthSelect"
-                              class="w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
+                              class="month-select w-full border border-gray-300 rounded-md px-4 py-3 cursor-pointer flex justify-between items-center bg-white"
                             >
-                              <span id="selectedMonth" class="text-xs"
-                                >August</span
-                              >
+                              <span class="text-xs selected-month">August</span>
+
                               <svg
-                                class="w-4 h-4 text-gray-600"
+                                class="w-4 h-4 text-gray-600 transition-transform duration-200 dropdown-arrow"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -6580,66 +6572,65 @@
 
                             <!-- Absolute Dropdown -->
                             <div
-                              id="monthOptions"
-                              class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-45 overflow-y-auto"
+                              class="month-options absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-2 p-2 hidden z-50 shadow-lg max-h-48 overflow-y-auto"
                             >
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 January
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 February
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 March
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 April
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 May
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 June
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 July
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 August
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 September
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 October
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 November
                               </div>
                               <div
-                                class="p-1 text-xs text-black hover:bg-gray-100 cursor-pointer"
+                                class="p-1 text-xs hover:bg-gray-100 cursor-pointer"
                               >
                                 December
                               </div>
@@ -9192,24 +9183,40 @@
 
     <!-- Plan table select options for mobile   -->
     <script>
-      const monthSelect = document.getElementById("monthSelect");
-      const monthOptions = document.getElementById("monthOptions");
-      const selectedMonth = document.getElementById("selectedMonth");
+      document.querySelectorAll(".month-dropdown").forEach((dropdown) => {
+        const select = dropdown.querySelector(".month-select");
+        const options = dropdown.querySelector(".month-options");
+        const selected = dropdown.querySelector(".selected-month");
+        const arrow = dropdown.querySelector(".dropdown-arrow");
 
-      monthSelect.addEventListener("click", (e) => {
-        e.stopPropagation();
-        monthOptions.classList.toggle("hidden");
-      });
+        select.addEventListener("click", (e) => {
+          e.stopPropagation();
 
-      monthOptions.querySelectorAll("div").forEach((option) => {
-        option.addEventListener("click", () => {
-          selectedMonth.textContent = option.textContent;
-          monthOptions.classList.add("hidden");
+          // Close others
+          document.querySelectorAll(".month-options").forEach((menu) => {
+            if (menu !== options) menu.classList.add("hidden");
+          });
+
+          options.classList.toggle("hidden");
+          arrow.classList.toggle("rotate-180");
+        });
+
+        options.querySelectorAll("div").forEach((option) => {
+          option.addEventListener("click", () => {
+            selected.textContent = option.textContent;
+            options.classList.add("hidden");
+            arrow.classList.remove("rotate-180");
+          });
         });
       });
 
       document.addEventListener("click", () => {
-        monthOptions.classList.add("hidden");
+        document.querySelectorAll(".month-options").forEach((menu) => {
+          menu.classList.add("hidden");
+        });
+        document.querySelectorAll(".dropdown-arrow").forEach((icon) => {
+          icon.classList.remove("rotate-180");
+        });
       });
     </script>
 

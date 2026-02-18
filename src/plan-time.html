@@ -183,7 +183,22 @@
       background-color: white;
       min-height: 60px;
     }
+/* 💻 Desktop layout */
+@media (min-width: 768px) {
+  /* 📱 Mobile first → 5 columns */
 
+  .timeline-grid {
+    grid-template-columns: 120px repeat(9, 1fr);
+    min-width: 920px;
+  }
+
+ .timeline-cell {
+  background-color: white;
+  min-height: 60px;
+  min-width: 88px; /* same as Tailwind min-w-22 (22 * 4px) */
+}
+
+}
     .dotted-line {
       border-left: 2px dotted #000000;
       height: 130%;
@@ -842,41 +857,39 @@
 
                 <div class="timeline-grid bg-white! rounded-lg mb-1 md:mb-0">
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer"></div>
-                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer"><i
+                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer hidden md:block"><i
                       class="fas fa-chevron-left cursor-pointer mr-3"></i> 2022</div>
-                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2023</div>
-                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2024</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer hidden md:block">2023</div>
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer hidden md:block">2024</div>
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2025</div>
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2026</div>
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2027</div>
                   <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2028</div>
-                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer">2029</div>
-                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer">2030 <i
+                  <div class="timeline-cell min-w-22! md:py-8 font-semibold text-center text-gray-700 cursor-pointer hidden md:block">2029</div>
+                  <div class="timeline-cell min-w-22! md:py-8 lg:block font-semibold text-center text-gray-700 cursor-pointer hidden md:block">2030 <i
                       class="fas fa-chevron-right cursor-pointer ml-3"></i></div>
-
                 </div>
 
                 <!-- Timeline Grid -->
                 <div class="timeline-grid rounded-lg border-t border-gray-300">
                   <!-- Header Row -->
 
-
                   <!-- Units Row -->
                   <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-gray-700 cursor-pointer font-medium">Units</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer hidden md:block">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer hidden md:block">$1,000,000</div>
                   <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
                   <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
                   <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
                   <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
-                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
-                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
-                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
-                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
-                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer hidden md:block">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer hidden md:block">$1,000,000</div>
+                  <div class="timeline-cell min-w-22 md:py-6 bg-white! text-center text-sm text-gray-600 cursor-pointer hidden md:block">$1,000,000</div>
 
                   <!-- Net Worth Row -->
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! text-center font-medium text-gray-700 cursor-pointer">Net Worth</div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! hidden md:flex"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 relative bg-[#f3fff9]!">
                     <div class="dotted-line"></div>
@@ -943,14 +956,14 @@
                   </div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f3fff9]! hidden md:flex"></div>
 
                   <!-- Income Row -->
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! text-center font-medium text-gray-700 cursor-pointer">Income</div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! hidden md:flex"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! relative">
                     <div class="dotted-line"></div>
@@ -1085,14 +1098,14 @@
                   </div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#f8fdec]! hidden md:flex"></div>
 
                   <!-- Expenses Row -->
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! font-medium text-center text-gray-700 cursor-pointer">Expenses</div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! hidden md:flex"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! relative">
                     <div class="dotted-line"></div>
@@ -1157,9 +1170,9 @@
                   </div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
                   <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
-                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]!"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! hidden md:flex"></div>
+                  <div class="timeline-cell min-w-22 h-32 lg:h-52 flex-col items-center justify-center p-4 md:py-8 bg-[#F9F6EC]! hidden md:flex"></div>
                 </div>
 
                 <!-- Legend -->
@@ -1185,7 +1198,7 @@
     </div>
   </div>
    <!-- Floating Popup -->
-               <div id="popup"
+                 <div id="popup"
                     class="absolute hidden w-68 lg:w-96 bg-[#EFEFEF] rounded-3xl p-3 lg:p-4 shadow-2xl 
                             transition-all duration-200 scale-95 opacity-0 z-99999">
 
@@ -1207,7 +1220,7 @@
                   </div>
                   </div>
                   
-              </div> 
+              </div>            
 
 
     <!-- notification popup -->
