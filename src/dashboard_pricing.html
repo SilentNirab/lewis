@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -72,7 +72,9 @@
 
       /* Main content adjusts width and margin based on sidebar state */
       main {
-        transition: width 0.3s ease, margin-left 0.3s ease;
+        transition:
+          width 0.3s ease,
+          margin-left 0.3s ease;
         overflow-x: hidden;
       }
 
@@ -211,58 +213,69 @@
             <!-- Right side -->
             <div class="flex items-center space-x-1">
               <button
-                class="bg-white hover:bg-gray-50 search_btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                class="bg-white hover:bg-gray-50 search_btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
-                  fill="none">
+                  fill="none"
+                >
                   <path
                     d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
                     stroke="black"
                     stroke-width="2"
                     stroke-linecap="round"
-                    stroke-linejoin="round" />
+                    stroke-linejoin="round"
+                  />
                   <path
                     d="M17.5 17.5L13.875 13.875"
                     stroke="black"
                     stroke-width="2"
                     stroke-linecap="round"
-                    stroke-linejoin="round" />
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
               <button
-                class="bg-white hover:bg-gray-50 notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900">
+                class="bg-white hover:bg-gray-50 notification-btn size-12 border rounded-full flex items-center justify-center hover:text-gray-900"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
-                  fill="none">
+                  fill="none"
+                >
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
                     d="M12.0002 2.25C8.32001 2.25 5.25022 5.06847 5.25022 8.64153V9.69723C5.25022 10.7247 4.9461 11.7291 4.37618 12.584C4.36613 12.599 4.35663 12.6145 4.3477 12.6302L3.96906 13.2984C3.47894 14.1633 3.31926 15.1751 3.51495 16.1479C3.52959 16.2207 3.55335 16.3222 3.59151 16.4448C4.05486 17.9332 5.50116 18.6986 6.69011 19.0567C7.04543 19.1637 7.42267 19.2581 7.81665 19.3398L7.86793 19.4217C8.96229 21.1684 10.4349 22.2 12.0508 22.2C13.6667 22.2 15.1393 21.1684 16.2336 19.4217L16.3004 19.3152C16.6543 19.2388 16.9941 19.1521 17.3159 19.055C18.5204 18.6916 19.9095 17.9122 20.3923 16.4556C20.4104 16.4008 20.4255 16.3522 20.437 16.315C20.45 16.2731 20.4556 16.2551 20.4596 16.2436C20.4702 16.2126 20.4788 16.1809 20.4853 16.1488C20.6824 15.175 20.5212 14.1628 20.0314 13.2984L19.6527 12.6302C19.6438 12.6145 19.6343 12.599 19.6243 12.584C19.0543 11.7291 18.7502 10.7247 18.7502 9.69723V8.64153C18.7502 5.06847 15.6804 2.25 12.0002 2.25ZM14.1888 19.6352C12.7973 19.7681 11.3186 19.7715 9.92262 19.6455C10.638 20.3892 11.3824 20.7 12.0508 20.7C12.7223 20.7 13.4704 20.3863 14.1888 19.6352ZM6.75022 8.64153C6.75022 5.98312 9.0595 3.75 12.0002 3.75C14.9409 3.75 17.2502 5.98312 17.2502 8.64153V9.69723C17.2502 11.0115 17.6365 12.2965 18.3607 13.3927L18.7263 14.0379C19.0312 14.576 19.136 15.204 19.0229 15.8111L19.0067 15.863L19.0041 15.8714C18.9928 15.9079 18.9815 15.9442 18.9684 15.9836C18.7159 16.7455 17.9157 17.3073 16.8826 17.6189C14.1506 18.4432 9.85676 18.4437 7.12262 17.6204C6.06682 17.3024 5.2572 16.749 5.02372 15.9989C5.00291 15.9321 4.99137 15.8813 4.98549 15.8521C4.8606 15.2313 4.9628 14.5873 5.2741 14.0379L5.63973 13.3927C6.36395 12.2965 6.75022 11.0115 6.75022 9.69723V8.64153Z"
-                    fill="black" />
+                    fill="black"
+                  />
                   <path
                     d="M20.3876 8.2512C20.8012 8.27461 21.1174 8.62884 21.094 9.04239C21.06 9.64315 21.0781 10.0599 21.1743 10.4179C21.2661 10.7597 21.4425 11.0956 21.8042 11.4999C22.0804 11.8086 22.054 12.2827 21.7453 12.5589C21.4366 12.8351 20.9625 12.8088 20.6863 12.5001C20.198 11.9544 19.889 11.4154 19.7256 10.8071C19.5666 10.2151 19.5597 9.60685 19.5964 8.95761C19.6198 8.54406 19.9741 8.22779 20.3876 8.2512Z"
-                    fill="black" />
+                    fill="black"
+                  />
                   <path
                     d="M4.40272 8.95761C4.37931 8.54406 4.02508 8.22779 3.61153 8.2512C3.19798 8.27461 2.88171 8.62884 2.90512 9.04239C2.93912 9.64315 2.92105 10.0599 2.82488 10.4179C2.73308 10.7597 2.5567 11.0956 2.19498 11.4999C1.91879 11.8086 1.94513 12.2827 2.25382 12.5589C2.56251 12.8351 3.03665 12.8088 3.31284 12.5001C3.80113 11.9544 4.11012 11.4154 4.27352 10.8071C4.43255 10.2151 4.43947 9.60685 4.40272 8.95761Z"
-                    fill="black" />
+                    fill="black"
+                  />
                 </svg>
               </button>
               <div class="size-12 bg-gray-300 rounded-full overflow-hidden">
                 <img
                   src="./assets/images/userr.png"
                   alt="User"
-                  class="w-full h-full object-cover" />
+                  class="w-full h-full object-cover"
+                />
               </div>
               <!-- Mobile menu button -->
               <button
                 class="md:hidden text-gray-600"
-                onclick="toggleMobileMenu()">
+                onclick="toggleMobileMenu()"
+              >
                 <i class="fas fa-bars"></i>
               </button>
             </div>
@@ -631,7 +644,7 @@
                   </button>
                   <button
                     id="yearly-toggle"
-                    class="px-7 py-3 w-full  rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+                    class="px-7 py-3 w-full rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
                   >
                     Yearly
                   </button>
@@ -905,10 +918,20 @@
       <div class="flex items-center justify-end">
         <button
           class="flex items-center close-pup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
-          aria-label="Close notifications">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-x">
+          aria-label="Close notifications"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"
+          >
             <path d="M18 6 6 18" />
             <path d="m6 6 12 12" />
           </svg>
@@ -917,7 +940,9 @@
       <!-- Notification Panel -->
       <div class="bg-white rounded-3xl p-4 shadow-lg overflow-hidden">
         <!-- Header -->
-        <div class="flex items-center justify-between py-3 border-b border-gray-100">
+        <div
+          class="flex items-center justify-between py-3 border-b border-gray-100"
+        >
           <h2 class="text-xl font-semibold text-gray-900">Notifications</h2>
           <a href="#" class="text-sm text-green-600 hover:underline">
             Mark all as read
@@ -925,7 +950,10 @@
         </div>
 
         <!-- Notification List -->
-        <div id="notification-list" class="divide-y h-[454px] px-3 overflow-y-auto divide-gray-100">
+        <div
+          id="notification-list"
+          class="divide-y h-[454px] px-3 overflow-y-auto divide-gray-100"
+        >
           <!-- Notification Item 1 -->
         </div>
       </div>
@@ -937,10 +965,20 @@
       <div class="flex items-center justify-end">
         <button
           class="flex items-center close_search_popup justify-center mb-4 w-10 h-10 rounded-full bg-white text-black hover:bg-gray-100 hover:text-black cursor-pointer"
-          aria-label="Close notifications">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-x">
+          aria-label="Close notifications"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x"
+          >
             <path d="M18 6 6 18" />
             <path d="m6 6 12 12" />
           </svg>
@@ -950,18 +988,43 @@
       <!-- Search Panel -->
       <div class="bg-white rounded-[26px] shadow-lg overflow-hidden">
         <!-- Search Input -->
-        <div class=" -space-y-[7px] z-10 rounded-[26px] p-px " style="
-  background: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);">
-          <label for="search-input" class="sr-only">Search for accounts, transactions, holdings, categories</label>
-          <div class="relative flex items-center  px-4 py-2 bg-white rounded-[26px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-search text-gray-500 mr-2">
+        <div
+          class="-space-y-[7px] z-10 rounded-[26px] p-px"
+          style="
+            background: linear-gradient(
+              178deg,
+              #0d743b -32.88%,
+              #fce166 151.27%
+            );
+          "
+        >
+          <label for="search-input" class="sr-only"
+            >Search for accounts, transactions, holdings, categories</label
+          >
+          <div
+            class="relative flex items-center px-4 py-2 bg-white rounded-[26px]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search text-gray-500 mr-2"
+            >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
-            <input id="search-input" type="text" placeholder="Search for accounts, transactions, holdings, categories"
-              class="flex-1 py-1.5 outline-none placeholder:text-xs text-gray-900 placeholder-gray-500 bg-transparent" />
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search for accounts, transactions, holdings, categories"
+              class="flex-1 py-1.5 outline-none placeholder:text-xs text-gray-900 placeholder-gray-500 bg-transparent"
+            />
           </div>
         </div>
 
@@ -973,147 +1036,254 @@
         <!-- Suggestion List -->
         <div class="">
           <!-- Highlighted Suggestion Item (Transaction) -->
-          <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Transaction</div>          
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Transaction
+            </div>
           </div>
           <!-- Other Suggestion Items (Account/Category) -->
-          <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Account</div>     
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Account
+            </div>
           </div>
-          <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
           </div>
-          <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
           </div>
-         <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
           </div>
-          <div class="group flex items-center gap-4 py-3 px-5 w-full 
-         text-black transition-colors duration-200
-         hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)]
-         hover:text-white cursor-pointer">
-            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-gas-pump">
+          <div
+            class="group flex items-center gap-4 py-3 px-5 w-full text-black transition-colors duration-200 hover:bg-[linear-gradient(178deg,_#0D743B_-32.88%,_#FCE166_151.27%)] hover:text-white cursor-pointer"
+          >
+            <div
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-600"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gas-pump"
+              >
                 <path d="M6 3v14" />
                 <path d="M18 22V8L6 17" />
                 <path d="M2 8h20" />
-                <path d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                <path
+                  d="M14 14h6a2 2 0 0 0 2-2V2H14a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z"
+                />
                 <path d="M7 22h10" />
                 <path d="M12 14v4" />
               </svg>
             </div>
             <div class="flex-1">
               <div class="font-normal text-sm group-hover:text-white">
-                Lyft <span class="text-black/60 group-hover:text-white mx-2">Jun 18th 2025</span> <span class="text-black/60 group-hover:text-white">$12.67</span>
+                Lyft
+                <span class="text-black/60 group-hover:text-white mx-2"
+                  >Jun 18th 2025</span
+                >
+                <span class="text-black/60 group-hover:text-white">$12.67</span>
               </div>
             </div>
-            <div class="text-xs text-black/60 group-hover:text-white">Category</div> 
+            <div class="text-xs text-black/60 group-hover:text-white">
+              Category
+            </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -1266,7 +1436,7 @@
       // Initialize expand functionality when DOM is loaded
       document.addEventListener(
         "DOMContentLoaded",
-        initializeExpandFunctionality
+        initializeExpandFunctionality,
       );
     </script>
 

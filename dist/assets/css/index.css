@@ -2049,12 +2049,6 @@
     --tw-gradient-position: to top in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
-  .bg-\[linear-gradient\(178deg\,\#0D743B_-32\.88\%\,\#FCE166_151\.27\%\)\] {
-    background-image: linear-gradient(178deg,#0D743B -32.88%,#FCE166 151.27%);
-  }
-  .bg-\[linear-gradient\(178deg\,_\#0D743B_-32\.88\%\,_\#FCE166_151\.27\%\)\] {
-    background-image: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);
-  }
   .bg-\[linear-gradient\(180deg\,\#0D743B_-32\.88\%\,\#FCE166_151\.27\%\)\] {
     background-image: linear-gradient(180deg,#0D743B -32.88%,#FCE166 151.27%);
   }
@@ -2457,9 +2451,6 @@
   }
   .pl-7 {
     padding-left: calc(var(--spacing) * 7);
-  }
-  .pl-24 {
-    padding-left: calc(var(--spacing) * 24);
   }
   .text-center {
     text-align: center;
@@ -2963,12 +2954,6 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
-  }
-  .\*\:font-semibold {
-    :is(& > *) {
-      --tw-font-weight: var(--font-weight-semibold);
-      font-weight: var(--font-weight-semibold);
-    }
   }
   .group-hover\:visible {
     &:is(:where(.group):hover *) {
@@ -4947,11 +4932,6 @@
       padding-right: calc(var(--spacing) * 4);
     }
   }
-  .lg\:pr-10 {
-    @media (width >= 64rem) {
-      padding-right: calc(var(--spacing) * 10);
-    }
-  }
   .lg\:pb-16 {
     @media (width >= 64rem) {
       padding-bottom: calc(var(--spacing) * 16);
@@ -4975,11 +4955,6 @@
   .lg\:pl-6 {
     @media (width >= 64rem) {
       padding-left: calc(var(--spacing) * 6);
-    }
-  }
-  .lg\:pl-40 {
-    @media (width >= 64rem) {
-      padding-left: calc(var(--spacing) * 40);
     }
   }
   .lg\:text-left {
@@ -6248,4 +6223,33 @@ body {
   color: white;
   border-radius: 999px;
   font-size: 13px;
+}
+
+/* Active button style */
+.plan-active-toggle {
+  border: 1.5px solid transparent !important;
+  background: linear-gradient(white, white) padding-box, linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%) border-box !important;
+}
+
+/* Icon wrapper style */
+.plan-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* default background */
+  transition: background 0.3s;
+}
+
+/* Active icon background */
+.plan-icon-wrapper.plan-active {
+  background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);
+}
+
+/* Invert the SVG inside active wrapper */
+.plan-icon-wrapper.plan-active svg {
+  filter: invert(1);
+  transition: filter 0.3s;
 }

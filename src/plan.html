@@ -215,36 +215,6 @@
         height: calc(100vh - 4rem);
         z-index: 40;
       }
-
-      /* Active button style */
-      .plan-active-toggle {
-        border: 1.5px solid transparent !important;
-        background:
-          linear-gradient(white, white) padding-box,
-          linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%) border-box !important;
-      }
-
-      /* Icon wrapper style */
-      .plan-icon-wrapper {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white; /* default background */
-        transition: background 0.3s;
-      }
-
-      /* Active icon background */
-      .plan-icon-wrapper.plan-active {
-        background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);
-      }
-      /* Invert the SVG inside active wrapper */
-      .plan-icon-wrapper.plan-active svg {
-        filter: invert(1);
-        transition: filter 0.3s;
-      }
       @media (min-width: 1024px) {
         #sidebar {
           top: 5rem;
@@ -9106,6 +9076,7 @@
       });
     </script>
 
+    <!-- Income / Expense Setup -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const toggleButtons = document.querySelectorAll(".plan-toggle-btn");

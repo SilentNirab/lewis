@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,8 @@
     <title>MoneySeen - Forgot Password</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
       .gradient-green {
         background: linear-gradient(135deg, #1bb15f 0%, #0b6b37 100%);
@@ -22,7 +23,8 @@
           <div class="flex items-center">
             <img
               src="./assets/images/logo_full-removebg-preview.svg"
-              class="h-12 w-auto" />
+              class="h-12 w-auto"
+            />
           </div>
           <!-- Title -->
           <h1 class="text-3xl font-semibold text-black mb-8">
@@ -48,7 +50,8 @@
                 placeholder="Type Your Email"
                 id="contactField"
                 class="w-full px-4 py-3 border border-gray-200 rounded-full text-sm font-medium text-black/70 placeholder:text-black/70 focus:border-green-600 focus:ring-2 focus:ring-green-100 outline-none transition"
-                required />
+                required
+              />
             </div>
             <a
               href="./otp.html"
@@ -71,7 +74,8 @@
 
       <!-- Right Side - Dashboard Preview -->
       <div
-        class="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-transparent via-transparent to-green-100">
+        class="hidden md:flex flex-1 items-center justify-center bg-gradient-to-br from-transparent via-transparent to-green-100"
+      >
         <img src="./assets/images/login.svg" class="w-full h-full" />
       </div>
     </div>
@@ -98,7 +102,7 @@
         if (!value) {
           alert(
             "Please enter your " +
-              (recoveryMethod === "email" ? "email address." : "phone number.")
+              (recoveryMethod === "email" ? "email address." : "phone number."),
           );
           return;
         }
