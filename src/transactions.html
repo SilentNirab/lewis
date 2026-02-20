@@ -1351,7 +1351,7 @@
 
                       <!-- Description -->
                       <td class="py-4 px-4">
-                        <div id="openModalBtn" class="flex cursor-pointer items-center space-x-3">
+                        <div id="categoryOpenBtn" class="flex cursor-pointer items-center space-x-3">
                           <div
                             class="w-8 h-8 bg-gradient-to-r from-[#F28F88] to-[#F04438] rounded-full flex items-center justify-center flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
@@ -1766,14 +1766,14 @@
     </script>
 
     <!-- Modal overlay -->
-    <div id="modalOverlay1"
+    <div id="categoryModalOverlay"
       class="hidden flex fixed inset-0 bg-black/40 bg-opacity-50 items-center justify-center z-9999">
 
       <div class="max-h-[90vh] overflow-y-auto bg-white rounded-2xl max-w-110 w-full mx-4 ">
         <!-- Modal header -->
         <div class="bg-[#0B6B37] text-white px-6 py-4 rounded-t-lg flex justify-between items-center sticky top-0 z-30">
           <h2 class="text-lg font-semibold">Categories</h2>
-          <button id="closeModal1" class="text-white hover:text-gray-200 cursor-pointer">
+          <button id="categoryCloseBtn" class="text-white hover:text-gray-200 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -1784,7 +1784,7 @@
         <!-- Modal content -->
         <div class="p-5 bg-[#E6E6E6] rounded-b-lg"
           style="scrollbar-width: none; -ms-overflow-style: none">
-          <div id="normalContent" class="space-y-4 bg-white/70 p-3 rounded-md" style="
+          <div id="categoryNormalContent" class="space-y-4 bg-white/70 p-3 rounded-md" style="
               border-radius: 24px;
               border: 1px solid rgba(0, 0, 0, 0.05);
 
@@ -1856,7 +1856,7 @@
               </button>
             </div>
           </div>
-          <div id="loadingContent" class="hidden">
+          <div id="categoryLoadingContent" class="hidden">
             <div class="bg-[#FFFFFFB2] rounded-3xl p-6 text-center">
               <p class="text-black mb-8 text-base font-medium">
                 Current transaction details
@@ -1878,12 +1878,12 @@
           </div>
           <!-- See Details Button -->
           <div class="mt-6 flex justify-end items-center space-x-4">
-            <button id="cancelBtn"
+            <button id="categoryCancelBtn"
               class="px-6 py-3 text-gray-700 text-sm font-medium bg-white border border-gray-300 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
               Cancel
             </button>
 
-            <button id="saveBtn"
+            <button id="categorySaveBtn"
               class="px-6 py-3 bg-[#1BB15F] text-sm text-white font-medium rounded-full hover:bg-green-700 cursor-pointer transition-colors">
               Save Change
             </button>
@@ -2420,51 +2420,50 @@
 
     <!-- Loading Modal Script -->
 
-<script>
-    const modal = document.getElementById("modalOverlay1");
-    const openBtn = document.getElementById("openModalBtn");
-    const closeBtn = document.getElementById("closeModal1");
-    const cancelBtn = document.getElementById("cancelBtn");
-    const saveBtn = document.getElementById("saveBtn");
+      <script>
+        const categoryModal = document.getElementById("categoryModalOverlay");
+        const categoryOpenBtn = document.getElementById("categoryOpenBtn");
+        const categoryCloseBtn = document.getElementById("categoryCloseBtn");
+        const categoryCancelBtn = document.getElementById("categoryCancelBtn");
+        const categorySaveBtn = document.getElementById("categorySaveBtn");
 
-    const normalContent = document.getElementById("normalContent");
-    const loadingContent = document.getElementById("loadingContent");
+        const categoryNormalContent = document.getElementById("categoryNormalContent");
+        const categoryLoadingContent = document.getElementById("categoryLoadingContent");
 
-    function openModal() {
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-      normalContent.classList.remove("hidden");
-      loadingContent.classList.add("hidden");
-    }
+        function openCategoryModal() {
+          categoryModal.classList.remove("hidden");
+          categoryModal.classList.add("flex");
+          categoryNormalContent.classList.remove("hidden");
+          categoryLoadingContent.classList.add("hidden");
+        }
 
-    function closeModal() {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
+        function closeCategoryModal() {
+          categoryModal.classList.add("hidden");
+          categoryModal.classList.remove("flex");
+        }
 
-    openBtn.addEventListener("click", openModal);
-    closeBtn.addEventListener("click", closeModal);
-    cancelBtn.addEventListener("click", closeModal);
+        categoryOpenBtn?.addEventListener("click", openCategoryModal);
+        categoryCloseBtn?.addEventListener("click", closeCategoryModal);
+        categoryCancelBtn?.addEventListener("click", closeCategoryModal);
 
-    saveBtn.addEventListener("click", function () {
-      normalContent.classList.add("hidden");
-      loadingContent.classList.remove("hidden");
+        categorySaveBtn?.addEventListener("click", function () {
+          categoryNormalContent.classList.add("hidden");
+          categoryLoadingContent.classList.remove("hidden");
 
-      setTimeout(function () {
-        closeModal();
-        // Reset state
-        normalContent.classList.remove("hidden");
-        loadingContent.classList.add("hidden");
-      }, 1000);
-    });
+          setTimeout(function () {
+            closeCategoryModal();
+            categoryNormalContent.classList.remove("hidden");
+            categoryLoadingContent.classList.add("hidden");
+          }, 1000);
+        });
 
-    // Close modal when clicking outside
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-  </script>
+        categoryModal?.addEventListener("click", function (e) {
+          if (e.target === categoryModal) {
+            closeCategoryModal();
+          }
+        });
+      </script>
+
     <script src="./assets/js/dashboard.js"></script>
     <script src="./assets/js/popup.js"></script>
     <script src="./assets/js/search-popup.js"></script>
@@ -2472,6 +2471,7 @@
     <script src="./assets/js/budget-table.js"></script>
     <script src="./assets/js/menu.js"></script>
     <script src="./index.js"></script>
+    
 </body>
 
 </html>

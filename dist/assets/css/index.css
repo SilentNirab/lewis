@@ -5604,7 +5604,7 @@ body {
   gap: 12px;
   padding: 12px 16px;
   border-radius: 30px;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   background-color: rgba(255, 255, 255, 0.7);
   color: #4f4f4f;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -5617,7 +5617,7 @@ body {
 }
 
 .dropdown-trigger:hover {
-  border-color: #E6E6E6;
+  border-color: #e6e6e6;
 }
 
 .dropdown-trigger:focus {
@@ -6072,7 +6072,7 @@ body {
   height: 100%;
   min-height: 200px;
   overflow: hidden !important;
-  border: 1px solid #E9ECEF;
+  border: 1px solid #e9ecef;
 }
 
 .faq-icon {
@@ -6098,7 +6098,7 @@ body {
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: linear-gradient(178deg, #0D743B -32.88%, #FCE166 151.27%);
+  background: linear-gradient(178deg, #0d743b -32.88%, #fce166 151.27%);
   color: white;
   border-radius: 999px;
   font-size: 13px;
