@@ -460,15 +460,15 @@
                 scrollbar-width: none;
                 -ms-overflow-style: none;
               "
-              class="overflow-y-auto w-[80px] h-screen fixed inset-0 transition-all duration-300"
+              class="overflow-y-auto w-20 h-screen fixed inset-0 transition-all duration-300"
               id="sidebar"
             >
-              <div class="p-4">
-                <nav class="flex flex-col items-stretch h-full">
+              <div class="p-4 h-full">
+                <nav class="flex flex-col justify-between items-stretch h-full">
                   <div class="space-y-2">
                     <a
                       href="./dashboard.html"
-                      class="sidebar-item dcenter size-[48px] rounded-full bg-white! text-black hover:bg-white!"
+                      class="sidebar-item dcenter size-12 rounded-full bg-white! text-black hover:bg-white!"
                     >
                       <span class="dcenter block">
                         <i class="fa-solid fa-house block"></i>
@@ -478,7 +478,7 @@
 
                     <a
                       href="./finance-account.html"
-                      class="sidebar-item dcenter size-[48px] rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
+                      class="sidebar-item dcenter size-12 rounded-full text-black bg-[#FCFDFE] hover:bg-white!"
                     >
                       <img src="./assets/images/finance.svg" />
                       <span class="sidebar-label">Financial Accounts</span>
@@ -550,7 +550,7 @@
                           );
                           backdrop-filter: blur(40px);
                         "
-                        class="sidebar-item size-[48px] rounded-full dcenter text-primary bg-[#FCFDFE] hover:bg-white! border-0 cursor-pointer transition-all"
+                        class="sidebar-item size-12 rounded-full dcenter text-primary bg-[#FCFDFE] hover:bg-white! border-0 cursor-pointer transition-all"
                       >
                         <svg
                           class="expand-icon"
@@ -571,10 +571,10 @@
                       </button>
                     </div>
                   </div>
-                  <div class="absolute bottom-10">
+                  <div class="py-2">
                     <a
                       href="#"
-                      class="sidebar-item size-[48px] rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black"
+                      class="sidebar-item size-12 rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black"
                     >
                       <img src="./assets/images/call.svg" />
                       <span class="sidebar-label">Support</span>
@@ -2822,7 +2822,7 @@
         >
           <!-- Header -->
           <div
-            class="bg-[#0B6B37] text-white px-6 py-4 rounded--xl flex justify-between items-center sticky top-0"
+            class="bg-[#0B6B37] text-white px-6 py-4 rounded--xl flex justify-between items-center sticky top-0 z-30"
             style="
               overflow: auto;
               scrollbar-width: none;

@@ -459,8 +459,8 @@
             class="overflow-y-auto w-[80px] h-screen fixed inset-0 transition-all duration-300"
             id="sidebar"
           >
-            <div class="p-4">
-              <nav class="flex flex-col items-stretch h-full">
+            <div class="p-4 h-full">
+              <nav class="flex flex-col justify-between items-stretch h-full">
                 <div class="space-y-2">
                   <a
                     href="./dashboard.html"
@@ -567,7 +567,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="absolute bottom-10">
+                <div class="py-2">
                   <a
                     href="#"
                     class="sidebar-item size-[48px] rounded-full dcenter bg-[#FCFDFE] hover:bg-white! text-black"
@@ -2918,11 +2918,11 @@
       class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex overflow-auto items-start md:items-center justify-center z-9999"
     >
       <div
-        class="bg-[#E6E6E6] card_style overflow-auto rounded-xl shadow-xl max-w-lg w-full mx-4"
+        class="max-h-[90vh] bg-[#E6E6E6] card_style overflow-auto rounded-xl shadow-xl max-w-lg w-full mx-4"
       >
         <!-- Modal header -->
         <div
-          class="bg-[#0B6B37] text-white px-5 py-5 rounded-t-xl flex justify-between items-center"
+          class="bg-[#0B6B37] text-white px-5 py-5 rounded-t-xl flex justify-between items-center sticky top-0 z-30"
         >
           <h2 class="text-xl font-medium">Budget Setup</h2>
           <button

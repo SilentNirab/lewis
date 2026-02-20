@@ -1505,7 +1505,7 @@
       class="hidden fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-99999">
       <div class="bg-[#E6E6E6] rounded-2xl shadow-xl max-w-110 w-full mx-4 max-h-[90vh] overflow-y-auto">
         <!-- Modal header -->
-        <div class="bg-[#0B6B37] text-white px-6 py-4 rounded-t-xl flex justify-between items-center">
+        <div class="bg-[#0B6B37] text-white px-6 py-4 rounded-t-xl flex justify-between items-center sticky top-0 z-30">
           <h2 class="text-[20px] font-medium">Transaction details</h2>
           <button id="closeModal" class="text-white hover:text-gray-200 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -1516,7 +1516,7 @@
         </div>
 
         <!-- Modal content -->
-        <div class="p-3 bg-[#E6E6E6] rounded-b-lg max-h-175 overflow-y-auto"
+        <div class="p-3 bg-[#E6E6E6] rounded-b-lg"
           style="scrollbar-width: none; -ms-overflow-style: none">
           <!-- Toggle Buttons -->
           <div class="bg-white/70 p-2 border text-xs flex justify-between items-center border-gray-100 text-center rounded-full mb-4">
@@ -1767,10 +1767,11 @@
 
     <!-- Modal overlay -->
     <div id="modalOverlay1"
-      class="hidden flex fixed inset-0 bg-black/40 bg-opacity-50 items-center justify-center z-50">
-      <div class="bgwhite rounded-2xl max-w-110 w-full mx-4 overflow-y-auto">
+      class="hidden flex fixed inset-0 bg-black/40 bg-opacity-50 items-center justify-center z-9999">
+
+      <div class="max-h-[90vh] overflow-y-auto bg-white rounded-2xl max-w-110 w-full mx-4 ">
         <!-- Modal header -->
-        <div class="bg-[#0B6B37] text-white px-6 py-4 rounded-t-lg flex justify-between items-center">
+        <div class="bg-[#0B6B37] text-white px-6 py-4 rounded-t-lg flex justify-between items-center sticky top-0 z-30">
           <h2 class="text-lg font-semibold">Categories</h2>
           <button id="closeModal1" class="text-white hover:text-gray-200 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -1781,7 +1782,7 @@
         </div>
 
         <!-- Modal content -->
-        <div class="p-5 bg-[#E6E6E6] rounded-b-lg overflow-y-auto"
+        <div class="p-5 bg-[#E6E6E6] rounded-b-lg"
           style="scrollbar-width: none; -ms-overflow-style: none">
           <div id="normalContent" class="space-y-4 bg-white/70 p-3 rounded-md" style="
               border-radius: 24px;
