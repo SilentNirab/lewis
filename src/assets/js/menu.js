@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     profileImg.onerror = function () {
       this.style.display = "none";
       this.parentElement.innerHTML =
-        '<div class="w-full h-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-white font-bold text-lg">JD</div>';
+        '<div class="w-full h-full bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-white! font-bold text-lg">JD</div>';
     };
   }
 });
